@@ -46,6 +46,11 @@
 		<?php echo $form->textField($model,'createdon'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'rol'); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>255)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

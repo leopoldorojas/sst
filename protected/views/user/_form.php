@@ -57,6 +57,12 @@
 		<?php echo $form->error($model,'createdon'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'rol'); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'rol'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

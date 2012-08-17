@@ -32,6 +32,11 @@ return array(
 
 	// application components
 	'components'=>array(
+		'authManager'=>array(
+			// default roles definition
+			'class'=>'CDbAuthManager',
+			'defaultRoles'=>array('admin','superadmin'),
+		),		
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -93,6 +98,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'leopoldo.rojas@arckanto.com',
 	),
 );

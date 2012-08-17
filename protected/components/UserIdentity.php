@@ -18,10 +18,10 @@ class UserIdentity extends CUserIdentity
 
 	public function authenticate()
 	{
-		if($this->username=='admin' && $this->password=='admin')
+		if(($this->username=='admin' && $this->password=='admin') || ($this->username=='superadmin' && $this->password=='superadmin'))
 		{
 			$this->_id=9999;
-			$this->username='admin';
+			// $this->username='admin';
 			$this->errorCode=self::ERROR_NONE;
 			return $this->errorCode==self::ERROR_NONE;
 		} else {

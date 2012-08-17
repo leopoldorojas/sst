@@ -12,6 +12,7 @@
  * @property string $salt
  * @property string $profile
  * @property string $createdon
+ * @property string $rol
  */
 class User extends CActiveRecord
 {
@@ -42,11 +43,11 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, username', 'required'),
-			array('name, username, password, email', 'length', 'max'=>255),
+			array('name, username, password, email, rol', 'length', 'max'=>255),
 			array('profile', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, username, password, email, salt, profile, createdon', 'safe', 'on'=>'search'),
+			array('id, name, username, password, email, salt, profile, createdon, rol', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +76,7 @@ class User extends CActiveRecord
 			'salt' => 'Salt',
 			'profile' => 'Profile',
 			'createdon' => 'Createdon',
+			'rol'=>'Rol',
 		);
 	}
 
@@ -97,6 +99,7 @@ class User extends CActiveRecord
 		$criteria->compare('salt',$this->salt,true);
 		$criteria->compare('profile',$this->profile,true);
 		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->compare('rol',$this->rol,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
