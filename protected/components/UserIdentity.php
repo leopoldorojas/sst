@@ -18,13 +18,13 @@ class UserIdentity extends CUserIdentity
 
 	public function authenticate()
 	{
-		if(($this->username=='admin' && $this->password=='admin') || ($this->username=='superadmin' && $this->password=='superadmin'))
+		/* if(($this->username=='admin' && $this->password=='admin') || ($this->username=='superadmin' && $this->password=='superadmin'))
 		{
 			$this->_id=9999;
 			// $this->username='admin';
 			$this->errorCode=self::ERROR_NONE;
 			return $this->errorCode==self::ERROR_NONE;
-		} else {
+		} else { */
 		$username=strtolower($this->username);
 		$user=User::model()->find('LOWER(username)=?', array($username));
 		if ($user===null)
@@ -35,9 +35,10 @@ class UserIdentity extends CUserIdentity
 		{
 			$this->_id=$user->id;
 			$this->username=$user->username;
+			$this->setState('rol', $user->rol);
 			$this->errorCode=self::ERROR_NONE;
 		}
-		return $this->errorCode==self::ERROR_NONE; }
+		return $this->errorCode==self::ERROR_NONE; // }
 	}
 
 	public function getId()

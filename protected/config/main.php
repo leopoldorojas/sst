@@ -31,12 +31,7 @@ return array(
 	),
 
 	// application components
-	'components'=>array(
-		'authManager'=>array(
-			// default roles definition
-			'class'=>'CDbAuthManager',
-			'defaultRoles'=>array('admin','superadmin'),
-		),		
+	'components'=>array(		
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -58,6 +53,13 @@ return array(
 			'password' => 'facil1234',
 			'charset' => 'utf8',
 		),
+		
+		'authManager'=>array(
+			// default roles definition
+			'class'=>'CDbAuthManager',
+			'connectionID'=>'db',
+			'defaultRoles'=>array('admin','superadmin'),
+		), 
 		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',

@@ -17,33 +17,35 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>30,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'username',array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->passwordField($model,'password_onscreen',array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'salt'); ?>
 		<?php echo $form->textField($model,'salt',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'salt'); ?>
 	</div>
+	*/ ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'profile'); ?>
@@ -51,15 +53,17 @@
 		<?php echo $form->error($model,'profile'); ?>
 	</div>
 
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
 		<?php echo $form->textField($model,'createdon'); ?>
 		<?php echo $form->error($model,'createdon'); ?>
 	</div>
+	*/ ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol'); ?>
-		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->dropdownlist($model,'rol', array('public'=>'public', 'authenticated'=>'authenticated', 'admin'=>'admin', 'superadmin'=>'superadmin',)); ?>
 		<?php echo $form->error($model,'rol'); ?>
 	</div>
 

@@ -7,12 +7,13 @@
  * @property integer $id
  * @property string $name
  * @property string $username
- * @property string $password
+ * @property string $Password 			// This is the password to save in db
  * @property string $email
  * @property string $salt
  * @property string $profile
  * @property string $createdon
  * @property string $rol
+ * @property string $password_onscreen // This is a property that it is not necessary to save in db
  */
 class User extends CActiveRecord
 {
@@ -21,6 +22,9 @@ class User extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return User the static model class
 	 */
+
+	public $password_onscreen;
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -42,12 +46,16 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, username', 'required'),
-			array('name, username, password, email, rol', 'length', 'max'=>255),
+			array('name, username, password, password_onscreen', 'required'),
+			array('name', 'length', 'max'=>50),
+			array('username, password_onscreen', 'length', 'max'=>20),
+			array('password', 'length', 'max'=>255),
+			array('email', 'length', 'max'=>100),
+			array('rol', 'in', 'range'=>array('public', 'authenticated', 'admin', 'superadmin')),
 			array('profile', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, username, password, email, salt, profile, createdon, rol', 'safe', 'on'=>'search'),
+			array('id, name, username, email, profile, createdon, rol', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +80,7 @@ class User extends CActiveRecord
 			'name' => 'Name',
 			'username' => 'Username',
 			'password' => 'Password',
+			'password_onscreen' => 'Password',
 			'email' => 'Email',
 			'salt' => 'Salt',
 			'profile' => 'Profile',
@@ -94,9 +103,9 @@ class User extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
+		// $criteria->compare('password',$this->password,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('salt',$this->salt,true);
+		// $criteria->compare('salt',$this->salt,true);
 		$criteria->compare('profile',$this->profile,true);
 		$criteria->compare('createdon',$this->createdon,true);
 		$criteria->compare('rol',$this->rol,true);

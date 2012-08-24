@@ -29,15 +29,15 @@ class UserController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('superadmin'),
+				'roles'=>array('admin','superadmin'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('superadmin'),
+				'actions'=>array('create','update', 'admin'),
+				'roles'=>array('admin','superadmin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('superadmin'),
+				'actions'=>array('delete'),
+				'roles'=>array('superadmin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -71,8 +71,8 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			// $model->createdon=time();
-			$model->salt=$model->hashPassword($_POST['User']['password'],time());
-			$model->password=$model->hashPassword($_POST['User']['password'],$model->salt);
+			$model->salt=$model->hashPassword($_POST['User']['password_onscreen'],time());
+			$model->password=$model->hashPassword($_POST['User']['password_onscreen'],$model->salt);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -97,6 +97,8 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
+			$model->salt=$model->hashPassword($_POST['User']['password_onscreen'],time());
+			$model->password=$model->hashPassword($_POST['User']['password_onscreen'],$model->salt);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -126,6 +128,8 @@ class UserController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('User');
+		// if (Yii::app()->user->rol === "superadmin") 
+		//	echo "Hola mundo" . Yii::app()->user->checkAccess('superadmin') . "siii " . Yii::app()->user->rol;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
