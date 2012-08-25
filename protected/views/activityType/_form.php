@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'description',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
@@ -32,12 +32,12 @@
 		<?php echo $form->textField($model,'service_types',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'service_types'); ?>
 	</div>
-
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
 		<?php echo $form->textField($model,'createdon'); ?>
 		<?php echo $form->error($model,'createdon'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

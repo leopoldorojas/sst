@@ -41,8 +41,9 @@ class ActivityType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('description, createdon', 'required'),
-			array('description, service_types', 'length', 'max'=>255),
+			array('description', 'required'),
+			array('description', 'length', 'max'=>100),
+			array('service_types', 'length', 'max'=>255),
 			array('enabled', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

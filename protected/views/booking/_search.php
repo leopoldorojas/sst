@@ -18,47 +18,47 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'bookingid'); ?>
-		<?php echo $form->textField($model,'bookingid',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'bookingid',array('size'=>15,'maxlength'=>30)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'bhdid'); ?>
-		<?php echo $form->textField($model,'bhdid',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'bhdid',array('size'=>15,'maxlength'=>30)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'booking_code'); ?>
-		<?php echo $form->textField($model,'booking_code',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'booking_code',array('size'=>15,'maxlength'=>30)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>30,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'traveldate'); ?>
-		<?php echo $form->textField($model,'traveldate'); ?>
+		<?php echo $form->textField($model,'traveldate',array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'agent'); ?>
-		<?php echo $form->textField($model,'agent',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'agent',array('size'=>30,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'status',array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'consultant'); ?>
-		<?php echo $form->textField($model,'consultant',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'consultant',array('size'=>30,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'priority'); ?>
-		<?php echo $form->textField($model,'priority',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'priority',array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">

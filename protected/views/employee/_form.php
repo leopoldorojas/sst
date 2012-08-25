@@ -17,39 +17,39 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'lastname',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'lastname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'identification_number'); ?>
-		<?php echo $form->textField($model,'identification_number',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'identification_number',array('size'=>12,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'identification_number'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol'); ?>
-		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'rol'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cost_per_hour'); ?>
-		<?php echo $form->textField($model,'cost_per_hour',array('size'=>19,'maxlength'=>19)); ?>
+		<?php echo $form->textField($model,'cost_per_hour',array('size'=>8,'maxlength'=>19)); ?>
 		<?php echo $form->error($model,'cost_per_hour'); ?>
 	</div>
-
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
 		<?php echo $form->textField($model,'createdon'); ?>
 		<?php echo $form->error($model,'createdon'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

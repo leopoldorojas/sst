@@ -49,9 +49,13 @@ class Booking extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('bookingid, bhdid, booking_code, createdon', 'required'),
-			array('bookingid, bhdid, booking_code, name, agent, status, consultant, priority', 'length', 'max'=>255),
-			array('traveldate, notes', 'safe'),
+			array('bookingid, bhdid, booking_code', 'required'),
+			array('bookingid, bhdid, booking_code', 'unique'),
+			array('bookingid, bhdid, booking_code', 'length', 'max'=>30),
+			array('name, agent, consultant', 'length', 'max'=>50),
+			array('status, priority', 'length', 'max'=>10),
+			array('traveldate','date'),
+			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, bookingid, bhdid, booking_code, name, traveldate, agent, status, consultant, priority, notes, createdon', 'safe', 'on'=>'search'),

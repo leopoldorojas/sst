@@ -33,7 +33,6 @@
 	<?php echo CHtml::encode($data->agent); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
 	<?php echo CHtml::encode($data->status); ?>
 	<br />
@@ -53,7 +52,5 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
 	<?php echo CHtml::encode($data->createdon); ?>
 	<br />
-
-	*/ ?>
 
 </div>

@@ -43,9 +43,9 @@ class Employee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, lastname, createdon', 'required'),
-			array('name, lastname, identification_number, rol', 'length', 'max'=>255),
-			array('cost_per_hour', 'length', 'max'=>19),
+			array('name, lastname', 'required'),
+			array('name, lastname, identification_number, rol', 'length', 'max'=>50),
+			array('cost_per_hour', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, lastname, identification_number, rol, cost_per_hour, createdon', 'safe', 'on'=>'search'),

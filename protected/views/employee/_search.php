@@ -18,27 +18,27 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'lastname',array('size'=>50,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'identification_number'); ?>
-		<?php echo $form->textField($model,'identification_number',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'identification_number',array('size'=>12,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'rol'); ?>
-		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>50,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'cost_per_hour'); ?>
-		<?php echo $form->textField($model,'cost_per_hour',array('size'=>19,'maxlength'=>19)); ?>
+		<?php echo $form->textField($model,'cost_per_hour',array('size'=>8,'maxlength'=>19)); ?>
 	</div>
 
 	<div class="row">
