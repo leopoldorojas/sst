@@ -34,7 +34,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('pickuptime')); ?>:</b>
-	<?php echo CHtml::encode($data->pickuptime); ?>
+	<?php echo CHtml::encode(substr($data->pickuptime,0,5)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('droppoff')); ?>:</b>
@@ -42,7 +42,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('dropofftime')); ?>:</b>
-	<?php echo CHtml::encode($data->dropofftime); ?>
+	<?php echo CHtml::encode(substr($data->dropofftime,0,5)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('voucher')); ?>:</b>

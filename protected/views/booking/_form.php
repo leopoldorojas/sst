@@ -41,7 +41,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'traveldate'); ?>
-		<?php echo $form->textField($model,'traveldate',array('size'=>10,'maxlength'=>20)); ?>
+		<?php echo $form->dateField($model,'traveldate'); ?>
 		<?php echo $form->error($model,'traveldate'); ?>
 	</div>
 

@@ -27,8 +27,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'activity_datetime'); ?>
-		<?php echo $form->textField($model,'activity_datetime', array('size'=>10,'maxlength'=>20)); ?>
+		<?php echo $form->label($model,'activity_date'); ?>
+		<?php echo $form->dateField($model,'activity_date'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'activity_time'); ?>
+		<?php echo $form->textField($model,'activity_time',array('rows'=>10, 'cols'=>20)); ?>
 	</div>
 
 	<div class="row">

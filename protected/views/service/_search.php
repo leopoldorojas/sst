@@ -23,17 +23,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'day'); ?>
-		<?php echo $form->textField($model,'day', array('size'=>2, 'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'day', array('size'=>2, 'maxlength'=>3)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'seq'); ?>
-		<?php echo $form->textField($model,'seq', array('size'=>2, 'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'seq', array('size'=>2, 'maxlength'=>3)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'delivery_date'); ?>
-		<?php echo $form->textField($model,'delivery_date', array('size'=>10, 'maxlength'=>20)); ?>
+		<?php echo $form->dateField($model,'delivery_date'); ?>
 	</div>
 
 	<div class="row">
@@ -49,6 +49,7 @@
 	<div class="row">
 		<?php echo $form->label($model,'pickuptime'); ?>
 		<?php echo $form->textField($model,'pickuptime', array('size'=>10, 'maxlength'=>20)); ?>
+		<?php // echo CHtml::activeTextField($model,'pickuptime', array('value'=>substr($model->pickuptime,0,5))); ?>
 	</div>
 
 	<div class="row">
@@ -78,7 +79,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'pax_number'); ?>
-		<?php echo $form->textField($model,'pax_number', array('size'=>2, 'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'pax_number', array('size'=>2, 'maxlength'=>3)); ?>
 	</div>
 
 	<div class="row">

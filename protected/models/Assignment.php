@@ -43,7 +43,7 @@ class Assignment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('employee_id, activity_id, createdon', 'required'),
+			array('employee_id, activity_id', 'required'),
 			array('employee_id, activity_id', 'numerical', 'integerOnly'=>true),
 			array('estimated_time, actual_time', 'date'),
 			// The following rule is used by search().

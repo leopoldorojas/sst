@@ -54,7 +54,7 @@ class Booking extends CActiveRecord
 			array('bookingid, bhdid, booking_code', 'length', 'max'=>30),
 			array('name, agent, consultant', 'length', 'max'=>50),
 			array('status, priority', 'length', 'max'=>10),
-			array('traveldate','date'),
+			array('traveldate','date', 'format'=>'yyyy-MM-dd'),
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

@@ -51,7 +51,7 @@ class User extends CActiveRecord
 			array('name', 'length', 'max'=>50),
 			array('username, password_onscreen', 'length', 'max'=>20),
 			array('password', 'length', 'max'=>255),
-			array('email', 'length', 'max'=>100),
+			array('email', 'email'),
 			array('rol', 'in', 'range'=>array('public', 'authenticated', 'admin', 'superadmin')),
 			array('profile', 'safe'),
 			// The following rule is used by search().

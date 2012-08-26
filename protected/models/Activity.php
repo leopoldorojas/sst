@@ -7,7 +7,8 @@
  * @property integer $id
  * @property integer $activity_type_id
  * @property string $description
- * @property string $activity_datetime
+ * @property string $activity_date
+ * @property string $activity_time
  * @property boolean $completed
  * @property string $createdon
  *
@@ -46,12 +47,13 @@ class Activity extends CActiveRecord
 		return array(
 			array('activity_type_id', 'required'),
 			array('activity_type_id', 'numerical', 'integerOnly'=>true),
-			array('activity_datetime', 'date'),
+			array('activity_date', 'date', 'format'=>'yyyy-MM-dd'),
+			array('activity_time', 'date', 'format'=>'H:mm'),
 			array('completed', 'boolean'),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, activity_type_id, description, activity_datetime, completed, createdon', 'safe', 'on'=>'search'),
+			array('id, activity_type_id, description, activity_date, activity_time, completed, createdon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,7 +80,8 @@ class Activity extends CActiveRecord
 			'id' => 'ID',
 			'activity_type_id' => 'Activity Type',
 			'description' => 'Description',
-			'activity_datetime' => 'Activity Datetime',
+			'activity_date' => 'Activity Date',
+			'activity_time' => 'Activity Time',
 			'completed' => 'Completed',
 			'createdon' => 'Createdon',
 		);
@@ -98,7 +101,8 @@ class Activity extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('activity_type_id',$this->activity_type_id);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('activity_datetime',$this->activity_datetime,true);
+		$criteria->compare('activity_date',$this->activity_date,true);
+		$criteria->compare('activity_time',$this->activity_time,true);
 		$criteria->compare('completed',$this->completed);
 		$criteria->compare('createdon',$this->createdon,true);
 

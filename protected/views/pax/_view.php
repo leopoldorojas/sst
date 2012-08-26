@@ -37,16 +37,8 @@
 	<?php echo CHtml::encode($data->arrival_detail); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('arrival_time')); ?>:</b>
-	<?php echo CHtml::encode($data->arrival_time); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('departure_detail')); ?>:</b>
 	<?php echo CHtml::encode($data->departure_detail); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('departure_time')); ?>:</b>
-	<?php echo CHtml::encode($data->departure_time); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('room')); ?>:</b>

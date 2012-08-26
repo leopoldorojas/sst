@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'age'); ?>
-		<?php echo $form->textField($model,'age', array('size'=>2,'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'age', array('size'=>2,'maxlength'=>3)); ?>
 		<?php echo $form->error($model,'age'); ?>
 	</div>
 
@@ -58,21 +58,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'arrival_time'); ?>
-		<?php echo $form->textField($model,'arrival_time', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'arrival_time'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'departure_detail'); ?>
 		<?php echo $form->textField($model,'departure_detail',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'departure_detail'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'departure_time'); ?>
-		<?php echo $form->textField($model,'departure_time', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'departure_time'); ?>
 	</div>
 
 	<div class="row">

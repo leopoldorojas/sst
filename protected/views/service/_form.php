@@ -23,13 +23,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'day'); ?>
-		<?php echo $form->textField($model,'day', array('size'=>2, 'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'day', array('size'=>2, 'maxlength'=>3)); ?>
 		<?php echo $form->error($model,'day'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'seq'); ?>
-		<?php echo $form->textField($model,'seq', array('size'=>2, 'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'seq', array('size'=>2, 'maxlength'=>3)); ?>
 		<?php echo $form->error($model,'seq'); ?>
 	</div>
 
@@ -66,7 +66,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'dropofftime'); ?>
-		<?php echo $form->textField($model,'dropofftime', array('size'=>10, 'maxlength'=>20)); ?>
+		<?php echo CHtml::activeTextField($model,'dropofftime', array('value'=>substr($model->dropofftime,0,5))); ?>
 		<?php echo $form->error($model,'dropofftime'); ?>
 	</div>
 
@@ -90,7 +90,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'pax_number'); ?>
-		<?php echo $form->textField($model,'pax_number', array('size'=>2, 'maxlength'=>3)); ?>
+		<?php echo $form->numberField($model,'pax_number', array('size'=>2, 'maxlength'=>3)); ?>
 		<?php echo $form->error($model,'pax_number'); ?>
 	</div>
 

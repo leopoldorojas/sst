@@ -12,9 +12,7 @@
  * @property string $height
  * @property string $weight
  * @property string $arrival_detail
- * @property string $arrival_time
  * @property string $departure_detail
- * @property string $departure_time
  * @property string $room
  * @property string $notes
  * @property string $createdon
@@ -53,13 +51,12 @@ class Pax extends CActiveRecord
 			array('booking_id, name', 'required'),
 			array('booking_id, age', 'numerical', 'integerOnly'=>true),
 			array('arrival_detail, departure_detail', 'length', 'max'=>100),
-			array('name, passport, height, weight', 'max'=>50),
-			array('room', 'max'=>10),
-			array('arrival_time, departure_time', 'numerical'),
+			array('name, passport, height, weight', 'length', 'max'=>50),
+			array('room', 'length', 'max'=>10),
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, booking_id, name, age, passport, arrival_detail, arrival_time, departure_detail, departure_time, room, notes, createdon', 'safe', 'on'=>'search'),
+			array('id, booking_id, name, age, passport, arrival_detail, departure_detail, room, notes, createdon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,9 +86,7 @@ class Pax extends CActiveRecord
 			'height' => 'Height',
 			'weight' => 'Weight',
 			'arrival_detail' => 'Arrival Detail',
-			'arrival_time' => 'Arrival Time',
 			'departure_detail' => 'Departure Detail',
-			'departure_time' => 'Departure Time',
 			'room' => 'Room',
 			'notes' => 'Notes',
 			'createdon' => 'Createdon',
@@ -117,9 +112,7 @@ class Pax extends CActiveRecord
 		// $criteria->compare('height',$this->height,true);
 		// $criteria->compare('weight',$this->weight,true);
 		$criteria->compare('arrival_detail',$this->arrival_detail,true);
-		$criteria->compare('arrival_time',$this->arrival_time,true);
 		$criteria->compare('departure_detail',$this->departure_detail,true);
-		$criteria->compare('departure_time',$this->departure_time,true);
 		$criteria->compare('room',$this->room,true);
 		$criteria->compare('notes',$this->notes,true);
 		$criteria->compare('createdon',$this->createdon,true);

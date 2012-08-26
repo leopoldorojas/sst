@@ -48,7 +48,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'activity_type_id',
 		'description',
-		'activity_datetime',
+		'activity_date',
+		'activity_time',
 		'completed',
 		'createdon',
 		array(

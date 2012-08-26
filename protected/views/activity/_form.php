@@ -28,9 +28,16 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'activity_datetime'); ?>
-		<?php echo $form->textField($model,'activity_datetime', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'activity_datetime'); ?>
+		<?php echo $form->labelEx($model,'activity_date'); ?>
+		<?php echo $form->dateField($model,'activity_date'); ?>
+		<?php echo $form->error($model,'activity_date'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'activity_time'); ?>
+		<?php // echo $form->dateField($model,'activity_time'); ?>
+		<?php echo CHtml::activeTextField($model,'activity_time', array('value'=>substr($model->activity_time,0,5))); ?>
+		<?php echo $form->error($model,'activity_time'); ?>
 	</div>
 
 	<div class="row">
