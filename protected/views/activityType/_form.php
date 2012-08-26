@@ -35,7 +35,7 @@
 	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
+		<?php echo $form->textField($model,'createdon', array('size'=>10, 'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'createdon'); ?>
 	</div> */ ?>
 

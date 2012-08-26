@@ -33,7 +33,6 @@
 	<?php echo CHtml::encode($data->weight); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('arrival_detail')); ?>:</b>
 	<?php echo CHtml::encode($data->arrival_detail); ?>
 	<br />
@@ -61,7 +60,5 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
 	<?php echo CHtml::encode($data->createdon); ?>
 	<br />
-
-	*/ ?>
 
 </div>

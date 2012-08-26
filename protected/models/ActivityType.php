@@ -44,10 +44,10 @@ class ActivityType extends CActiveRecord
 			array('description', 'required'),
 			array('description', 'length', 'max'=>100),
 			array('service_types', 'length', 'max'=>255),
-			array('enabled', 'safe'),
+			array('enabled', 'boolean'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, description, enabled, service_types, createdon', 'safe', 'on'=>'search'),
+			array('id, description, enabled, service_types', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -92,7 +92,7 @@ class ActivityType extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('enabled',$this->enabled);
 		$criteria->compare('service_types',$this->service_types,true);
-		$criteria->compare('createdon',$this->createdon,true);
+		// $criteria->compare('createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

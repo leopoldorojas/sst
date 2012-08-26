@@ -51,7 +51,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'age',
 		'passport',
 		'height',
-		/*
 		'weight',
 		'arrival_detail',
 		'arrival_time',
@@ -60,7 +59,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'room',
 		'notes',
 		'createdon',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

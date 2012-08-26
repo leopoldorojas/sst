@@ -45,7 +45,7 @@ class Assignment extends CActiveRecord
 		return array(
 			array('employee_id, activity_id, createdon', 'required'),
 			array('employee_id, activity_id', 'numerical', 'integerOnly'=>true),
-			array('estimated_time, actual_time', 'safe'),
+			array('estimated_time, actual_time', 'date'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, employee_id, activity_id, estimated_time, actual_time, createdon', 'safe', 'on'=>'search'),

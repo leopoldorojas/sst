@@ -13,22 +13,22 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'activity_id'); ?>
-		<?php echo $form->textField($model,'activity_id'); ?>
+		<?php echo $form->textField($model,'activity_id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'service_id'); ?>
-		<?php echo $form->textField($model,'service_id'); ?>
+		<?php echo $form->textField($model,'service_id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'room'); ?>
-		<?php echo $form->textField($model,'room',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'room',array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
@@ -38,7 +38,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
+		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">

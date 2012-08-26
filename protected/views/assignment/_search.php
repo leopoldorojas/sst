@@ -13,32 +13,32 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'employee_id'); ?>
-		<?php echo $form->textField($model,'employee_id'); ?>
+		<?php echo $form->textField($model,'employee_id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'activity_id'); ?>
-		<?php echo $form->textField($model,'activity_id'); ?>
+		<?php echo $form->textField($model,'activity_id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'estimated_time'); ?>
-		<?php echo $form->textField($model,'estimated_time'); ?>
+		<?php echo $form->textField($model,'estimated_time', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'actual_time'); ?>
-		<?php echo $form->textField($model,'actual_time'); ?>
+		<?php echo $form->textField($model,'actual_time', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
+		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">

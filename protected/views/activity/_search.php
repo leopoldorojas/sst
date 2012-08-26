@@ -13,12 +13,12 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'activity_type_id'); ?>
-		<?php echo $form->textField($model,'activity_type_id'); ?>
+		<?php echo $form->textField($model,'activity_type_id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
@@ -28,7 +28,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'activity_datetime'); ?>
-		<?php echo $form->textField($model,'activity_datetime'); ?>
+		<?php echo $form->textField($model,'activity_datetime', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
@@ -38,7 +38,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
+		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">

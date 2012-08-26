@@ -43,9 +43,9 @@ class ActivityService extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('activity_id, service_id, createdon', 'required'),
+			array('activity_id, service_id', 'required'),
 			array('activity_id, service_id', 'numerical', 'integerOnly'=>true),
-			array('room', 'length', 'max'=>255),
+			array('room', 'length', 'max'=>10),
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

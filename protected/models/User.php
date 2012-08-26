@@ -56,7 +56,7 @@ class User extends CActiveRecord
 			array('profile', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, username, email, profile, createdon, rol', 'safe', 'on'=>'search'),
+			array('id, name, username, email, profile, rol', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -108,7 +108,7 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		// $criteria->compare('salt',$this->salt,true);
 		$criteria->compare('profile',$this->profile,true);
-		$criteria->compare('createdon',$this->createdon,true);
+		// $criteria->compare('createdon',$this->createdon,true);
 		$criteria->compare('rol',$this->rol,true);
 
 		return new CActiveDataProvider($this, array(

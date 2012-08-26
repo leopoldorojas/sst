@@ -48,7 +48,7 @@ class Employee extends CActiveRecord
 			array('cost_per_hour', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, lastname, identification_number, rol, cost_per_hour, createdon', 'safe', 'on'=>'search'),
+			array('id, name, lastname, identification_number, rol, cost_per_hour', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,7 +97,7 @@ class Employee extends CActiveRecord
 		$criteria->compare('identification_number',$this->identification_number,true);
 		$criteria->compare('rol',$this->rol,true);
 		$criteria->compare('cost_per_hour',$this->cost_per_hour,true);
-		$criteria->compare('createdon',$this->createdon,true);
+		// $criteria->compare('createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

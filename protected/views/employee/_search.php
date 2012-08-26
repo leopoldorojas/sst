@@ -13,7 +13,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
@@ -40,11 +40,11 @@
 		<?php echo $form->label($model,'cost_per_hour'); ?>
 		<?php echo $form->textField($model,'cost_per_hour',array('size'=>8,'maxlength'=>19)); ?>
 	</div>
-
+	<?php /*
 	<div class="row">
 		<?php echo $form->label($model,'createdon'); ?>
 		<?php echo $form->textField($model,'createdon'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

@@ -50,13 +50,16 @@ class Pax extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('booking_id, name, createdon', 'required'),
+			array('booking_id, name', 'required'),
 			array('booking_id, age', 'numerical', 'integerOnly'=>true),
-			array('name, passport, height, weight, arrival_detail, departure_detail, room', 'length', 'max'=>255),
-			array('arrival_time, departure_time, notes', 'safe'),
+			array('arrival_detail, departure_detail', 'length', 'max'=>100),
+			array('name, passport, height, weight', 'max'=>50),
+			array('room', 'max'=>10),
+			array('arrival_time, departure_time', 'numerical'),
+			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, booking_id, name, age, passport, height, weight, arrival_detail, arrival_time, departure_detail, departure_time, room, notes, createdon', 'safe', 'on'=>'search'),
+			array('id, booking_id, name, age, passport, arrival_detail, arrival_time, departure_detail, departure_time, room, notes, createdon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -111,8 +114,8 @@ class Pax extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('age',$this->age);
 		$criteria->compare('passport',$this->passport,true);
-		$criteria->compare('height',$this->height,true);
-		$criteria->compare('weight',$this->weight,true);
+		// $criteria->compare('height',$this->height,true);
+		// $criteria->compare('weight',$this->weight,true);
 		$criteria->compare('arrival_detail',$this->arrival_detail,true);
 		$criteria->compare('arrival_time',$this->arrival_time,true);
 		$criteria->compare('departure_detail',$this->departure_detail,true);

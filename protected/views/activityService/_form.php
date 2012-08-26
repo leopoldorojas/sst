@@ -17,19 +17,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_id'); ?>
-		<?php echo $form->textField($model,'activity_id'); ?>
+		<?php echo $form->textField($model,'activity_id', array('size'=>5,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'activity_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'service_id'); ?>
-		<?php echo $form->textField($model,'service_id'); ?>
+		<?php echo $form->textField($model,'service_id', array('size'=>5,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'service_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'room'); ?>
-		<?php echo $form->textField($model,'room',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'room',array('size'=>5,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'room'); ?>
 	</div>
 
@@ -41,7 +41,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
+		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'createdon'); ?>
 	</div>
 

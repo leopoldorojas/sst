@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_type_id'); ?>
-		<?php echo $form->textField($model,'activity_type_id'); ?>
+		<?php echo $form->textField($model,'activity_type_id', array('size'=>5,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'activity_type_id'); ?>
 	</div>
 
@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_datetime'); ?>
-		<?php echo $form->textField($model,'activity_datetime'); ?>
+		<?php echo $form->textField($model,'activity_datetime', array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'activity_datetime'); ?>
 	</div>
 
@@ -41,7 +41,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
+		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'createdon'); ?>
 	</div>
 

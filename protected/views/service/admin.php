@@ -51,7 +51,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'seq',
 		'delivery_date',
 		'description',
-		/*
 		'pickup',
 		'pickuptime',
 		'droppoff',
@@ -65,7 +64,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'cost',
 		'service_type',
 		'createdon',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

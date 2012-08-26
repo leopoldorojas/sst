@@ -17,25 +17,25 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>30,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname',array('size'=>50,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'lastname',array('size'=>30,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'lastname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'identification_number'); ?>
-		<?php echo $form->textField($model,'identification_number',array('size'=>12,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'identification_number',array('size'=>12,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'identification_number'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol'); ?>
-		<?php echo $form->textField($model,'rol',array('size'=>50,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>30,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'rol'); ?>
 	</div>
 

@@ -44,9 +44,11 @@ class Activity extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('activity_type_id, createdon', 'required'),
+			array('activity_type_id', 'required'),
 			array('activity_type_id', 'numerical', 'integerOnly'=>true),
-			array('description, activity_datetime, completed', 'safe'),
+			array('activity_datetime', 'date'),
+			array('completed', 'boolean'),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, activity_type_id, description, activity_datetime, completed, createdon', 'safe', 'on'=>'search'),

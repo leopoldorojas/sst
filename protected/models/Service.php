@@ -56,11 +56,16 @@ class Service extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('booking_id, createdon', 'required'),
+			array('booking_id', 'required'),
 			array('booking_id, day, seq, pax_number', 'numerical', 'integerOnly'=>true),
-			array('pickup, droppoff, voucher, supplier, guide, service_type', 'length', 'max'=>255),
-			array('sell, cost', 'length', 'max'=>19),
-			array('delivery_date, description, pickuptime, dropofftime, ops', 'safe'),
+			array('pickup, droppoff, supplier, guide', 'length', 'max'=>100),
+			array('service_type', 'length', 'max'=>10),
+			array('voucher', 'length', 'max'=>30),
+			array('sell, cost', 'numerical'),
+			array('delivery_date', 'date', 'format'=>'yyyy-MM-dd'),
+			array('pickuptime, dropofftime', 'date', 'format'=>'H:mm'),
+			array('ops', 'boolean'),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, booking_id, day, seq, delivery_date, description, pickup, pickuptime, droppoff, dropofftime, voucher, supplier, guide, pax_number, ops, sell, cost, service_type, createdon', 'safe', 'on'=>'search'),

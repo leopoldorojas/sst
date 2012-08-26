@@ -33,7 +33,6 @@
 	<?php echo CHtml::encode($data->pickup); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('pickuptime')); ?>:</b>
 	<?php echo CHtml::encode($data->pickuptime); ?>
 	<br />
@@ -81,7 +80,5 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
 	<?php echo CHtml::encode($data->createdon); ?>
 	<br />
-
-	*/ ?>
 
 </div>

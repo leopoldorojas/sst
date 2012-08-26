@@ -13,7 +13,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
@@ -42,11 +42,11 @@
 		<?php echo $form->label($model,'profile'); ?>
 		<?php echo $form->textArea($model,'profile',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
-
+	<?php /*
 	<div class="row">
 		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-	</div>
+		<?php echo $form->textField($model,'createdon', array('size'=>10, 'maxlength'=>20)); ?>
+	</div> */ ?>
 
 	<div class="row">
 		<?php echo $form->label($model,'rol'); ?>
