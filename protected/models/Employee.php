@@ -74,9 +74,9 @@ class Employee extends CActiveRecord
 			'name' => 'Name',
 			'lastname' => 'Lastname',
 			'identification_number' => 'Identification Number',
-			'rol' => 'Rol',
-			'cost_per_hour' => 'Cost Per Hour',
-			'createdon' => 'Createdon',
+			'rol' => 'Job position',
+			'cost_per_hour' => 'Cost per Hour',
+			'createdon' => 'Created on',
 		);
 	}
 

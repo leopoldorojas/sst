@@ -85,7 +85,7 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'salt' => 'Salt',
 			'profile' => 'Profile',
-			'createdon' => 'Createdon',
+			'createdon' => 'Created on',
 			'rol'=>'Rol',
 		);
 	}

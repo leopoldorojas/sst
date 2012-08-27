@@ -7,8 +7,8 @@
  * @property integer $id
  * @property integer $employee_id
  * @property integer $activity_id
- * @property string $estimated_time
- * @property string $actual_time
+ * @property string $estimated_hours
+ * @property string $actual_hours
  * @property string $createdon
  *
  * The followings are the available model relations:
@@ -45,10 +45,10 @@ class Assignment extends CActiveRecord
 		return array(
 			array('employee_id, activity_id', 'required'),
 			array('employee_id, activity_id', 'numerical', 'integerOnly'=>true),
-			array('estimated_time, actual_time', 'date'),
+			array('estimated_hours, actual_hours', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, employee_id, activity_id, estimated_time, actual_time, createdon', 'safe', 'on'=>'search'),
+			array('id, employee_id, activity_id, estimated_hours, actual_hours, createdon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,9 +74,9 @@ class Assignment extends CActiveRecord
 			'id' => 'ID',
 			'employee_id' => 'Employee',
 			'activity_id' => 'Activity',
-			'estimated_time' => 'Estimated Time',
-			'actual_time' => 'Actual Time',
-			'createdon' => 'Createdon',
+			'estimated_hours' => 'Estimated Hours',
+			'actual_hours' => 'Actual Hours',
+			'createdon' => 'Created on',
 		);
 	}
 
@@ -94,8 +94,8 @@ class Assignment extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('employee_id',$this->employee_id);
 		$criteria->compare('activity_id',$this->activity_id);
-		$criteria->compare('estimated_time',$this->estimated_time,true);
-		$criteria->compare('actual_time',$this->actual_time,true);
+		$criteria->compare('estimated_hours',$this->estimated_hours,true);
+		$criteria->compare('actual_hours',$this->actual_hours,true);
 		$criteria->compare('createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(

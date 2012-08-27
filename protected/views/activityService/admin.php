@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List ActivityService', 'url'=>array('index')),
-	array('label'=>'Create ActivityService', 'url'=>array('create')),
+	array('label'=>'List Activities and Services', 'url'=>array('index')),
+	array('label'=>'Link Activity and Service', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Activity Services</h1>
+<h1>Manage Activities and Services</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

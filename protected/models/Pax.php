@@ -89,7 +89,7 @@ class Pax extends CActiveRecord
 			'departure_detail' => 'Departure Detail',
 			'room' => 'Room',
 			'notes' => 'Notes',
-			'createdon' => 'Createdon',
+			'createdon' => 'Created on',
 		);
 	}
 

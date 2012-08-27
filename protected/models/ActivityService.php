@@ -77,7 +77,7 @@ class ActivityService extends CActiveRecord
 			'service_id' => 'Service',
 			'room' => 'Room',
 			'notes' => 'Notes',
-			'createdon' => 'Createdon',
+			'createdon' => 'Created on',
 		);
 	}
 

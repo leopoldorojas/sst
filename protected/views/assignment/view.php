@@ -24,8 +24,8 @@ $this->menu=array(
 		'id',
 		'employee_id',
 		'activity_id',
-		'estimated_time',
-		'actual_time',
+		'estimated_hours',
+		'actual_hours',
 		'createdon',
 	),
 )); ?>

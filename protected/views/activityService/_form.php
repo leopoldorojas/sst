@@ -39,11 +39,12 @@
 		<?php echo $form->error($model,'notes'); ?>
 	</div>
 
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
 		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'createdon'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

@@ -153,6 +153,8 @@ class ServiceController extends Controller
 		$model=Service::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
+		// $model->pickuptime=substr($model->pickuptime,0,5); // Commented because MVC practice. Must format in the view
+		// $model->dropofftime=substr($model->dropofftime,0,5); // Commented because MVC practice. Must format in the view
 		return $model;
 	}
 

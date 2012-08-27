@@ -17,12 +17,12 @@
 	<?php echo CHtml::encode($data->activity_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('estimated_time')); ?>:</b>
-	<?php echo CHtml::encode($data->estimated_time); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('estimated_hours')); ?>:</b>
+	<?php echo CHtml::encode($data->estimated_hours); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('actual_time')); ?>:</b>
-	<?php echo CHtml::encode($data->actual_time); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('actual_hours')); ?>:</b>
+	<?php echo CHtml::encode($data->actual_hours); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>

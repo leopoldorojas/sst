@@ -153,6 +153,7 @@ class ActivityController extends Controller
 		$model=Activity::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
+		// $model->activity_time=substr($model->activity_time,0,5); // Comment for conflicts with MVC Practice. Format in the view
 		return $model;
 	}
 

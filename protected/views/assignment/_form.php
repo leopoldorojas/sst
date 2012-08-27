@@ -28,22 +28,23 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'estimated_time'); ?>
-		<?php echo $form->textField($model,'estimated_time', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'estimated_time'); ?>
+		<?php echo $form->labelEx($model,'estimated_hours'); ?>
+		<?php echo $form->textField($model,'estimated_hours', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'estimated_hours'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'actual_time'); ?>
-		<?php echo $form->textField($model,'actual_time', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'actual_time'); ?>
+		<?php echo $form->labelEx($model,'actual_hours'); ?>
+		<?php echo $form->textField($model,'actual_hours', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'actual_hours'); ?>
 	</div>
 
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'createdon'); ?>
 		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'createdon'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

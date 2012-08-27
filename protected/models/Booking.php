@@ -82,17 +82,17 @@ class Booking extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'bookingid' => 'Bookingid',
-			'bhdid' => 'Bhdid',
+			'bookingid' => 'Operations Booking Id',
+			'bhdid' => 'Tourplan Booking Id',
 			'booking_code' => 'Booking Code',
-			'name' => 'Name',
-			'traveldate' => 'Traveldate',
+			'name' => 'Booking Tourist Name',
+			'traveldate' => 'Travel Date',
 			'agent' => 'Agent',
 			'status' => 'Status',
 			'consultant' => 'Consultant',
 			'priority' => 'Priority',
 			'notes' => 'Notes',
-			'createdon' => 'Createdon',
+			'createdon' => 'Created on',
 		);
 	}
 

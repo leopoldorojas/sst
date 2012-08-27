@@ -71,9 +71,9 @@ class ActivityType extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'description' => 'Description',
-			'enabled' => 'Enabled',
-			'service_types' => 'Service Types',
-			'createdon' => 'Createdon',
+			'enabled' => 'Enabled?',
+			'service_types' => 'Allowed Service Types',
+			'createdon' => 'Created on',
 		);
 	}
 

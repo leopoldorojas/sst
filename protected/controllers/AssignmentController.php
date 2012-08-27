@@ -70,6 +70,8 @@ class AssignmentController extends Controller
 		if(isset($_POST['Assignment']))
 		{
 			$model->attributes=$_POST['Assignment'];
+			if (empty($model->estimated_hours)) $model->estimated_hours=0.00;
+			if (empty($model->actual_hours)) $model->actual_hours=0.00;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,6 +96,8 @@ class AssignmentController extends Controller
 		if(isset($_POST['Assignment']))
 		{
 			$model->attributes=$_POST['Assignment'];
+			if (empty($model->estimated_hours)) $model->estimated_hours=0.00;
+			if (empty($model->actual_hours)) $model->actual_hours=0.00;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

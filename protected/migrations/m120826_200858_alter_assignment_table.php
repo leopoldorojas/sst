@@ -6,7 +6,10 @@ class m120826_200858_alter_assignment_table extends CDbMigration
 	{
 		$this->dropColumn('assignment','estimated_time');
 		$this->dropColumn('assignment', 'actual_time');
-		$this->addColumn('assignment','estimated_hours','decimal');
+
+		/* WARNING: After apply this two following lines in MS-SQL you also need to change your decimal(18,0) for maybe decimal(18,n)
+			where n is the actual decimal places you need in your application */
+		$this->addColumn('assignment','estimated_hours','decimal'); 
 		$this->addColumn('assignment','actual_hours','decimal');
 	}
 

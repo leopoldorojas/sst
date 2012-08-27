@@ -27,13 +27,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'estimated_time'); ?>
-		<?php echo $form->textField($model,'estimated_time', array('size'=>10,'maxlength'=>20)); ?>
+		<?php echo $form->label($model,'estimated_hours'); ?>
+		<?php echo $form->textField($model,'estimated_hours', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'actual_time'); ?>
-		<?php echo $form->textField($model,'actual_time', array('size'=>10,'maxlength'=>20)); ?>
+		<?php echo $form->label($model,'actual_hours'); ?>
+		<?php echo $form->textField($model,'actual_hours', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">

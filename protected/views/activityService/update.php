@@ -9,13 +9,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List ActivityService', 'url'=>array('index')),
-	array('label'=>'Create ActivityService', 'url'=>array('create')),
-	array('label'=>'View ActivityService', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage ActivityService', 'url'=>array('admin')),
+	array('label'=>'List Activities and Services', 'url'=>array('index')),
+	array('label'=>'Link Activity and Service', 'url'=>array('create')),
+	array('label'=>'View link of Activity Service', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Activities and Services', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update ActivityService <?php echo $model->id; ?></h1>
+<h1>Update Activity Service <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

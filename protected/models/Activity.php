@@ -82,8 +82,8 @@ class Activity extends CActiveRecord
 			'description' => 'Description',
 			'activity_date' => 'Activity Date',
 			'activity_time' => 'Activity Time',
-			'completed' => 'Completed',
-			'createdon' => 'Createdon',
+			'completed' => 'Completed?',
+			'createdon' => 'Created on',
 		);
 	}
 
