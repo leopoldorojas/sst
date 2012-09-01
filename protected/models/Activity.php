@@ -47,6 +47,7 @@ class Activity extends CActiveRecord
 		return array(
 			array('activity_type_id', 'required'),
 			array('activity_type_id', 'numerical', 'integerOnly'=>true),
+			array('activity_type_id', 'activityTypeExist'),
 			array('activity_date', 'date', 'format'=>'yyyy-MM-dd'),
 			array('activity_time', 'date', 'format'=>'H:mm'),
 			array('completed', 'boolean'),
@@ -110,4 +111,10 @@ class Activity extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function activityTypeExist($attribute)
+    {
+    	if (!ActivityType::model()->findByPk($this->$attribute))
+    		$this->addError($attribute,'The Activity Type does not exist');
+    }
 }

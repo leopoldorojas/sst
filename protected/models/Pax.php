@@ -50,6 +50,7 @@ class Pax extends CActiveRecord
 		return array(
 			array('booking_id, name', 'required'),
 			array('booking_id, age', 'numerical', 'integerOnly'=>true),
+			array('booking_id','bookingExist'),
 			array('arrival_detail, departure_detail', 'length', 'max'=>100),
 			array('name, passport, height, weight', 'length', 'max'=>50),
 			array('room', 'length', 'max'=>10),
@@ -121,4 +122,10 @@ class Pax extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function bookingExist($attribute)
+    {
+    	if (!Booking::model()->findByPk($this->$attribute))
+    		$this->addError($attribute,'The booking does not exist');
+    }
 }

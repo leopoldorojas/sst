@@ -58,6 +58,7 @@ class Service extends CActiveRecord
 		return array(
 			array('booking_id', 'required'),
 			array('booking_id, day, seq, pax_number', 'numerical', 'integerOnly'=>true),
+			array('booking_id', 'bookingExist'),
 			array('pickup, droppoff, supplier, guide', 'length', 'max'=>100),
 			array('service_type', 'length', 'max'=>10),
 			array('voucher', 'length', 'max'=>30),
@@ -148,4 +149,10 @@ class Service extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function bookingExist($attribute)
+    {
+    	if (!Booking::model()->findByPk($this->$attribute))
+    		$this->addError($attribute,'The booking does not exist');
+    }
 }

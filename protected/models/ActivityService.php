@@ -45,6 +45,8 @@ class ActivityService extends CActiveRecord
 		return array(
 			array('activity_id, service_id', 'required'),
 			array('activity_id, service_id', 'numerical', 'integerOnly'=>true),
+			array('activity_id','activityExist'),
+			array('service_id','serviceExist'),
 			array('room', 'length', 'max'=>10),
 			array('notes', 'safe'),
 			// The following rule is used by search().
@@ -103,4 +105,17 @@ class ActivityService extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function activityExist($attribute)
+    {
+    	if (!Activity::model()->findByPk($this->$attribute))
+    		$this->addError($attribute,'The activity does not exist');
+    }
+
+    public function serviceExist($attribute)
+    {
+    	if (!Service::model()->findByPk($this->$attribute))
+    		$this->addError($attribute,'The service does not exist');
+    }
+
 }
