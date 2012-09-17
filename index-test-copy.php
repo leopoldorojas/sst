@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the bootstrap file for test application. Number 2 (Leo comment from Mac)
+ * This is the bootstrap file for test application. Number 2 (Leo comment from Windows)
  * This file should be removed when the application is deployed for production.
  */
 
