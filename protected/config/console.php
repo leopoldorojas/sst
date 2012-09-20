@@ -16,22 +16,22 @@ return array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
 		*/
+		/*
 		'db'=>array(
 			'connectionString' => 'sqlsrv:server=(local)\sqlexpress;database=SST',
 			'username' => 'leopoldo',
 			'password' => 'facil1234',
 			'charset' => 'utf8',
 		),
-		// uncomment the following to use a MySQL database
-		/*
+		*/
+		// Comment the following to not use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=SST',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'leopoldo.rojas',
+			'password' => 'facil1234',
 			'charset' => 'utf8',
 		),
-		*/
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

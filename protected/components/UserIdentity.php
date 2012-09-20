@@ -21,6 +21,7 @@ class UserIdentity extends CUserIdentity
 		/* if(($this->username=='admin' && $this->password=='admin') || ($this->username=='superadmin' && $this->password=='superadmin'))
 		{
 			$this->_id=9999;
+			$this->setState('rol', 'superadmin');
 			// $this->username='admin';
 			$this->errorCode=self::ERROR_NONE;
 			return $this->errorCode==self::ERROR_NONE;
