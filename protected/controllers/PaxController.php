@@ -27,15 +27,19 @@ class PaxController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			array('allow', 
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('deny', 
+				'actions'=>array('create','update', 'admin','delete'),
+				'users'=>array('?'),
+			),
+			array('allow', 
 				'actions'=>array('create','update', 'admin'),
 				'roles'=>array('admin', 'superadmin'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			array('allow', 
 				'actions'=>array('delete'),
 				'roles'=>array('admin', 'superadmin'),
 			),

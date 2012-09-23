@@ -1,8 +1,9 @@
+<?php echo CHtml::link('Activities linked to the above selected Service','#',array('class'=>'activityService-button')); ?>
+<div class="activityService-form" style="display:none">
+
 <!-- Use this paragraph to display the loading.gif icon above the ActivityService Gridview,
 while waiting for the ajax response -->
 <p id="loadingPic"></br></p>
-
-<h4>Activities linked to the above selected Service</h4>
 
 <?php
     $params=array('service_id'=>$service_id,);
@@ -28,10 +29,12 @@ while waiting for the ajax response -->
     ));
 
 ?>
-
+</div>
+<p></p>
 <?php echo CHtml::link('Create new Activity for selected Service','#',array('class'=>'createActivity-button')); ?>
 <div class="createActivity-form" style="display:none">
 <?php $this->renderPartial('_formActivity',array(
     'model'=>$activityModel,
+    'service_id'=>$service_id,
 )); ?>
 </div><!-- createActivity-form -->

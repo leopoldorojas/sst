@@ -31,11 +31,15 @@ class ServiceController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('deny', 
+				'actions'=>array('create','update', 'admin','adminActivities','delete'),
+				'users'=>array('?'),
+			),
+			array('allow', 
 				'actions'=>array('create','update', 'admin','adminActivities'),
 				'roles'=>array('admin', 'superadmin'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			array('allow', 
 				'actions'=>array('delete'),
 				'roles'=>array('admin', 'superadmin'),
 			),
@@ -196,16 +200,15 @@ class ServiceController extends Controller
 		if(isset($_GET['ActivityService']))
 			$childModel->attributes=$_GET['ActivityService'];
 
-		if(isset($_POST['Activity']))
+		if(isset($_GET['Activity']) && !empty($_GET['service_id']))
 		{
-			$activityModel->attributes=$_POST['Activity'];
-			if ($activityModel->save()) { /*
+			$activityModel->attributes=$_GET['Activity'];
+			if ($activityModel->save()) {
+				$model->id=$_GET['service_id'];
 				$newActivityService=new ActivityService;
-				$newActivityService->service_id=$activityModel->service_id;
+				$newActivityService->service_id=$model->id;
 				$newActivityService->activity_id=$activityModel->id;
-				// echo "hola mundo " . $model->id;
-				// echo "hola mundo2 " .$activityModel->id;
-				$newActivityService->save(); */
+				$newActivityService->save();
 				$activityModel->unsetAttributes();
 			}
 		}

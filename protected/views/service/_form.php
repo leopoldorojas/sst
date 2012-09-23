@@ -53,7 +53,6 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'pickuptime'); ?>
-		<?php // echo $form->textField($model,'pickuptime'); ?>
 		<?php echo CHtml::activeTextField($model,'pickuptime', array('value'=>substr($model->pickuptime,0,5))); ?>
 		<?php echo $form->error($model,'pickuptime'); ?>
 	</div>

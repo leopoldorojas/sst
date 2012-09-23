@@ -31,11 +31,15 @@ class BookingController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('deny', 
+				'actions'=>array('create','update', 'admin','delete'),
+				'users'=>array('?'),
+			),
+			array('allow', 
 				'actions'=>array('create','update', 'admin'),
 				'roles'=>array('admin', 'superadmin'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			array('allow', 
 				'actions'=>array('delete'),
 				'roles'=>array('admin', 'superadmin'),
 			),

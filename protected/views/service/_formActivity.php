@@ -8,7 +8,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'post',
+	'method'=>'get',
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -44,6 +44,8 @@
 		<?php echo $form->checkBox($model,'completed'); ?>
 		<?php echo $form->error($model,'completed'); ?>
 	</div>
+
+	<?php echo Chtml::hiddenField('service_id',$service_id); ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

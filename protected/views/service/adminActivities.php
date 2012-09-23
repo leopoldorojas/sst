@@ -27,6 +27,8 @@ $('.search-form form').submit(function(){
 
 Yii::app()->clientScript->registerScript('updateActivityServiceGrid', "
 	function getService(id){
+		$('.activityService-form').show();
+
 		$.fn.yiiGridView.update('activityService-grid', {
 			data: 'Service[id]=' + $.fn.yiiGridView.getSelection(id)
 		});
@@ -36,6 +38,24 @@ Yii::app()->clientScript->registerScript('updateActivityServiceGrid', "
 Yii::app()->clientScript->registerScript('createActivity', "
 $('.createActivity-button').click(function(){
 	$('.createActivity-form').toggle();
+	return false;
+});
+
+$('.createActivity-form form').submit(function(){
+	data=$(this).serialize() + $.fn.yiiGridView.getSelection('service-grid');
+	$.get(window.location, data, alert('Activity created successfuly'));
+
+	$.fn.yiiGridView.update('activityService-grid', {
+		data: 'Service[id]=' + $.fn.yiiGridView.getSelection('service-grid')
+	});
+
+	return false;
+});
+");
+
+Yii::app()->clientScript->registerScript('displayActivities', "
+$('.activityService-button').click(function(){
+	$('.activityService-form').toggle();
 	return false;
 });
 ");
