@@ -7,8 +7,8 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'activity-form',
-	'enableAjaxValidation'=>false,
+	'action'=>Yii::app()->createUrl($this->route),
+	'method'=>'post',
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -44,12 +44,6 @@
 		<?php echo $form->checkBox($model,'completed'); ?>
 		<?php echo $form->error($model,'completed'); ?>
 	</div>
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'createdon'); ?>
-	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

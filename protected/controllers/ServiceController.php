@@ -32,7 +32,7 @@ class ServiceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'admin'),
+				'actions'=>array('create','update', 'admin','adminActivities'),
 				'roles'=>array('admin', 'superadmin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -169,5 +169,52 @@ class ServiceController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+
+	/**
+	* Create activities by this Service
+	*/
+	public function actionAdminActivities()
+	{
+		$searchForm=new DateRangeFilterForm();
+		$model=new Service('search');
+		$childModel=new ActivityService;
+		$activityModel=new Activity;
+
+		$searchForm->unsetAttributes();
+		$model->unsetAttributes();  // clear any default values
+		$childModel->unsetAttributes();
+		$activityModel->unsetAttributes();
+
+		if(isset($_GET['DateRangeFilterForm']))
+			$searchForm->attributes=$_GET['DateRangeFilterForm'];
+
+		if(isset($_GET['Service']))
+			$model->attributes=$_GET['Service'];
+
+		if(isset($_GET['ActivityService']))
+			$childModel->attributes=$_GET['ActivityService'];
+
+		if(isset($_POST['Activity']))
+		{
+			$activityModel->attributes=$_POST['Activity'];
+			if ($activityModel->save()) { /*
+				$newActivityService=new ActivityService;
+				$newActivityService->service_id=$activityModel->service_id;
+				$newActivityService->activity_id=$activityModel->id;
+				// echo "hola mundo " . $model->id;
+				// echo "hola mundo2 " .$activityModel->id;
+				$newActivityService->save(); */
+				$activityModel->unsetAttributes();
+			}
+		}
+
+		$this->render('adminActivities',array(
+			'searchForm'=>$searchForm,
+			'model'=>$model,
+			'childModel'=>$childModel,
+			'activityModel'=>$activityModel,
+		));
 	}
 }

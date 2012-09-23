@@ -24,6 +24,22 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
+
+Yii::app()->clientScript->registerScript('updateActivityServiceGrid', "
+	function getService(id){
+		$.fn.yiiGridView.update('activityService-grid', {
+			data: 'Service[id]=' + $.fn.yiiGridView.getSelection(id)
+		});
+	}
+");
+
+Yii::app()->clientScript->registerScript('createActivity', "
+$('.createActivity-button').click(function(){
+	$('.createActivity-form').toggle();
+	return false;
+});
+");
+
 ?>
 
 <h1>Manage Services</h1>
@@ -33,16 +49,17 @@ You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&g
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php echo CHtml::link('Service Search','#',array('class'=>'search-button')); ?>
+<div class="search-form" style="display:all">
+<?php $this->renderPartial('_searchByBookingOrDate',array(
 	'model'=>$model,
+	'searchForm'=>$searchForm,
 )); ?>
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'service-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search($searchForm),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -50,22 +67,27 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'day',
 		'seq',
 		'delivery_date',
-		//'description',
 		'pickup',
 		'pickuptime',
-		// 'droppoff',
-		// 'dropofftime',
 		'voucher',
 		'supplier',
 		'guide',
 		'pax_number',
-		// 'ops',
 		'sell',
-		// 'cost',
 		'service_type',
 		'createdon',
 		array(
 			'class'=>'CButtonColumn',
 		),
 	),
+	'ajaxUpdate' => 'activityService-grid',
+	'selectionChanged' => 'getService',
 )); ?>
+ 
+<?php
+    $this->renderPartial('_serviceActivities', array(
+	   	'childModel' => $childModel,
+       	'service_id' => $model->id,
+       	'activityModel'=>$activityModel,
+    ));
+?>

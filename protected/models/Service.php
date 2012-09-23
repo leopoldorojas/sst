@@ -118,12 +118,17 @@ class Service extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($params=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
+
+		if(isset($params)) {
+			$criteria->compare('delivery_date','>='.$params['startDate']);
+			$criteria->compare('delivery_date','<='.$params['endDate']);
+		}
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('booking_id',$this->booking_id);

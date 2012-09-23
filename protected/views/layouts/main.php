@@ -48,7 +48,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by <a href="http://www.arckanto.com" target=_blank>Arckanto software</a> for <a href="http://www.costaricaexpeditions.com" target=_blank>Costa Rica Expeditions</a>.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->

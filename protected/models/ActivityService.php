@@ -87,16 +87,18 @@ class ActivityService extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($params=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with=array('activity');
+		$service_id= (isset($params)) ? $params['service_id'] : $this->service_id;
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('activity_id',$this->activity_id);
-		$criteria->compare('service_id',$this->service_id);
+		$criteria->compare('service_id',$service_id);
 		$criteria->compare('room',$this->room,true);
 		$criteria->compare('notes',$this->notes,true);
 		$criteria->compare('createdon',$this->createdon,true);
