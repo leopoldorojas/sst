@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_type_id'); ?>
-		<?php echo $form->textField($model,'activity_type_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->dropDownList($model,'activity_type_id', CHtml::listData(ActivityType::model()->enabledActivityTypes, 'id', 'description')); ?>
 		<?php echo $form->error($model,'activity_type_id'); ?>
 	</div>
 
