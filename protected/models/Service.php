@@ -82,7 +82,7 @@ class Service extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'booking' => array(self::BELONGS_TO, 'Booking', 'booking_id'),
-			'activityServices' => array(self::HAS_MANY, 'ActivityService', 'service_id'),
+			'activityServices' => array(self::HAS_ONE, 'ActivityService', 'service_id'),
 		);
 	}
 

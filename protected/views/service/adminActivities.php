@@ -26,13 +26,16 @@ $('.search-form form').submit(function(){
 ");
 
 Yii::app()->clientScript->registerScript('updateActivityServiceGrid', "
-	function getService(id){
+function getService(id){
+	if ((selected_id = $.fn.yiiGridView.getSelection(id)) > 0) {
 		$('.activityService-form').show();
-
-		$.fn.yiiGridView.update('activityService-grid', {
-			data: 'Service[id]=' + $.fn.yiiGridView.getSelection(id)
+		$.fn.yiiGridView.update('activityService-grid', { 
+			data: 'Service[id]=' + selected_id
 		});
+	} else {
+		$('.activityService-form').hide();
 	}
+}
 ");
 
 Yii::app()->clientScript->registerScript('createActivity', "
@@ -44,6 +47,7 @@ $('.createActivity-button').click(function(){
 $('.createActivity-form form').submit(function(){
 	data=$(this).serialize() + $.fn.yiiGridView.getSelection('service-grid');
 	$.get(window.location, data, alert('Activity created successfuly'));
+	$(this).get(0).reset();
 
 	$.fn.yiiGridView.update('activityService-grid', {
 		data: 'Service[id]=' + $.fn.yiiGridView.getSelection('service-grid')
@@ -53,11 +57,17 @@ $('.createActivity-form form').submit(function(){
 });
 ");
 
-Yii::app()->clientScript->registerScript('displayActivities', "
-$('.activityService-button').click(function(){
-	$('.activityService-form').toggle();
-	return false;
-});
+Yii::app()->clientScript->registerScript('hideActivities', "
+function hideActivities(){
+	$('.activityService-form').hide();
+}
+");
+
+Yii::app()->clientScript->registerScript('manageCreateActivity', "
+function manageCreateActivity(id, data){
+	($.fn.yiiGridView.getKey(id, 0) > 0) ? $('.linkCreateActivity-form').hide() : $('.linkCreateActivity-form').show();
+	$('.createActivity-form').hide();
+}
 ");
 
 ?>
@@ -100,7 +110,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'class'=>'CButtonColumn',
 		),
 	),
-	'ajaxUpdate' => 'activityService-grid',
+	// 'ajaxUpdate' => 'activityService-grid',
+	'afterAjaxUpdate' => 'hideActivities',
 	'selectionChanged' => 'getService',
 )); ?>
  

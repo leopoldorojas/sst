@@ -1,4 +1,4 @@
-<?php echo CHtml::link('Activities linked to the above selected Service','#',array('class'=>'activityService-button')); ?>
+<?php // echo CHtml::link('Activities linked to the above selected Service','#',array('class'=>'activityService-button')); ?>
 <div class="activityService-form" style="display:none">
 
 <!-- Use this paragraph to display the loading.gif icon above the ActivityService Gridview,
@@ -10,7 +10,7 @@ while waiting for the ajax response -->
     $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'activityService-grid',
     'dataProvider'=>$childModel->search($params),
-    'filter'=>$childModel,
+    // 'filter'=>$childModel,
     'columns'=>array(
         'activity.activity_type_id',
         'activity.description',
@@ -26,12 +26,17 @@ while waiting for the ajax response -->
             "id"=>$data->id)',
         ),
     ),
+    'afterAjaxUpdate' => 'manageCreateActivity',
+    'showTableOnEmpty' => false,
+    'emptyText' => 'The service does not have any activity assigned yet',  
     ));
-
 ?>
 </div>
-<p></p>
-<?php echo CHtml::link('Create new Activity for selected Service','#',array('class'=>'createActivity-button')); ?>
+
+<div class="linkCreateActivity-form" style="display:none">
+<?php echo CHtml::link('Create Activity for selected Service?','#',array('class'=>'createActivity-button')); ?>
+</div>
+
 <div class="createActivity-form" style="display:none">
 <?php $this->renderPartial('_formActivity',array(
     'model'=>$activityModel,

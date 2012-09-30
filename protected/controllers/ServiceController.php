@@ -197,21 +197,24 @@ class ServiceController extends Controller
 		if(isset($_GET['Service']))
 			$model->attributes=$_GET['Service'];
 
-		if(isset($_GET['ActivityService']))
-			$childModel->attributes=$_GET['ActivityService'];
+		// if(isset($_GET['ActivityService']))
+			// $childModel->attributes=$_GET['ActivityService'];
 
 		if(isset($_GET['Activity']) && !empty($_GET['service_id']))
 		{
-			$activityModel->attributes=$_GET['Activity'];
-			if ($activityModel->save()) {
-				$model->id=$_GET['service_id'];
-				$newActivityService=new ActivityService;
-				$newActivityService->service_id=$model->id;
-				$newActivityService->activity_id=$activityModel->id;
-				$newActivityService->save();
-				$activityModel->unsetAttributes();
+			$params=array('service_id'=>$_GET['service_id'],);
+
+			if (!(count($childModel->search($params)->getData())>0)) {
+				$activityModel->attributes=$_GET['Activity'];
+
+				if ($activityModel->save()) {
+					$childModel->activity_id=$activityModel->id;
+					$childModel->service_id=$_GET['service_id'];
+					$childModel->save();
+					$activityModel->unsetAttributes();
+				}
 			}
-		}
+		} 
 
 		$this->render('adminActivities',array(
 			'searchForm'=>$searchForm,
