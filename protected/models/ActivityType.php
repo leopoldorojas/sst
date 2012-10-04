@@ -15,8 +15,6 @@
  */
 class ActivityType extends CActiveRecord
 {
-    private static $_enabledActivityTypes=array();
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -103,9 +101,7 @@ class ActivityType extends CActiveRecord
 
 	public static function getEnabledActivityTypes()
 	{
-		if(empty(self::$_enabledActivityTypes))
-            self::$_enabledActivityTypes=self::model()->findAllByAttributes(array('enabled'=>1));
-        return self::$_enabledActivityTypes;
+        return self::model()->findAllByAttributes(array('enabled'=>1));
 	}
 
 }

@@ -14,8 +14,9 @@ $this->menu=array(
 	array('label'=>'View Activity', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Activity', 'url'=>array('admin')),
 );
+
 ?>
 
 <h1>Update Activity <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_formUpdate', array('model'=>$model, 'dataProvider'=>$dataProvider)); ?>

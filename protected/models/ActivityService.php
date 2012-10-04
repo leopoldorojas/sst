@@ -120,4 +120,15 @@ class ActivityService extends CActiveRecord
     		$this->addError($attribute,'The service does not exist');
     }
 
+    /**
+    * Test if this model is the only with a link to some activity
+    * If it is the only, then we must also delete the activity
+    */
+    protected function afterDelete()
+	{
+    	parent::afterDelete();
+    	if (!self::model()->findByAttributes(array('activity_id'=>$this->activity_id)))
+    		Activity::model()->findByPk($this->activity_id)->delete();
+	}
+
 }

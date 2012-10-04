@@ -86,6 +86,24 @@ class Service extends CActiveRecord
 		);
 	}
 
+	public function scopes()
+    {
+		return array(
+            'tolServices'=>array(
+                'condition' => 'service_type = "TOL"',
+            ),
+        );
+    }
+
+    // This is anothe scope but parameterized scope
+    public function servicesSince($sinceDate)
+	{
+    	$this->getDbCriteria()->mergeWith(array(
+        	'condition' => 'delivery_date >=' . $sinceDate,
+    	));
+    	return $this;
+	}
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -160,4 +178,12 @@ class Service extends CActiveRecord
     	if (!Booking::model()->findByPk($this->$attribute))
     		$this->addError($attribute,'The booking does not exist');
     }
+
+    public function selectableByActivities()
+    {
+    	$criteria=new CDbCriteria;
+    	$criteria->compare('activityServices.id', '');
+    	return self::model()->tolServices()->servicesSince(date("Ymd"))->with('activityServices','booking')->findAll('activityServices.id IS NULL');
+    }
+
 }

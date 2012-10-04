@@ -69,6 +69,7 @@ class Activity extends CActiveRecord
 			'activityType' => array(self::BELONGS_TO, 'ActivityType', 'activity_type_id'),
 			'assignments' => array(self::HAS_MANY, 'Assignment', 'activity_id'),
 			'activityServices' => array(self::HAS_MANY, 'ActivityService', 'activity_id'),
+			'services' => array(self::HAS_MANY, 'Service', array('service_id'=>'id'),'through'=>'activityServices'),
 		);
 	}
 
@@ -117,4 +118,5 @@ class Activity extends CActiveRecord
     	if (!ActivityType::model()->findByPk($this->$attribute))
     		$this->addError($attribute,'The Activity Type does not exist');
     }
+
 }

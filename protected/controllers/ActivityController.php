@@ -63,6 +63,10 @@ class ActivityController extends Controller
 	public function actionCreate()
 	{
 		$model=new Activity;
+		$selectableServices=Service::model()->selectableByActivities();
+		$dataProvider = new CActiveDataProvider('Service');
+		$dataProvider->setData($selectableServices);
+
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -70,12 +74,20 @@ class ActivityController extends Controller
 		if(isset($_POST['Activity']))
 		{
 			$model->attributes=$_POST['Activity'];
-			if($model->save())
+			if($model->save()) {
+				if(!empty($_POST['selectedService'])) {
+					$activityService=new ActivityService;
+					$activityService->activity_id=$model->id;
+					$activityService->service_id=$_POST['selectedService'];					
+					$activityService->save();
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -87,6 +99,9 @@ class ActivityController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$servicesOfActivity=$model->services;
+		$dataProvider=new CActiveDataProvider('Service');
+		$dataProvider->setData($servicesOfActivity);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -100,6 +115,7 @@ class ActivityController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'dataProvider'=>$dataProvider,
 		));
 	}
 

@@ -50,7 +50,7 @@
 		<?php echo CHtml::checkBox('assignNow', false, array('class'=>'assignNow-check')); ?>
 	</div>
 
-	<div class="assignService-form" style="display:none">
+	<div class="assignService-form" style="display:all">
 
 		<div class="row">
 			<?php echo CHtml::label('Servicio seleccionado','selectedService'); ?>
@@ -67,8 +67,12 @@
 				'day',
 				'seq',
 				'service_type',
+				/* array(    - Si la pongo lanza el trigger de borrado de las Actividades cuando es la ultima y entonces hay error
+            		'class'=>'CButtonColumn',
+            		'template'=>'{delete}',
+		            'deleteButtonUrl' => 'array("activityService/delete", "id"=>$data->activityServices->id)',
+				), */
 			),
-			'selectionChanged' => 'getService',
 		)); ?>
 	</div>
 

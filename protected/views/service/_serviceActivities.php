@@ -20,10 +20,8 @@ while waiting for the ajax response -->
         array(
             'class'=>'CButtonColumn',
             'template'=>'{update}{delete}',
-            'updateButtonUrl' => 'array("activity/update",
-            "id"=>$data->activity_id)',
-            'deleteButtonUrl' => 'array("activityService/delete",
-            "id"=>$data->id)',
+            'updateButtonUrl' => 'array("activity/update", "id"=>$data->activity_id)',
+            'deleteButtonUrl' => 'array("activityService/delete", "id"=>$data->id)',
         ),
     ),
     'afterAjaxUpdate' => 'manageCreateActivity',
