@@ -6,15 +6,25 @@ $this->pageTitle=Yii::app()->name;
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<p>This software supports the Activity Management for <b>Tortuga Lodge Hotel</b>, a 
+	<a href="http://www.costaricaexpeditions.com" target=_blank>Costa Rica Expeditions</a> Group company</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+<p>Let's start!</p>
+<p>
+	You can create activities in 2 ways. <b>Choose your option</b>:
+	<ul>
+		<li>[<a href="<?php echo CHtml::encode($this->createUrl('service/adminActivities')) ?>"><b>By SERVICE</b></a>] : 
+			<a href="<?php echo CHtml::encode($this->createUrl('service/adminActivities')) ?>">
+				Here you can look for a specific Service and then create it its Activity</li>
+			</a>
+		<li>[<a href="<?php echo CHtml::encode($this->createUrl('activity/create')) ?>"><b>By ACTIVITY</b></a>] : 
+			<a href="<?php echo CHtml::encode($this->createUrl('activity/create')) ?>">
+				Here you create a new Activity and assign it to an existing Service</li>
+			</a>
+	</ul>
+</p>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<p>For more details about this application, please contact to
+<a href="mailto:jwalker@costaricaexpeditions.com">Jarl Walker</a>, or
+contact Application Vendor and Developer on <a href="http://www.arckanto.com" target=_blank>Arckanto software</a>
+</p>
