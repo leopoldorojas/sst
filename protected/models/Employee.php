@@ -103,4 +103,11 @@ class Employee extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public static function getEnabledEmployees()
+	{
+		return self::model()->findAll();
+        // return self::model()->findAllByAttributes(array('enabled'=>1));
+	}
+
 }

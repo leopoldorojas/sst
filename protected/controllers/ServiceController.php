@@ -6,7 +6,7 @@ class ServiceController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column1';
+	public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -181,6 +181,7 @@ class ServiceController extends Controller
 	*/
 	public function actionAdminActivities()
 	{
+		$this->layout='//layouts/column1';
 		$searchForm=new DateRangeFilterForm();
 		$model=new Service('search');
 		$childModel=new ActivityService;

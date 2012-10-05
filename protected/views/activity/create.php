@@ -29,4 +29,8 @@ function getService(id){
 
 <h1>Create Activity</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'dataProvider'=>$dataProvider)); ?>
+<?php echo $this->renderPartial('_form', array(
+		'model'=>$model,
+		'dataProvider'=>$dataProvider,
+		'assignment'=>$assignment,
+	)); ?>

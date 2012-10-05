@@ -19,4 +19,8 @@ $this->menu=array(
 
 <h1>Update Activity <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_formUpdate', array('model'=>$model, 'dataProvider'=>$dataProvider)); ?>
+<?php echo $this->renderPartial('_formUpdate', array(
+		'model'=>$model,
+		'dataProvider'=>$dataProvider,
+		'assignment'=>$assignment,
+	)); ?>

@@ -66,7 +66,7 @@ class ActivityController extends Controller
 		$selectableServices=Service::model()->selectableByActivities();
 		$dataProvider = new CActiveDataProvider('Service');
 		$dataProvider->setData($selectableServices);
-
+		$assignment=new Assignment;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -75,6 +75,14 @@ class ActivityController extends Controller
 		{
 			$model->attributes=$_POST['Activity'];
 			if($model->save()) {
+
+				if(!empty($_POST['Assignment']['employee_id'])) {
+					$assignment->activity_id=$model->id;
+					$assignment->employee_id=$_POST['Assignment']['employee_id'];
+					$assignment->estimated_hours=$_POST['Assignment']['estimated_hours'];				
+					$assignment->save();					
+				}
+
 				if(!empty($_POST['selectedService'])) {
 					$activityService=new ActivityService;
 					$activityService->activity_id=$model->id;
@@ -88,6 +96,7 @@ class ActivityController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
+			'assignment'=>$assignment,
 		));
 	}
 
@@ -102,6 +111,9 @@ class ActivityController extends Controller
 		$servicesOfActivity=$model->services;
 		$dataProvider=new CActiveDataProvider('Service');
 		$dataProvider->setData($servicesOfActivity);
+		$assignment=new Assignment;
+		foreach ($model->assignments as $value)
+			$assignment=$value;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -109,13 +121,30 @@ class ActivityController extends Controller
 		if(isset($_POST['Activity']))
 		{
 			$model->attributes=$_POST['Activity'];
-			if($model->save())
+			if($model->save()) {
+				if(!empty($_POST['Assignment']['employee_id'])) {
+					$newAssignment=new Assignment;
+					$newAssignment->activity_id=$model->id;
+					$newAssignment->employee_id=$_POST['Assignment']['employee_id'];
+					$newAssignment->estimated_hours=$_POST['Assignment']['estimated_hours'];						
+					$newAssignment->save();
+					$assignment->delete();
+				}
+
+				if(!empty($_POST['selectedService'])) {
+					$activityService=new ActivityService;
+					$activityService->activity_id=$model->id;
+					$activityService->service_id=$_POST['selectedService'];					
+					$activityService->save();
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
+			'assignment'=>$assignment,
 		));
 	}
 

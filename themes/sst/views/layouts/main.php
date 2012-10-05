@@ -30,7 +30,8 @@
 <div class="container" id="wrapper">
 
   <header id="header">
-    <div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name), Yii::app()->baseURL); ?></div>
+    <!-- div id="logo"><?php // echo CHtml::link(CHtml::encode(Yii::app()->name), Yii::app()->baseURL); ?></div> -->
+    <div id="logo"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseUrl . "/img/logo_tol.png"), Yii::app()->baseURL); ?></div>
 
     <nav id="mainmenu">
       <?php
@@ -38,11 +39,12 @@
           // array('label'=>'Home', 'url'=>array('/site/index')),
           array('label'=>'Activities', 'url'=>array('/activity/admin')),
           array('label'=>'Activity Types', 'url'=>array('/activitytype/admin')),
+          array('label'=>'Assignments', 'url'=>array('/assignment/admin')),
           array('label'=>'Operations Info', 'url'=>array('/site/page', 'view'=>'operationsinfo',)),
           // array('label'=>'Users', 'url'=>array('/user/admin')),
           // array('label'=>'Contact', 'url'=>array('/site/contact')),
-          array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-          array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+          // array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+          // array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
         );
       ?>
       <?php $this->widget('zii.widgets.CMenu',array(

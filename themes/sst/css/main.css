@@ -75,6 +75,7 @@ input[type="password"]:focus {
 	font-size: 3em;
   margin: 0 1em;
   width: 360px;
+  padding-top: 7px;
 }
 #logo a
 {

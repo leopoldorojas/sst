@@ -46,6 +46,20 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($assignment,'employee_id'); ?>
+		<?php echo $form->dropDownList($assignment,'employee_id', CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array(
+			'empty' => 'Select the employee to assign',
+		)); ?>
+		<?php echo $form->error($assignment,'employee_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($assignment,'estimated_hours'); ?>
+		<?php echo $form->textField($assignment,'estimated_hours', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->error($assignment,'estimated_hours'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo CHtml::label('Assign to a Service at this moment?','assignNow'); ?>
 		<?php echo CHtml::checkBox('assignNow', false, array('class'=>'assignNow-check')); ?>
 	</div>
