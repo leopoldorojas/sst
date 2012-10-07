@@ -60,30 +60,15 @@
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::label('Assign to a Service at this moment?','assignNow'); ?>
+		<?php echo CHtml::label('Assign Services?','assignNow'); ?>
 		<?php echo CHtml::checkBox('assignNow', false, array('class'=>'assignNow-check')); ?>
 	</div>
 
 	<div class="assignService-form" style="display:none">
-
-		<div class="row">
-			<?php echo CHtml::label('Servicio seleccionado','selectedService'); ?>
-			<?php echo CHtml::TextField('selectedService',"", array('readonly'=>'readonly')); ?>
-		</div>
-
-		<?php $this->widget('zii.widgets.grid.CGridView', array(
-			'id'=>'service-grid',
+		<?php echo $this->renderPartial('_formActivityServices', array(
 			'dataProvider'=>$dataProvider,
-			'columns'=>array(
-				'id',
-				'booking_id',
-				'booking.name',
-				'day',
-				'seq',
-				'service_type',
-			),
-			'selectionChanged' => 'getService',
-		)); ?>
+		));
+		?>
 	</div>
 
 	<div class="row buttons">

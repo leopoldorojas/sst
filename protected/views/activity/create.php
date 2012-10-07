@@ -24,7 +24,6 @@ function getService(id){
 	$('input[name=selectedService]').val($.fn.yiiGridView.getSelection(id));
 }
 ");
-
 ?>
 
 <h1>Create Activity</h1>
@@ -33,4 +32,5 @@ function getService(id){
 		'model'=>$model,
 		'dataProvider'=>$dataProvider,
 		'assignment'=>$assignment,
-	)); ?>
+	));
+?>

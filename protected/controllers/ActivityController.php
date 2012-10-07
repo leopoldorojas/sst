@@ -84,10 +84,14 @@ class ActivityController extends Controller
 				}
 
 				if(!empty($_POST['selectedService'])) {
-					$activityService=new ActivityService;
-					$activityService->activity_id=$model->id;
-					$activityService->service_id=$_POST['selectedService'];					
-					$activityService->save();
+					$selectedServices = explode(",", $_POST['selectedService']);
+
+					foreach ($selectedServices as $value) {
+						$activityService=new ActivityService;
+						$activityService->activity_id=$model->id;
+						$activityService->service_id=$value;					
+						$activityService->save();
+					}
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			}
