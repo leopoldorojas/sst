@@ -22,6 +22,10 @@ while waiting for the ajax response -->
             'template'=>'{update}{delete}',
             'updateButtonUrl' => 'array("activity/update", "id"=>$data->activity_id)',
             'deleteButtonUrl' => 'array("activityService/delete", "id"=>$data->id)',
+            'afterDelete' => 'function(link,success,data){
+                dataprocessed = $.parseJSON(data);
+                if(success && dataprocessed.lastActivity) alert("Warning: You have deleted the last Service linked to the Activity " + dataprocessed.activityId);
+            }',
         ),
     ),
     'afterAjaxUpdate' => 'manageCreateActivity',
