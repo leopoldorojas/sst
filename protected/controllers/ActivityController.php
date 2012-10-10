@@ -63,10 +63,14 @@ class ActivityController extends Controller
 	public function actionCreate()
 	{
 		$model=new Activity;
+
 		$selectableServices=Service::model()->selectableByActivities();
 		$dataProvider = new CActiveDataProvider('Service');
 		$dataProvider->setData($selectableServices);
-		$assignment=new Assignment;
+
+		$selectableEmployees=Employee::model()->getEnabledEmployees();
+		$employeeDataProvider = new CActiveDataProvider('Employee');
+		$employeeDataProvider->setData($selectableEmployees);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -75,13 +79,6 @@ class ActivityController extends Controller
 		{
 			$model->attributes=$_POST['Activity'];
 			if($model->save()) {
-
-				if(!empty($_POST['Assignment']['employee_id'])) {
-					$assignment->activity_id=$model->id;
-					$assignment->employee_id=$_POST['Assignment']['employee_id'];
-					$assignment->estimated_hours=$_POST['Assignment']['estimated_hours'];				
-					$assignment->save();					
-				}
 
 				if(!empty($_POST['selectedService'])) {
 					$selectedServices = explode(",", $_POST['selectedService']);
@@ -93,6 +90,18 @@ class ActivityController extends Controller
 						$activityService->save();
 					}
 				}
+
+				if(!empty($_POST['assignedEmployees'])) {
+					$assignedEmployees = explode(",", $_POST['assignedEmployees']);
+
+					foreach ($assignedEmployees as $value) {
+						$assignment=new Assignment;
+						$assignment->activity_id=$model->id;
+						$assignment->employee_id=$value;					
+						$assignment->save();
+					}
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -100,7 +109,7 @@ class ActivityController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
-			'assignment'=>$assignment,
+			'employeeDataProvider'=>$employeeDataProvider,
 		));
 	}
 

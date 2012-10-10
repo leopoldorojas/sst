@@ -46,29 +46,29 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($assignment,'employee_id'); ?>
-		<?php echo $form->dropDownList($assignment,'employee_id', CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array(
-			'empty' => 'Select the employee to assign',
-		)); ?>
-		<?php echo $form->error($assignment,'employee_id'); ?>
+		<?php echo CHtml::label('Display Services and Employees?','displayForms'); ?>
+		<?php echo CHtml::checkBox('displayForms', false, array('class'=>'displayForms-check')); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($assignment,'estimated_hours'); ?>
-		<?php echo $form->textField($assignment,'estimated_hours', array('size'=>5,'maxlength'=>10)); ?>
-		<?php echo $form->error($assignment,'estimated_hours'); ?>
-	</div>
+	<div class="displayForms-form" style="display:none">
+		<?php echo CHtml::link('Assign Services?','#',array('class'=>'assignServices-button')); ?>
+		<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?> 
+		<?php echo CHtml::link('Assign Employees?','#',array('class'=>'assignEmployees-button')); ?>
 
-	<div class="row">
-		<?php echo CHtml::label('Assign Services?','assignNow'); ?>
-		<?php echo CHtml::checkBox('assignNow', false, array('class'=>'assignNow-check')); ?>
-	</div>
+		<div class="assignService-form" style="display:all">
+			<?php echo $this->renderPartial('_formActivityServices', array(
+				'dataProvider'=>$dataProvider,
+			));
+			?>
+		</div>
 
-	<div class="assignService-form" style="display:none">
-		<?php echo $this->renderPartial('_formActivityServices', array(
-			'dataProvider'=>$dataProvider,
-		));
-		?>
+		<div class="assignEmployee-form" style="display:none">
+			<?php echo $this->renderPartial('_formAssignments', array(
+				'employeeDataProvider'=>$employeeDataProvider,
+			));
+			?>
+		</div>
+
 	</div>
 
 	<div class="row buttons">

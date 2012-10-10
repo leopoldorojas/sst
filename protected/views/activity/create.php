@@ -12,9 +12,23 @@ $this->menu=array(
 	array('label'=>'Manage Activity', 'url'=>array('admin')),
 );
 
-Yii::app()->clientScript->registerScript('checkAssign', "
-$('.assignNow-check').change(function(){
-	$('.assignService-form').toggle();
+Yii::app()->clientScript->registerScript('checkDisplayForms', "
+$('.displayForms-check').change(function(){
+	$('.displayForms-form').toggle();
+	return false;
+});
+");
+
+Yii::app()->clientScript->registerScript('toggleAssignmentsForms', "
+$('.assignServices-button').click(function(){
+	$('.assignService-form').show();
+	$('.assignEmployee-form').hide();
+	return false;
+});
+
+$('.assignEmployees-button').click(function(){
+	$('.assignService-form').hide();
+	$('.assignEmployee-form').show();
 	return false;
 });
 ");
@@ -24,6 +38,12 @@ function getService(id){
 	$('input[name=selectedService]').val($.fn.yiiGridView.getSelection(id));
 }
 ");
+
+Yii::app()->clientScript->registerScript('getSelectedEmployee', "
+function getEmployee(id){
+	$('input[name=assignedEmployees]').val($.fn.yiiGridView.getSelection(id));
+}
+");
 ?>
 
 <h1>Create Activity</h1>
@@ -31,6 +51,6 @@ function getService(id){
 <?php echo $this->renderPartial('_form', array(
 		'model'=>$model,
 		'dataProvider'=>$dataProvider,
-		'assignment'=>$assignment,
+		'employeeDataProvider'=>$employeeDataProvider,
 	));
 ?>

@@ -1,5 +1,5 @@
 <div class="row">
-	<?php echo CHtml::label('Servicio seleccionado','selectedService'); ?>
+	<?php echo CHtml::label('Selected services','selectedService'); ?>
 	<?php echo CHtml::TextField('selectedService',"", array('readonly'=>'readonly')); ?>
 </div>
 
