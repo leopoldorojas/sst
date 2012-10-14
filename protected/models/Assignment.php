@@ -47,6 +47,7 @@ class Assignment extends CActiveRecord
 			array('employee_id, activity_id', 'numerical', 'integerOnly'=>true),
 			array('employee_id','employeeExist'),
 			array('activity_id','activityExist'),
+			array('activity_id','notDuplicateAssignment'),
 			array('estimated_hours, actual_hours', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -115,5 +116,15 @@ class Assignment extends CActiveRecord
     {
     	if (!Employee::model()->findByPk($this->$attribute))
     		$this->addError($attribute,'The employee does not exist');
+    }
+
+    public function notDuplicateAssignment($attribute=NULL, $params=NULL)
+    {
+    	if (self::model()->findAllByAttributes(array(
+    		'activity_id'=>$this->activity_id,
+    		'employee_id'=>$this->employee_id,
+    	))) {
+    		$this->addError($attribute,'This assignment Employee-Activity already exists');
+    	}
     }
 }

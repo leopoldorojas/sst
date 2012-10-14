@@ -104,10 +104,24 @@ class Employee extends CActiveRecord
 		));
 	}
 
-	public static function getEnabledEmployees()
+	public static function getEnabledEmployees($activity_id=NULL, $inThisActivity=true)
 	{
-		return self::model()->findAll();
-        // return self::model()->findAllByAttributes(array('enabled'=>1));
+		if (!$activity_id) {
+			return self::model()->findAll();
+        	// return self::model()->findAllByAttributes(array('enabled'=>1));
+        } else {
+        	$assignments=Assignment::model()->findAllByAttributes(array('activity_id'=>$activity_id));
+			
+			$arrAssignments = array();
+			foreach($assignments as $key => $assignment)
+			{
+    			$arrAssignments[$key] = $assignment->employee_id;
+			}
+
+			$criteria=new CDbCriteria;
+			($inThisActivity) ? $criteria->addInCondition('id', $arrAssignments) : $criteria->addNotInCondition('id', $arrAssignments);
+        	return self::model()->findAll($criteria);
+        }
 	}
 
 }

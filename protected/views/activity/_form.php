@@ -47,7 +47,7 @@
 
 	<div class="row">
 		<?php echo CHtml::label('Display Services and Employees?','displayForms'); ?>
-		<?php echo CHtml::checkBox('displayForms', false, array('class'=>'displayForms-check')); ?>
+		<?php echo CHtml::checkBox('displayForms', false , array('class'=>'displayForms-check')); ?>
 	</div>
 
 	<div class="displayForms-form" style="display:none">

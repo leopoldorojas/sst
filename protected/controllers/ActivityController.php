@@ -121,12 +121,17 @@ class ActivityController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		$servicesOfActivity=$model->services;
-		$dataProvider=new CActiveDataProvider('Service');
-		$dataProvider->setData($servicesOfActivity);
-		$assignment=new Assignment;
-		foreach ($model->assignments as $value)
-			$assignment=$value;
+
+		$selectableServices=Service::model()->selectableByActivities();
+		$dataProvider = new CActiveDataProvider('Service');
+		$dataProvider->setData($selectableServices);
+
+		$selectableEmployees=Employee::model()->getEnabledEmployees($model->id, false);
+		$employeeDataProvider = new CActiveDataProvider('Employee');
+		$employeeDataProvider->setData($selectableEmployees);
+
+		$assignedServicesDataProvider=new CArrayDataProvider(ActivityService::model()->with('service')->findAllByAttributes(array('activity_id'=>$model->id)));
+		$assignedEmployeesDataProvider=new CArrayDataProvider(Assignment::model()->with('employee')->findAllByAttributes(array('activity_id'=>$model->id)));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -135,21 +140,29 @@ class ActivityController extends Controller
 		{
 			$model->attributes=$_POST['Activity'];
 			if($model->save()) {
-				if(!empty($_POST['Assignment']['employee_id'])) {
-					$newAssignment=new Assignment;
-					$newAssignment->activity_id=$model->id;
-					$newAssignment->employee_id=$_POST['Assignment']['employee_id'];
-					$newAssignment->estimated_hours=$_POST['Assignment']['estimated_hours'];						
-					$newAssignment->save();
-					$assignment->delete();
-				}
 
 				if(!empty($_POST['selectedService'])) {
-					$activityService=new ActivityService;
-					$activityService->activity_id=$model->id;
-					$activityService->service_id=$_POST['selectedService'];					
-					$activityService->save();
+					$selectedServices = explode(",", $_POST['selectedService']);
+
+					foreach ($selectedServices as $value) {
+						$activityService=new ActivityService;
+						$activityService->activity_id=$model->id;
+						$activityService->service_id=$value;					
+						$activityService->save();
+					}
 				}
+
+				if(!empty($_POST['assignedEmployees'])) {
+					$assignedEmployees = explode(",", $_POST['assignedEmployees']);
+
+					foreach ($assignedEmployees as $value) {
+						$assignment=new Assignment;
+						$assignment->activity_id=$model->id;
+						$assignment->employee_id=$value;					
+						$assignment->save();
+					}
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -157,7 +170,9 @@ class ActivityController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
-			'assignment'=>$assignment,
+			'employeeDataProvider'=>$employeeDataProvider,
+			'assignedServicesDataProvider'=>$assignedServicesDataProvider,
+			'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 		));
 	}
 

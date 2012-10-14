@@ -46,48 +46,41 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($assignment,'employee_id'); ?>
-		<?php echo $form->dropDownList($assignment,'employee_id', CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array(
-			'empty' => 'Select the employee to assign',
-		)); ?>
-		<?php echo $form->error($assignment,'employee_id'); ?>
+		<?php echo CHtml::label('Update Services and Employees?','updateForms'); ?>
+		<?php echo CHtml::checkBox('updateForms', false , array('class'=>'updateForms-check')); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($assignment,'estimated_hours'); ?>
-		<?php echo $form->textField($assignment,'estimated_hours', array('size'=>5,'maxlength'=>10)); ?>
-		<?php echo $form->error($assignment,'estimated_hours'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo CHtml::label('Assign to a Service at this moment?','assignNow'); ?>
-		<?php echo CHtml::checkBox('assignNow', false, array('class'=>'assignNow-check')); ?>
-	</div>
+	<div class="updateForms-form" style="display:none">
+		<?php echo CHtml::link('Assign Services?','#',array('class'=>'assignServices-button')); ?>
+		<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?> 
+		<?php echo CHtml::link('Assign Employees?','#',array('class'=>'assignEmployees-button')); ?>
 
-	<div class="assignService-form" style="display:all">
+		<div class="assignService-form" style="display:all">
 
-		<div class="row">
-			<?php echo CHtml::label('Servicio seleccionado','selectedService'); ?>
-			<?php echo CHtml::TextField('selectedService',"", array('readonly'=>'readonly')); ?>
+			<?php echo $this->renderPartial('_formAssignedServices', array(
+				'assignedServicesDataProvider'=>$assignedServicesDataProvider,
+			));
+			?>
+
+			<?php echo $this->renderPartial('_formActivityServices', array(
+				'dataProvider'=>$dataProvider,
+			));
+			?>
 		</div>
 
-		<?php $this->widget('zii.widgets.grid.CGridView', array(
-			'id'=>'service-grid',
-			'dataProvider'=>$dataProvider,
-			'columns'=>array(
-				'id',
-				'booking_id',
-				'booking.name',
-				'day',
-				'seq',
-				'service_type',
-				/* array(    - Si la pongo lanza el trigger de borrado de las Actividades cuando es la ultima y entonces hay error
-            		'class'=>'CButtonColumn',
-            		'template'=>'{delete}',
-		            'deleteButtonUrl' => 'array("activityService/delete", "id"=>$data->activityServices->id)',
-				), */
-			),
-		)); ?>
+		<div class="assignEmployee-form" style="display:none">
+
+			<?php echo $this->renderPartial('_formAssignedEmployees', array(
+				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
+			));
+			?>
+
+			<?php echo $this->renderPartial('_formAssignments', array(
+				'employeeDataProvider'=>$employeeDataProvider,
+			));
+			?>
+		</div>
+
 	</div>
 
 	<div class="row buttons">

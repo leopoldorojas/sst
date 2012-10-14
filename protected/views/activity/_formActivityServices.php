@@ -10,7 +10,7 @@
 	'columns'=>array(
 		'id',
 		'booking_id',
-		'booking.name',
+		// 'booking.name',
 		'day',
 		'seq',
 		'service_type',

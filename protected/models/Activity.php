@@ -70,6 +70,7 @@ class Activity extends CActiveRecord
 			'assignments' => array(self::HAS_MANY, 'Assignment', 'activity_id'),
 			'activityServices' => array(self::HAS_MANY, 'ActivityService', 'activity_id'),
 			'services' => array(self::HAS_MANY, 'Service', array('service_id'=>'id'),'through'=>'activityServices'),
+			'employees' => array(self::HAS_MANY, 'Employee', array('employee_id'=>'id'),'through'=>'assignments'),
 		);
 	}
 
