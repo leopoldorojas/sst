@@ -26,6 +26,11 @@
 		<?php echo $form->dateField($searchForm,'endDate'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($searchForm,'checkTol'); ?>
+		<?php echo $form->checkBox($searchForm,'checkTol'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

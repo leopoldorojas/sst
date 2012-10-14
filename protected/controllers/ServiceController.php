@@ -182,24 +182,21 @@ class ServiceController extends Controller
 	public function actionAdminActivities()
 	{
 		$this->layout='//layouts/column1';
-		$searchForm=new DateRangeFilterForm();
+		$searchForm=new ServiceFilterForm();
 		$model=new Service('search');
 		$childModel=new ActivityService;
 		$activityModel=new Activity;
 
 		$searchForm->unsetAttributes();
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();  
 		$childModel->unsetAttributes();
 		$activityModel->unsetAttributes();
 
-		if(isset($_GET['DateRangeFilterForm']))
-			$searchForm->attributes=$_GET['DateRangeFilterForm'];
+		if(isset($_GET['ServiceFilterForm']))
+			$searchForm->attributes=$_GET['ServiceFilterForm'];
 
 		if(isset($_GET['Service']))
 			$model->attributes=$_GET['Service'];
-
-		// if(isset($_GET['ActivityService']))
-			// $childModel->attributes=$_GET['ActivityService'];
 
 		if(isset($_GET['Activity']) && !empty($_GET['service_id']))
 		{

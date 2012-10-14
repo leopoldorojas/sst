@@ -90,16 +90,16 @@ class Service extends CActiveRecord
     {
 		return array(
             'tolServices'=>array(
-                'condition' => 'service_type = "TOL"',
+                'condition' => 'supplier = "TOL"',
             ),
         );
     }
 
-    // This is anothe scope but parameterized scope
-    public function servicesSince($sinceDate)
+    // This is another scope but parameterized scope
+    public function servicesOnDate($sinceDate, $strictToday=false)
 	{
     	$this->getDbCriteria()->mergeWith(array(
-        	'condition' => 'delivery_date >=' . $sinceDate,
+        	'condition' => 'delivery_date ' . (($strictToday) ? '=' : '>=' ) . $sinceDate,
     	));
     	return $this;
 	}
@@ -183,7 +183,7 @@ class Service extends CActiveRecord
     {
     	$criteria=new CDbCriteria;
     	$criteria->compare('activityServices.id', '');
-    	return self::model()->tolServices()->servicesSince(date("Ymd"))->with('activityServices','booking')->findAll('activityServices.id IS NULL');
+    	return self::model()->tolServices()->servicesOnDate(date("Ymd"),true)->with('activityServices','booking')->findAll('activityServices.id IS NULL');
     }
 
 }
