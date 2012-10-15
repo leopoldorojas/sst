@@ -192,8 +192,12 @@ class ServiceController extends Controller
 		$childModel->unsetAttributes();
 		$activityModel->unsetAttributes();
 
-		if(isset($_GET['ServiceFilterForm']))
+		if(isset($_GET['ServiceFilterForm'])) {
 			$searchForm->attributes=$_GET['ServiceFilterForm'];
+		} else {
+			$searchForm->filterTol=true;
+			$searchForm->sortTol=true;
+		}
 
 		if(isset($_GET['Service']))
 			$model->attributes=$_GET['Service'];

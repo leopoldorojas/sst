@@ -10,7 +10,8 @@ class ServiceFilterForm extends CFormModel
 {
 	public $startDate;
 	public $endDate;
-	public $checkTol;
+	public $filterTol;
+	public $sortTol;
 
 	/**
 	 * Declares the validation rules.
@@ -19,6 +20,20 @@ class ServiceFilterForm extends CFormModel
 	{
 		return array(
 			array('startDate, endDate', 'date', 'format'=>'yyyy-MM-dd'),
+			array('filterTol, sortTol', 'safe'),
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'startDate' => 'Start Date',
+			'endDate' => 'End Date',
+			'filterTol' => 'Filter by TOL?',
+			'sortTol' => 'Sort by TOL?',
 		);
 	}
 

@@ -38,8 +38,8 @@
         $mainMenuItems = array(
           // array('label'=>'Home', 'url'=>array('/site/index')),
           array('label'=>'Activities', 'url'=>array('/activity/admin')),
-          array('label'=>'Activity Types', 'url'=>array('/activitytype/admin')),
           array('label'=>'Assignments', 'url'=>array('/assignment/admin')),
+          array('label'=>'Activity Types', 'url'=>array('/activitytype/admin')),
           array('label'=>'Operations Info', 'url'=>array('/site/page', 'view'=>'operationsinfo',)),
           // array('label'=>'Users', 'url'=>array('/user/admin')),
           // array('label'=>'Contact', 'url'=>array('/site/contact')),

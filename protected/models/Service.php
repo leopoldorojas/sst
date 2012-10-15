@@ -143,10 +143,9 @@ class Service extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		if(isset($params)) {
-			$criteria->compare('delivery_date','>='.$params['startDate']);
-			$criteria->compare('delivery_date','<='.$params['endDate']);
-		}
+		$criteria->compare('delivery_date','>='.$params['startDate']);
+		$criteria->compare('delivery_date','<='.$params['endDate']);
+		if ($params['filterTol']) $criteria->compare('supplier','TOL',true);
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('booking_id',$this->booking_id);
@@ -167,6 +166,7 @@ class Service extends CActiveRecord
 		$criteria->compare('cost',$this->cost,true);
 		$criteria->compare('service_type',$this->service_type,true);
 		$criteria->compare('createdon',$this->createdon,true);
+		if ($params['sortTol']) $criteria->order='FIELD(supplier, "TOL") DESC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

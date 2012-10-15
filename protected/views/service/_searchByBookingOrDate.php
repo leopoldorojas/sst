@@ -27,8 +27,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($searchForm,'checkTol'); ?>
-		<?php echo $form->checkBox($searchForm,'checkTol'); ?>
+		<?php echo $form->label($searchForm,'filterTol'); ?>
+		<?php echo $form->checkBox($searchForm,'filterTol'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($searchForm,'sortTol'); ?>
+		<?php echo $form->checkBox($searchForm,'sortTol'); ?>
 	</div>
 
 	<div class="row buttons">
