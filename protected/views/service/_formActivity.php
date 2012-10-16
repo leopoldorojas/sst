@@ -17,7 +17,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_type_id'); ?>
-		<?php echo $form->dropDownList($model,'activity_type_id', CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description')); ?>
+		<?php echo $form->dropDownList($model,'activity_type_id',
+			CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'Please, select an Activity Type'));
+		?>
 		<?php echo $form->error($model,'activity_type_id'); ?>
 	</div>
 
@@ -37,12 +39,6 @@
 		<?php echo $form->labelEx($model,'activity_time'); ?>
 		<?php echo CHtml::activeTextField($model,'activity_time', array('value'=>substr($model->activity_time,0,5))); ?>
 		<?php echo $form->error($model,'activity_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'completed'); ?>
-		<?php echo $form->checkBox($model,'completed'); ?>
-		<?php echo $form->error($model,'completed'); ?>
 	</div>
 
 	<?php echo Chtml::hiddenField('service_id',$service_id); ?>

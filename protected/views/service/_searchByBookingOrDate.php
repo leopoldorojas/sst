@@ -12,8 +12,8 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'booking_id'); ?>
-		<?php echo $form->textField($model,'booking_id', array('size'=>5, 'maxlength'=>10)); ?>
+		<?php echo $form->label($searchForm,'bookingCode'); ?>
+		<?php echo $form->textField($searchForm,'bookingCode', array('size'=>5, 'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">

@@ -12,6 +12,7 @@ class ServiceFilterForm extends CFormModel
 	public $endDate;
 	public $filterTol;
 	public $sortTol;
+	public $bookingCode;
 
 	/**
 	 * Declares the validation rules.
@@ -20,7 +21,7 @@ class ServiceFilterForm extends CFormModel
 	{
 		return array(
 			array('startDate, endDate', 'date', 'format'=>'yyyy-MM-dd'),
-			array('filterTol, sortTol', 'safe'),
+			array('filterTol, sortTol, bookingCode', 'safe'),
 		);
 	}
 
@@ -34,6 +35,7 @@ class ServiceFilterForm extends CFormModel
 			'endDate' => 'End Date',
 			'filterTol' => 'Filter by TOL?',
 			'sortTol' => 'Sort by TOL?',
+			'bookingCode' => 'Booking Code',
 		);
 	}
 

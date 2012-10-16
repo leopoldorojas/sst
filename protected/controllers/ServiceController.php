@@ -214,7 +214,14 @@ class ServiceController extends Controller
 					$childModel->service_id=$_GET['service_id'];
 					$childModel->save();
 					$activityModel->unsetAttributes();
+					echo "Activity created successfuly";
+				} else {
+					echo $activityModel->getError('activity_type_id') . 
+						PHP_EOL . $activityModel->getError('activity_date') .
+						PHP_EOL . $activityModel->getError('activity_time');
 				}
+
+				Yii::app()->end();
 			}
 		} 
 

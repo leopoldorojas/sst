@@ -12,7 +12,7 @@
  * @property string $description
  * @property string $pickup
  * @property string $pickuptime
- * @property string $droppoff
+ * @property string $dropoff
  * @property string $dropofftime
  * @property string $voucher
  * @property string $supplier
@@ -59,7 +59,7 @@ class Service extends CActiveRecord
 			array('booking_id', 'required'),
 			array('booking_id, day, seq, pax_number', 'numerical', 'integerOnly'=>true),
 			array('booking_id', 'bookingExist'),
-			array('pickup, droppoff, supplier, guide', 'length', 'max'=>100),
+			array('pickup, dropoff, supplier, guide', 'length', 'max'=>100),
 			array('service_type', 'length', 'max'=>10),
 			array('voucher', 'length', 'max'=>30),
 			array('sell, cost', 'numerical'),
@@ -69,7 +69,8 @@ class Service extends CActiveRecord
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, booking_id, day, seq, delivery_date, description, pickup, pickuptime, droppoff, dropofftime, voucher, supplier, guide, pax_number, ops, sell, cost, service_type, createdon', 'safe', 'on'=>'search'),
+			array('id, booking_id, day, delivery_date, description, pickup, pickuptime, dropoff, dropofftime,
+				voucher, supplier, pax_number, service_type,', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -111,15 +112,15 @@ class Service extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'booking_id' => 'Booking',
+			'booking_id' => 'Booking Id',
 			'day' => 'Day',
 			'seq' => 'Sequence',
 			'delivery_date' => 'Delivery Date',
 			'description' => 'Description',
-			'pickup' => 'Pickup',
-			'pickuptime' => 'Pickup Time',
-			'droppoff' => 'Droppoff',
-			'dropofftime' => 'Dropoff Time',
+			'pickup' => 'Pick up',
+			'pickuptime' => 'Pick up Time',
+			'dropoff' => 'Drop off',
+			'dropofftime' => 'Drop off Time',
 			'voucher' => 'Voucher',
 			'supplier' => 'Supplier',
 			'guide' => 'Guide',
@@ -147,29 +148,36 @@ class Service extends CActiveRecord
 		$criteria->compare('delivery_date','<='.$params['endDate']);
 		if ($params['filterTol']) $criteria->compare('supplier','TOL',true);
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('booking_id',$this->booking_id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('day',$this->day);
-		$criteria->compare('seq',$this->seq);
 		$criteria->compare('delivery_date',$this->delivery_date,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('pickup',$this->pickup,true);
 		$criteria->compare('pickuptime',$this->pickuptime,true);
-		$criteria->compare('droppoff',$this->droppoff,true);
+		$criteria->compare('dropoff',$this->dropoff,true);
 		$criteria->compare('dropofftime',$this->dropofftime,true);
 		$criteria->compare('voucher',$this->voucher,true);
 		$criteria->compare('supplier',$this->supplier,true);
-		$criteria->compare('guide',$this->guide,true);
 		$criteria->compare('pax_number',$this->pax_number);
-		$criteria->compare('ops',$this->ops);
-		$criteria->compare('sell',$this->sell,true);
-		$criteria->compare('cost',$this->cost,true);
 		$criteria->compare('service_type',$this->service_type,true);
-		$criteria->compare('createdon',$this->createdon,true);
 		if ($params['sortTol']) $criteria->order='FIELD(supplier, "TOL") DESC';
+
+		$criteria->with='booking';
+		$criteria->compare('booking.booking_code',$params['bookingCode'],true);
+
+ 		/* Sort on related Model's columns */
+        $sort = new CSort;
+        $sort->attributes = array(
+            'booking.booking_code' => array(
+            'asc' => 'booking_code',
+            'desc' => 'booking_code DESC',
+            ), '*', /* Treat all other columns normally */
+        );
+        /* End: Sort on related Model's columns */
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>$sort, /* Needed for sort */
 		));
 	}
 

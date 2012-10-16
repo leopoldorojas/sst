@@ -74,6 +74,15 @@ class Activity extends CActiveRecord
 		);
 	}
 
+    // This is a parameterized scope
+    public function activitiesOnDate($sinceDate, $strictToday=false)
+	{
+    	$this->getDbCriteria()->mergeWith(array(
+        	'condition' => 'activity_date ' . (($strictToday) ? '=' : '>=' ) . $sinceDate,
+    	));
+    	return $this;
+	}
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -119,5 +128,25 @@ class Activity extends CActiveRecord
     	if (!ActivityType::model()->findByPk($this->$attribute))
     		$this->addError($attribute,'The Activity Type does not exist');
     }
+
+	public static function getEnabledActivities($activity_id=NULL, $inThisActivity=true)
+	{
+		if (!$activity_id) {
+			return self::model()->activitiesOnDate(date("Ymd"),false)->findAllByAttributes(array('completed'=>false));
+        	// return self::model()->findAllByAttributes(array('enabled'=>1));
+        } else {
+        	$assignments=Assignment::model()->findAllByAttributes(array('activity_id'=>$activity_id));
+			
+			$arrAssignments = array();
+			foreach($assignments as $key => $assignment)
+			{
+    			$arrAssignments[$key] = $assignment->employee_id;
+			}
+
+			$criteria=new CDbCriteria;
+			($inThisActivity) ? $criteria->addInCondition('id', $arrAssignments) : $criteria->addNotInCondition('id', $arrAssignments);
+        	return self::model()->findAll($criteria);
+        }
+	}
 
 }

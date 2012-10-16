@@ -62,7 +62,7 @@ class AssignmentController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Assignment;
+		$model=new Assignment('create');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);

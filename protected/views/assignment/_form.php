@@ -17,13 +17,17 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'employee_id'); ?>
-		<?php echo $form->textField($model,'employee_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->dropDownList($model,'employee_id',
+			CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'Please, select an Employee'));
+		?>
 		<?php echo $form->error($model,'employee_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_id'); ?>
-		<?php echo $form->textField($model,'activity_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->dropDownList($model,'activity_id',
+			CHtml::listData(Activity::model()->getEnabledActivities(), 'id', 'description'), array('empty'=>'Please, select an Activity'));
+		?>
 		<?php echo $form->error($model,'activity_id'); ?>
 	</div>
 
@@ -38,13 +42,6 @@
 		<?php echo $form->textField($model,'actual_hours', array('size'=>5,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'actual_hours'); ?>
 	</div>
-
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'createdon'); ?>
-	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

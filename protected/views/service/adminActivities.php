@@ -35,6 +35,7 @@ function getService(id){
 	} else {
 		$('.activityService-form').hide();
 	}
+	return false;
 }
 ");
 
@@ -46,7 +47,14 @@ $('.createActivity-button').click(function(){
 
 $('.createActivity-form form').submit(function(){
 	data=$(this).serialize() + $.fn.yiiGridView.getSelection('service-grid');
-	$.get(window.location, data, alert('Activity created successfuly'));
+	$.get(window.location, data,
+
+		function resultOnCreateActivity(data) {
+			alert(data);
+		}
+
+	);
+
 	$(this).get(0).reset();
 
 	$.fn.yiiGridView.update('activityService-grid', {
@@ -93,19 +101,22 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'booking_id',
-		'day',
-		'seq',
+        array(
+            'name'=>'booking.booking_code',
+            'value'=>'$data->booking->booking_code',
+            'filter' => CHtml::activeTextField($searchForm, 'bookingCode'),
+        ),
+        'day',
 		'delivery_date',
+		'description',
+		'supplier',
+		'voucher',
 		'pickup',
 		'pickuptime',
-		'voucher',
-		'supplier',
-		'guide',
+		'dropoff',
+		'dropofftime',
 		'pax_number',
-		'sell',
 		'service_type',
-		'createdon',
 		array(
 			'class'=>'CButtonColumn',
 		),

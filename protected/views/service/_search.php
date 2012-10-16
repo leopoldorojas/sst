@@ -27,11 +27,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'seq'); ?>
-		<?php echo $form->numberField($model,'seq', array('size'=>2, 'maxlength'=>3)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'delivery_date'); ?>
 		<?php echo $form->dateField($model,'delivery_date'); ?>
 	</div>
@@ -49,12 +44,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'pickuptime'); ?>
 		<?php echo $form->textField($model,'pickuptime', array('size'=>10, 'maxlength'=>20)); ?>
-		<?php // echo CHtml::activeTextField($model,'pickuptime', array('value'=>substr($model->pickuptime,0,5))); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'droppoff'); ?>
-		<?php echo $form->textField($model,'droppoff',array('size'=>50,'maxlength'=>100)); ?>
+		<?php echo $form->label($model,'dropoff'); ?>
+		<?php echo $form->textField($model,'dropoff',array('size'=>50,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
@@ -73,38 +67,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'guide'); ?>
-		<?php echo $form->textField($model,'guide',array('size'=>50,'maxlength'=>100)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'pax_number'); ?>
 		<?php echo $form->numberField($model,'pax_number', array('size'=>2, 'maxlength'=>3)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ops'); ?>
-		<?php echo $form->checkBox($model,'ops'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'sell'); ?>
-		<?php echo $form->textField($model,'sell',array('size'=>8,'maxlength'=>19)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'cost'); ?>
-		<?php echo $form->textField($model,'cost',array('size'=>8,'maxlength'=>19)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'service_type'); ?>
 		<?php echo $form->textField($model,'service_type',array('size'=>5,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10, 'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">
