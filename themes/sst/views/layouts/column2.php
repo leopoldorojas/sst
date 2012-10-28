@@ -4,7 +4,7 @@
 	<?php
     if (!Yii::app()->user->isGuest) {
       $this->beginWidget('zii.widgets.CPortlet', array(
-        'title'=>'Operations',
+        'title'=>'Actions',
       ));
       $this->widget('zii.widgets.CMenu', array(
         'items'=>$this->menu,

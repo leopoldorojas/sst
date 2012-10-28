@@ -22,7 +22,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo CHtml::label('Description of the Activity','description'); ?>
+		<?php // echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
@@ -40,17 +41,19 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'completed'); ?>
+		<?php echo CHtml::label('Is this activity already completed?','completed'); ?>
+		<?php // echo $form->labelEx($model,'completed'); ?>
 		<?php echo $form->checkBox($model,'completed'); ?>
 		<?php echo $form->error($model,'completed'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::label('Update Services and Employees?','updateForms'); ?>
+		<?php echo CHtml::label('Do you want to display "Update Services and Employees" forms?','updateForms'); ?>
 		<?php echo CHtml::checkBox('updateForms', false , array('class'=>'updateForms-check')); ?>
 	</div>
 
 	<div class="updateForms-form" style="display:none">
+		<p>&nbsp;</p>
 		<?php echo CHtml::link('Assign Services?','#',array('class'=>'assignServices-button')); ?>
 		<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?> 
 		<?php echo CHtml::link('Assign Employees?','#',array('class'=>'assignEmployees-button')); ?>

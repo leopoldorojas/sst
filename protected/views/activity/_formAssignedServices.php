@@ -1,4 +1,4 @@
-<!-- Use this paragraph to display the loading.gif icon above the ActivityService Gridview,
+<!-- Use this paragraph to display the loading.gif icon above the AssignedService Gridview,
 while waiting for the ajax response -->
 <p id="loadingPic"></br></p>
 
@@ -6,12 +6,11 @@ while waiting for the ajax response -->
 	'id'=>'assignedService-grid',
 	'dataProvider'=>$assignedServicesDataProvider,
 	'columns'=>array(
-		array('name'=>'ID', 'value'=>'$data->service->id'),
-		array('name'=>'Booking', 'value'=>'$data->service->booking_id'),
+		array('name'=>'Booking Code', 'value'=>'$data->booking()->booking_code'),
+		array('name'=>'Date', 'value'=>'$data->service->delivery_date'),
+		array('name'=>'Description', 'value'=>'$data->service->description'),
+		array('name'=>'Sequence', 'value'=>'$data->service->seq'),
 		array('name'=>'Day', 'value'=>'$data->service->day'),
-		array('name'=>'Seq', 'value'=>'$data->service->seq'),
-		array('name'=>'Supplier', 'value'=>'$data->service->supplier'),
-		array('name'=>'Service Type', 'value'=>'$data->service->service_type'),
         array(
             'class'=>'CButtonColumn',
             'template'=>'{delete}',

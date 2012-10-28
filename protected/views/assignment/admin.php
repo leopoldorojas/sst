@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Assignment', 'url'=>array('index')),
+	// array('label'=>'List Assignment', 'url'=>array('index')),
 	array('label'=>'Create Assignment', 'url'=>array('create')),
+	array('label'=>'Manage Assignments', 'url'=>array('admin')), // Instead of List
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -46,11 +47,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'employee_id',
-		'activity_id',
+		array(
+			'header'=>'Employee',
+			'value'=>'$data->employee->name',
+			'filter' => CHtml::activeDropDownList($model,'employee_id', 
+				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'--')),
+		),
+		'activity.description',
+		'activity.activity_date',
+		'activity.activity_time',
 		'estimated_hours',
 		'actual_hours',
-		'createdon',
 		array(
 			'class'=>'CButtonColumn',
 		),

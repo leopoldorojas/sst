@@ -18,7 +18,9 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'activity_type_id'); ?>
-		<?php echo $form->textField($model,'activity_type_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->dropDownList($model,'activity_type_id', 
+				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')); ?>
+		<?php // echo $form->textField($model,'activity_type_id', array('size'=>5,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
@@ -39,11 +41,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'completed'); ?>
 		<?php echo $form->checkBox($model,'completed'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">

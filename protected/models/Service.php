@@ -115,7 +115,7 @@ class Service extends CActiveRecord
 			'booking_id' => 'Booking Id',
 			'day' => 'Day',
 			'seq' => 'Sequence',
-			'delivery_date' => 'Delivery Date',
+			'delivery_date' => 'Date',
 			'description' => 'Description',
 			'pickup' => 'Pick up',
 			'pickuptime' => 'Pick up Time',

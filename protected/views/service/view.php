@@ -29,7 +29,7 @@ $this->menu=array(
 		'description',
 		'pickup',
 		'pickuptime',
-		'droppoff',
+		'dropoff',
 		'dropofftime',
 		'voucher',
 		'supplier',

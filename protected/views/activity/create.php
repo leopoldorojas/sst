@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Activity', 'url'=>array('index')),
-	array('label'=>'Manage Activity', 'url'=>array('admin')),
+	// array('label'=>'List Activity', 'url'=>array('index')),
+	array('label'=>'Manage Activities', 'url'=>array('admin')),
 );
 
 Yii::app()->clientScript->registerScript('checkDisplayForms', "

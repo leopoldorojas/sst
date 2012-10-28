@@ -80,20 +80,25 @@ function manageCreateActivity(id, data){
 
 ?>
 
-<h1>Manage Services</h1>
+<h1>Manage Activities by Service</h1>
+
+<p>Here you can manage (create or unlink) Activities by selecting the Service to which the Activity belongs</p>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Service Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Use this form to search for specific Services','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:all">
 <?php $this->renderPartial('_searchByBookingOrDate',array(
 	'model'=>$model,
 	'searchForm'=>$searchForm,
 )); ?>
 </div><!-- search-form -->
+</P>
+
+<p>
+Please, select the Service, clicking in the corresponding row. To filter Services, you may optionally enter a comparison operator 
+(<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of 
+each of your search values to specify how the comparison should be done.
+</p>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'service-grid',
@@ -119,6 +124,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'service_type',
 		array(
 			'class'=>'CButtonColumn',
+            'template'=>'{view}',
+            'viewButtonUrl' => 'array("service/view", "id"=>$data->id)',
 		),
 	),
 	'afterAjaxUpdate' => 'hideActivities',

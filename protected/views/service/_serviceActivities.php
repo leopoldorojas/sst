@@ -21,7 +21,9 @@ while waiting for the ajax response -->
             'class'=>'CButtonColumn',
             'template'=>'{update}{delete}',
             'updateButtonUrl' => 'array("activity/update", "id"=>$data->activity_id)',
+            'updateButtonLabel'=>'Edit Activity',
             'deleteButtonUrl' => 'array("activityService/delete", "id"=>$data->id)',
+            'deleteButtonLabel'=>'Unlink Activity from Service',
             'afterDelete' => 'function(link,success,data){
                 dataprocessed = $.parseJSON(data);
                 if(success && dataprocessed.lastActivity) alert("Warning: You have deleted the last Service linked to the Activity " + dataprocessed.activityId);

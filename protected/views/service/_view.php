@@ -37,8 +37,8 @@
 	<?php echo CHtml::encode(substr($data->pickuptime,0,5)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('droppoff')); ?>:</b>
-	<?php echo CHtml::encode($data->droppoff); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('dropoff')); ?>:</b>
+	<?php echo CHtml::encode($data->dropoff); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('dropofftime')); ?>:</b>

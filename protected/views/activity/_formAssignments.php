@@ -1,16 +1,15 @@
-<div class="row">
-	<?php echo CHtml::label('Assigned Employees','assignedEmployees'); ?>
-	<?php echo CHtml::TextField('assignedEmployees',"", array('readonly'=>'readonly')); ?>
-</div>
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'employee-grid',
 	'dataProvider'=>$employeeDataProvider,
 	'selectableRows'=>10,
 	'columns'=>array(
 		'id',
-		'name',
-		'lastname',
+		array('name'=>'Name', 'value'=>'$data->name . " " . $data->lastname'),
 	),
 	'selectionChanged' => 'getEmployee',
 )); ?>
+
+<div class="row">
+	<?php echo CHtml::label('Employees to assign in this Activity:','assignedEmployees'); ?>
+	<?php echo CHtml::TextField('assignedEmployees',"", array('readonly'=>'readonly')); ?>
+</div>

@@ -58,9 +58,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'droppoff'); ?>
-		<?php echo $form->textField($model,'droppoff',array('size'=>50,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'droppoff'); ?>
+		<?php echo $form->labelEx($model,'dropoff'); ?>
+		<?php echo $form->textField($model,'dropoff',array('size'=>50,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'dropoff'); ?>
 	</div>
 
 	<div class="row">

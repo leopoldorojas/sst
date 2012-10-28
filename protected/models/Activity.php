@@ -54,7 +54,7 @@ class Activity extends CActiveRecord
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, activity_type_id, description, activity_date, activity_time, completed, createdon', 'safe', 'on'=>'search'),
+			array('id, activity_type_id, description, activity_date, activity_time, completed', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -110,13 +110,13 @@ class Activity extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('activity_type_id',$this->activity_type_id);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('t.description',$this->description,true);
 		$criteria->compare('activity_date',$this->activity_date,true);
 		$criteria->compare('activity_time',$this->activity_time,true);
 		$criteria->compare('completed',$this->completed);
-		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->with='activityType';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

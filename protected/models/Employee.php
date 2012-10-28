@@ -107,7 +107,9 @@ class Employee extends CActiveRecord
 	public static function getEnabledEmployees($activity_id=NULL, $inThisActivity=true)
 	{
 		if (!$activity_id) {
-			return self::model()->findAll();
+			$criteria=new CDbCriteria;
+			$criteria->order='name ASC, lastname ASC';
+			return self::model()->findAll($criteria);
         	// return self::model()->findAllByAttributes(array('enabled'=>1));
         } else {
         	$assignments=Assignment::model()->findAllByAttributes(array('activity_id'=>$activity_id));
@@ -120,6 +122,7 @@ class Employee extends CActiveRecord
 
 			$criteria=new CDbCriteria;
 			($inThisActivity) ? $criteria->addInCondition('id', $arrAssignments) : $criteria->addNotInCondition('id', $arrAssignments);
+			$criteria->order='name ASC, lastname ASC';
         	return self::model()->findAll($criteria);
         }
 	}

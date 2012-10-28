@@ -68,6 +68,15 @@ class ActivityService extends CActiveRecord
 		);
 	}
 
+
+	/**
+	 * Scope that retrieves the Booking of this ActivityService
+	 */
+	public function booking()
+	{
+		return Booking::model()->findByPk($this->service->booking_id);
+	}
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

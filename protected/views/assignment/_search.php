@@ -18,7 +18,8 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'employee_id'); ?>
-		<?php echo $form->textField($model,'employee_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->dropDownList($model,'employee_id', 
+				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'--')); ?>
 	</div>
 
 	<div class="row">

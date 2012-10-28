@@ -51,7 +51,7 @@ class Assignment extends CActiveRecord
 			array('estimated_hours, actual_hours', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, employee_id, activity_id, estimated_hours, actual_hours, createdon', 'safe', 'on'=>'search'),
+			array('id, employee_id, activity_id, estimated_hours, actual_hours', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,7 +99,6 @@ class Assignment extends CActiveRecord
 		$criteria->compare('activity_id',$this->activity_id);
 		$criteria->compare('estimated_hours',$this->estimated_hours,true);
 		$criteria->compare('actual_hours',$this->actual_hours,true);
-		$criteria->compare('createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Activity', 'url'=>array('index')),
+	// array('label'=>'List Activity', 'url'=>array('index')),
 	array('label'=>'Create Activity', 'url'=>array('create')),
+	array('label'=>'Manage Activities', 'url'=>array('admin')), // Instead of List
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -46,12 +47,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'activity_type_id',
+		array(
+			'header'=>'Activity Type',
+			'value'=>'$data->activityType->description',
+			'filter' => CHtml::activeDropDownList($model,'activity_type_id', 
+				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')),
+		),
 		'description',
 		'activity_date',
 		'activity_time',
-		'completed',
-		'createdon',
 		array(
 			'class'=>'CButtonColumn',
 		),

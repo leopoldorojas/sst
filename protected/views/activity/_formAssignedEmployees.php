@@ -6,9 +6,7 @@ while waiting for the ajax response -->
 	'id'=>'assignedEmployee-grid',
 	'dataProvider'=>$assignedEmployeesDataProvider,
 	'columns'=>array(
-		array('name'=>'ID', 'value'=>'$data->employee->id'),
-		array('name'=>'Name', 'value'=>'$data->employee->name'),
-		array('name'=>'Lastname', 'value'=>'$data->employee->lastname'),
+		array('name'=>'Name', 'value'=>'$data->employee->name . " " . $data->employee->lastname'),
 		array(
             'class'=>'CButtonColumn',
             'template'=>'{delete}',
