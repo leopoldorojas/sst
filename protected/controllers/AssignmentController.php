@@ -138,12 +138,19 @@ class AssignmentController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Assignment('search');
+		$searchForm=new AssignmentFilterForm();
 		$model->unsetAttributes();  // clear any default values
+		$searchForm->unsetAttributes();
+
+		if(isset($_GET['AssignmentFilterForm']))
+			$searchForm->attributes=$_GET['AssignmentFilterForm'];
+
 		if(isset($_GET['Assignment']))
 			$model->attributes=$_GET['Assignment'];
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'searchForm'=>$searchForm,
 		));
 	}
 

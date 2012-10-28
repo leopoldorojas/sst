@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Booking', 'url'=>array('index')),
+	// array('label'=>'List Booking', 'url'=>array('index')),
 	array('label'=>'Create Booking', 'url'=>array('create')),
+	array('label'=>'Manage Bookings', 'url'=>array('admin')),  // Instead List Bookings
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -54,9 +55,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'agent',
 		'status',
 		'consultant',
-		'priority',
-		'notes',
-		'createdon',
 		array(
 			'class'=>'CButtonColumn',
 		),

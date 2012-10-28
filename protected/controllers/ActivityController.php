@@ -208,11 +208,17 @@ class ActivityController extends Controller
 	{
 		$model=new Activity('search');
 		$model->unsetAttributes();  // clear any default values
+		$filterByCompleted=0;
+
 		if(isset($_GET['Activity']))
 			$model->attributes=$_GET['Activity'];
 
+		if(isset($_GET['filterByCompleted']))
+			$filterByCompleted=$_GET['filterByCompleted'];		
+
 		$this->render('admin',array(
 			'model'=>$model,
+			'filterByCompleted'=>$filterByCompleted,
 		));
 	}
 

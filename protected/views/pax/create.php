@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Pax', 'url'=>array('index')),
+	// array('label'=>'List Pax', 'url'=>array('index')),
 	array('label'=>'Manage Pax', 'url'=>array('admin')),
 );
 ?>

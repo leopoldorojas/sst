@@ -103,7 +103,7 @@ class Activity extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($filterByCompleted)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -115,7 +115,9 @@ class Activity extends CActiveRecord
 		$criteria->compare('t.description',$this->description,true);
 		$criteria->compare('activity_date',$this->activity_date,true);
 		$criteria->compare('activity_time',$this->activity_time,true);
-		$criteria->compare('completed',$this->completed);
+		if ($filterByCompleted)
+			($filterByCompleted==1) ? $criteria->compare('completed',0) : $criteria->compare('completed',1);
+
 		$criteria->with='activityType';
 
 		return new CActiveDataProvider($this, array(

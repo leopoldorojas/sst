@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 <h1>Consult and Manage Operations System Information</h1>
 
 <p>
-	Please, click your option to select what information you can manage:
+	Please, click an option to select the information you want to manage:
 	<ul>
 		<li>[<a href="<?php echo CHtml::encode($this->createUrl('booking/admin')) ?>"><b>BOOKINGS</b></a>]</li>
 		<li>[<a href="<?php echo CHtml::encode($this->createUrl('service/admin')) ?>"><b>SERVICES</b></a>]</li>

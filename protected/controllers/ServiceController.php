@@ -138,12 +138,24 @@ class ServiceController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Service('search');
+		$searchForm=new ServiceFilterForm();
+
 		$model->unsetAttributes();  // clear any default values
+		$searchForm->unsetAttributes();
+
+		if(isset($_GET['ServiceFilterForm'])) {
+			$searchForm->attributes=$_GET['ServiceFilterForm'];
+		} else {
+			$searchForm->filterTol=false;
+			$searchForm->sortTol=true;
+		}
+
 		if(isset($_GET['Service']))
 			$model->attributes=$_GET['Service'];
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'searchForm'=>$searchForm,
 		));
 	}
 

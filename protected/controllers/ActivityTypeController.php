@@ -139,11 +139,17 @@ class ActivityTypeController extends Controller
 	{
 		$model=new ActivityType('search');
 		$model->unsetAttributes();  // clear any default values
+		$filterByEnabled=0;
+
 		if(isset($_GET['ActivityType']))
 			$model->attributes=$_GET['ActivityType'];
 
+		if(isset($_GET['filterByEnabled']))
+			$filterByEnabled=$_GET['filterByEnabled'];
+
 		$this->render('admin',array(
 			'model'=>$model,
+			'filterByEnabled'=>$filterByEnabled,
 		));
 	}
 

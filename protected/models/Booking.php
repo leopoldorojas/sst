@@ -58,7 +58,7 @@ class Booking extends CActiveRecord
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, bookingid, bhdid, booking_code, name, traveldate, agent, status, consultant, priority, notes, createdon', 'safe', 'on'=>'search'),
+			array('id, bookingid, bhdid, booking_code, name, traveldate, agent, status, consultant, priority, notes', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -118,7 +118,6 @@ class Booking extends CActiveRecord
 		$criteria->compare('consultant',$this->consultant,true);
 		$criteria->compare('priority',$this->priority,true);
 		$criteria->compare('notes',$this->notes,true);
-		$criteria->compare('createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

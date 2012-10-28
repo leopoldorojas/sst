@@ -139,11 +139,17 @@ class PaxController extends Controller
 	{
 		$model=new Pax('search');
 		$model->unsetAttributes();  // clear any default values
+		$bookingCode="";
+
+		if(isset($_GET['bookingCode']))
+			$bookingCode=$_GET['bookingCode'];
+
 		if(isset($_GET['Pax']))
 			$model->attributes=$_GET['Pax'];
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'bookingCode'=>$bookingCode,
 		));
 	}
 

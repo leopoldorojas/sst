@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Booking', 'url'=>array('create')),
-	array('label'=>'Manage Booking', 'url'=>array('admin')),
+	array('label'=>'Manage Bookings', 'url'=>array('admin')),
 );
 ?>
 

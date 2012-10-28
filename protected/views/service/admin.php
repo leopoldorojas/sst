@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Service', 'url'=>array('index')),
+	// array('label'=>'List Service', 'url'=>array('index')),
 	array('label'=>'Create Service', 'url'=>array('create')),
+	array('label'=>'Manage Services', 'url'=>array('admin')), // Instead List Services
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -29,24 +30,32 @@ $('.search-form form').submit(function(){
 <h1>Manage Services</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of 
+each of your search values to specify how the comparison should be done.
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<p>
+<?php echo CHtml::link('Click here to search for specific Services','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php $this->renderPartial('_searchByBookingOrDate',array(
 	'model'=>$model,
+	'searchForm'=>$searchForm,
 )); ?>
 </div><!-- search-form -->
+</P>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'service-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search($searchForm),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'booking_id',
+        array(
+            'name'=>'booking.booking_code',
+            'value'=>'$data->booking->booking_code',
+            'filter' => CHtml::activeTextField($searchForm, 'bookingCode'),
+        ),
+        'seq',
         'day',
 		'delivery_date',
 		'description',
@@ -54,10 +63,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'voucher',
 		'pickup',
 		'pickuptime',
-		'dropoff',
-		'dropofftime',
+		// 'dropoff',
+		// 'dropofftime',
 		'pax_number',
-		'service_type',
+		// 'service_type',
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List ActivityType', 'url'=>array('index')),
-	array('label'=>'Create ActivityType', 'url'=>array('create')),
+	// array('label'=>'List ActivityType', 'url'=>array('index')),
+	array('label'=>'Create Activity Type', 'url'=>array('create')),
+	array('label'=>'Manage Activity Types', 'url'=>array('admin')),	// Instead List
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -37,19 +38,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
+	'filterByEnabled'=>$filterByEnabled,
 )); ?>
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'activity-type-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search($filterByEnabled),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'description',
-		'enabled',
 		'service_types',
-		'createdon',
 		array(
 			'class'=>'CButtonColumn',
 		),

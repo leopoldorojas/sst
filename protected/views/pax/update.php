@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Pax', 'url'=>array('index')),
+	// array('label'=>'List Pax', 'url'=>array('index')),
 	array('label'=>'Create Pax', 'url'=>array('create')),
 	array('label'=>'View Pax', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Pax', 'url'=>array('admin')),

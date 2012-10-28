@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'booking_id'); ?>
-		<?php echo $form->textField($model,'booking_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo CHtml::label('Booking Code','bookingCode'); ?>
+		<?php echo CHtml::textField('bookingCode',$bookingCode, array('size'=>5, 'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
@@ -34,16 +34,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'passport'); ?>
 		<?php echo $form->textField($model,'passport',array('size'=>12,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'height'); ?>
-		<?php echo $form->textField($model,'height',array('size'=>30,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'weight'); ?>
-		<?php echo $form->textField($model,'weight',array('size'=>30,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
@@ -64,11 +54,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'notes'); ?>
 		<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">

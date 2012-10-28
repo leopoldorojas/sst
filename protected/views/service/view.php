@@ -8,21 +8,22 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Service', 'url'=>array('index')),
+	// array('label'=>'List Service', 'url'=>array('index')),
 	array('label'=>'Create Service', 'url'=>array('create')),
 	array('label'=>'Update Service', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Service', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Service', 'url'=>array('admin')),
+	array('label'=>'Manage Services', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Service #<?php echo $model->id; ?></h1>
+<h1>View Service ID: <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
 		'booking_id',
+		'booking.booking_code',
 		'day',
 		'seq',
 		'delivery_date',
@@ -35,7 +36,7 @@ $this->menu=array(
 		'supplier',
 		'guide',
 		'pax_number',
-		'ops',
+		array('label'=>'Operations Booking?','value'=>($model->ops) ? 'Yes' : 'No' ),
 		'sell',
 		'cost',
 		'service_type',

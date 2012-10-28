@@ -23,8 +23,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'activity_id'); ?>
-		<?php echo $form->textField($model,'activity_id', array('size'=>5,'maxlength'=>10)); ?>
+		<?php echo $form->label($searchForm,'activityDescription'); ?>
+		<?php echo $form->textField($searchForm,'activityDescription'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($searchForm,'activityDate'); ?>
+		<?php echo $form->dateField($searchForm,'activityDate'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($searchForm,'activityTime'); ?>
+		<?php echo $form->textField($searchForm,'activityTime', array('value'=>substr($searchForm->activityTime,0,5))); ?>
 	</div>
 
 	<div class="row">
@@ -35,11 +45,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'actual_hours'); ?>
 		<?php echo $form->textField($model,'actual_hours', array('size'=>5,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row buttons">

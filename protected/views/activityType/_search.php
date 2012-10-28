@@ -22,18 +22,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'enabled'); ?>
-		<?php echo $form->checkBox($model,'enabled'); ?>
+		<?php echo CHtml::radioButtonList('filterByEnabled', $filterByEnabled, 
+			array(
+				'0'=>'All',
+				'1'=>'Only enabled',
+				'2'=>'Only disabled',
+			)
+		); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'service_types'); ?>
 		<?php echo $form->textField($model,'service_types',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
 	</div>
 
 	<div class="row buttons">

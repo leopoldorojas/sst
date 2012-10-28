@@ -38,24 +38,38 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
+	'searchForm'=>$searchForm,
 )); ?>
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'assignment-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search($searchForm),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
 		array(
 			'header'=>'Employee',
-			'value'=>'$data->employee->name',
+			'value'=>'$data->employee->name . " " . $data->employee->lastname',
 			'filter' => CHtml::activeDropDownList($model,'employee_id', 
 				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'--')),
 		),
-		'activity.description',
-		'activity.activity_date',
-		'activity.activity_time',
+		array(
+			'name'=>'activity.description',
+			'header'=>'Activity Description',
+			'value'=>'$data->activity->description',
+            'filter' => CHtml::activeTextField($searchForm, 'activityDescription'),
+		),
+		array(
+			'name'=>'activity.activity_date',
+			'value'=>'$data->activity->activity_date',
+            'filter' => CHtml::activeTextField($searchForm, 'activityDate'),
+		),
+		array(
+			'name'=>'activity.activity_time',
+			'value'=>'$data->activity->activity_time',
+            'filter' => CHtml::activeTextField($searchForm, 'activityTime'),
+		),
 		'estimated_hours',
 		'actual_hours',
 		array(

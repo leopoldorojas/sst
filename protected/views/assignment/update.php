@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Assignment', 'url'=>array('index')),
+	// array('label'=>'List Assignment', 'url'=>array('index')),
 	array('label'=>'Create Assignment', 'url'=>array('create')),
 	array('label'=>'View Assignment', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Assignment', 'url'=>array('admin')),
+	array('label'=>'Manage Assignments', 'url'=>array('admin')),
 );
 ?>
 

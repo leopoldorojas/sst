@@ -1,3 +1,5 @@
+<p><b>Services that you can assign for this Activity:</b></p>
+
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'service-grid',
 	'dataProvider'=>$dataProvider,

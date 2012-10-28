@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Service', 'url'=>array('index')),
+	// array('label'=>'List Service', 'url'=>array('index')),
 	array('label'=>'Create Service', 'url'=>array('create')),
+	array('label'=>'Manage Services', 'url'=>array('admin')), // Instead List Services
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -111,6 +112,7 @@ each of your search values to specify how the comparison should be done.
             'value'=>'$data->booking->booking_code',
             'filter' => CHtml::activeTextField($searchForm, 'bookingCode'),
         ),
+        'seq',
         'day',
 		'delivery_date',
 		'description',

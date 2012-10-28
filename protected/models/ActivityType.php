@@ -81,7 +81,7 @@ class ActivityType extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($filterByEnabled=0)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -90,9 +90,10 @@ class ActivityType extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('enabled',$this->enabled);
 		$criteria->compare('service_types',$this->service_types,true);
-		// $criteria->compare('createdon',$this->createdon,true);
+
+		if ($filterByEnabled)
+			($filterByEnabled==1) ? $criteria->compare('enabled',1) : $criteria->compare('enabled',0);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

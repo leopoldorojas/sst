@@ -87,21 +87,45 @@ class Assignment extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($params=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('employee_id',$this->employee_id);
 		$criteria->compare('activity_id',$this->activity_id);
 		$criteria->compare('estimated_hours',$this->estimated_hours,true);
 		$criteria->compare('actual_hours',$this->actual_hours,true);
+		$criteria->with='activity';
+		$criteria->compare('activity.description',$params['activityDescription'],true);
+		$criteria->compare('activity.activity_date',$params['activityDate'],true);
+		$criteria->compare('activity.activity_time',$params['activityTime'],true);
+
+ 		/* Sort on related Model's columns */
+        $sort = new CSort;
+        $sort->attributes = array(
+            'activity.description' => array(
+            	'asc' => 'description',
+            	'desc' => 'description DESC',
+            ),
+            'activity.activity_date' => array(
+            	'asc' => 'activity_date',
+            	'desc' => 'activity_date DESC',
+            ),
+            'activity.activity_time' => array(
+            	'asc' => 'activity_time',
+            	'desc' => 'activity_time DESC',
+            ),                        
+            '*', /* Treat all other columns normally */
+        );
+        /* End: Sort on related Model's columns */
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>$sort, /* Needed for sort */
 		));
 	}
 

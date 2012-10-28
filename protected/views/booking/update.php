@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Booking', 'url'=>array('index')),
+	// array('label'=>'List Booking', 'url'=>array('index')),
 	array('label'=>'Create Booking', 'url'=>array('create')),
 	array('label'=>'View Booking', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Booking', 'url'=>array('admin')),
+	array('label'=>'Manage Bookings', 'url'=>array('admin')),
 );
 ?>
 

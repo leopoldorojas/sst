@@ -39,8 +39,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'completed'); ?>
-		<?php echo $form->checkBox($model,'completed'); ?>
+		<?php echo CHtml::radioButtonList('filterByCompleted', $filterByCompleted, 
+			array(
+				'0'=>'All',
+				'1'=>'Only uncompleted',
+				'2'=>'Only completed',
+			)
+		); ?>
 	</div>
 
 	<div class="row buttons">

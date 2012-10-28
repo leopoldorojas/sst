@@ -57,7 +57,7 @@ class Pax extends CActiveRecord
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, booking_id, name, age, passport, arrival_detail, departure_detail, room, notes, createdon', 'safe', 'on'=>'search'),
+			array('id, booking_id, name, age, passport, arrival_detail, departure_detail, room, notes', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,7 +80,7 @@ class Pax extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'booking_id' => 'Booking',
+			'booking_id' => 'Booking Id',
 			'name' => 'Name',
 			'age' => 'Age',
 			'passport' => 'Passport',
@@ -98,28 +98,38 @@ class Pax extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($bookingCode=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('booking_id',$this->booking_id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('t.name',$this->name,true);
 		$criteria->compare('age',$this->age);
 		$criteria->compare('passport',$this->passport,true);
-		// $criteria->compare('height',$this->height,true);
-		// $criteria->compare('weight',$this->weight,true);
 		$criteria->compare('arrival_detail',$this->arrival_detail,true);
 		$criteria->compare('departure_detail',$this->departure_detail,true);
 		$criteria->compare('room',$this->room,true);
-		$criteria->compare('notes',$this->notes,true);
-		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->compare('t.notes',$this->notes,true);
+		$criteria->with='booking';
+		$criteria->compare('booking.booking_code',$bookingCode, true);
+
+ 		/* Sort on related Model's columns */
+        $sort = new CSort;
+        $sort->attributes = array(
+            'booking.booking_code' => array(
+            'asc' => 'booking_code',
+            'desc' => 'booking_code DESC',
+            ), '*', /* Treat all other columns normally */
+        );
+        /* End: Sort on related Model's columns */
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>$sort,
 		));
 	}
 
