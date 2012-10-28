@@ -31,22 +31,10 @@
 		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>100)); ?>
 	</div>
 
-	<?php /*
-	<div class="row">
-		<?php echo $form->label($model,'salt'); ?>
-		<?php echo $form->textField($model,'salt',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-	*/ ?>
-
 	<div class="row">
 		<?php echo $form->label($model,'profile'); ?>
 		<?php echo $form->textArea($model,'profile',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
-	<?php /*
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10, 'maxlength'=>20)); ?>
-	</div> */ ?>
 
 	<div class="row">
 		<?php echo $form->label($model,'rol'); ?>

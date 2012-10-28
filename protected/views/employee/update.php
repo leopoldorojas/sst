@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Employee', 'url'=>array('index')),
+	// array('label'=>'List Employee', 'url'=>array('index')),
 	array('label'=>'Create Employee', 'url'=>array('create')),
 	array('label'=>'View Employee', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Employee', 'url'=>array('admin')),
+	array('label'=>'Manage Employees', 'url'=>array('admin')),
 );
 ?>
 

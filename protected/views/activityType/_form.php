@@ -22,22 +22,16 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'service_types'); ?>
+		<?php echo $form->textField($model,'service_types',array('size'=>50,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'service_types'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'enabled'); ?>
 		<?php echo $form->checkBox($model,'enabled'); ?>
 		<?php echo $form->error($model,'enabled'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'service_types'); ?>
-		<?php echo $form->textField($model,'service_types',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'service_types'); ?>
-	</div>
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10, 'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'createdon'); ?>
-	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

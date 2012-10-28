@@ -23,8 +23,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'description',
-		array('label'=>'Enabled?','value'=>($model->enabled) ? 'Yes' : 'No' ),
 		'service_types',
+		array('label'=>'Enabled?','value'=>($model->enabled) ? 'Yes' : 'No' ),
 		'createdon',
 	),
 )); ?>

@@ -31,12 +31,14 @@ class ActivityServiceController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
+			/* This rule was commented because ActivityService should manage from other controllers (screens), not directly
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'admin'),
 				'users'=>array('@'),
-			),
+			), */ 
+			// In this rule was included the actions above mentioned: create, update, admin
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('delete'),
+				'actions'=>array('delete', 'create', 'update', 'admin'),
 				'roles'=>array('admin', 'superadmin'),
 			),
 			array('deny',  // deny all users

@@ -97,7 +97,6 @@ class Employee extends CActiveRecord
 		$criteria->compare('identification_number',$this->identification_number,true);
 		$criteria->compare('rol',$this->rol,true);
 		$criteria->compare('cost_per_hour',$this->cost_per_hour,true);
-		// $criteria->compare('createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

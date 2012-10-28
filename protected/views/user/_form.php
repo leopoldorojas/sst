@@ -39,27 +39,11 @@
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'salt'); ?>
-		<?php echo $form->textField($model,'salt',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'salt'); ?>
-	</div>
-	*/ ?>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'profile'); ?>
 		<?php echo $form->textArea($model,'profile',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'profile'); ?>
 	</div>
-
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-		<?php echo $form->error($model,'createdon'); ?>
-	</div>
-	*/ ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol'); ?>

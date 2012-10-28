@@ -8,8 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
+	// array('label'=>'List User', 'url'=>array('index')),
 	array('label'=>'Create User', 'url'=>array('create')),
+	array('label'=>'Manage Users', 'url'=>array('admin')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -48,11 +49,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name',
 		'username',
-		// 'password',
 		'email',
-		// 'salt',
 		'profile',
-		'createdon',
 		'rol',
 		array(
 			'class'=>'CButtonColumn',

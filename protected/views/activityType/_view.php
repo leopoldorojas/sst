@@ -13,12 +13,12 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('enabled')); ?>:</b>
-	<?php echo CHtml::encode($data->enabled); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('service_types')); ?>:</b>
 	<?php echo CHtml::encode($data->service_types); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('enabled')); ?>:</b>
+	<?php echo CHtml::encode($data->enabled); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
