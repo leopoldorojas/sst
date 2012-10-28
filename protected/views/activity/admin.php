@@ -11,6 +11,7 @@ $this->menu=array(
 	// array('label'=>'List Activity', 'url'=>array('index')),
 	array('label'=>'Create Activity', 'url'=>array('create')),
 	array('label'=>'Manage Activities', 'url'=>array('admin')), // Instead of List
+	array('label'=>'Report Activities', 'url'=>array('/activityreport/report')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
