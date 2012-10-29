@@ -132,61 +132,42 @@ class Activity extends CActiveRecord
 	 */
 	public function searchForReport($searchForm)
 	{
-		$result1Activities=array();
-		$result2Activities=array();
-		$returnActivities=array();
+		$result1Activities=$result2Activities=$returnActivities=$arrCriteriaWith=array();
 
 		$criteria=new CDbCriteria;
-
 		$criteria->compare('t.id',$this->id);
 		$criteria->compare('activity_date','>='.$searchForm->startDate);
 		$criteria->compare('activity_date','<='.$searchForm->endDate);
 	
 		if ($searchForm->employee_id) {
-			$criteria->with='assignments';
+			$arrCriteriaWith=array_unique(array_merge($arrCriteriaWith,array('assignments')));
 			$criteria->compare('assignments.employee_id',$searchForm->employee_id);	
 		}
 
-		if ($this->activity_type_id) {
-			$criteria->with='activityType';
-			$criteria->compare('activity_type_id',$this->activity_type_id);
-		}
-	
+		$criteria->compare('activity_type_id',$this->activity_type_id);
 		$criteria->compare('t.description',$this->description,true);
 
 		if ($searchForm->filterByAssignmentToService) {
-			$criteria->with='activityServices';
-			($searchForm->filterByAssignmentToService==1) ? $criteria->condition='activityServices.id IS NULL' : $criteria->condition='activityServices.id IS NOT NULL';
+			$arrCriteriaWith=array_unique(array_merge($arrCriteriaWith,array('activityServices')));
+			($searchForm->filterByAssignmentToService==1)
+				? $criteria->addCondition('activityServices.id IS NULL') : $criteria->addCondition('activityServices.id IS NOT NULL');
 		}
 
 		if ($searchForm->filterByAssignmentToEmployee) {
-			$criteria->with='assignments';
-			($searchForm->filterByAssignmentToEmployee==1) ? $criteria->condition='assignments.id IS NULL' : $criteria->condition='assignments.id IS NOT NULL';
+			$arrCriteriaWith=array_unique(array_merge($arrCriteriaWith,array('assignments')));
+			($searchForm->filterByAssignmentToEmployee==1) ? $criteria->addCondition('assignments.id IS NULL') : $criteria->addCondition('assignments.id IS NOT NULL');
 		}
 
 		if ($searchForm->filterByCompleted) {
 			($searchForm->filterByCompleted==1) ? $criteria->compare('completed',0) : $criteria->compare('completed',1);
 		}
 
-		$result1Activities=self::model()->findAll($criteria);
-
 		if ($searchForm->booking_code) {
-			/* $services=Service::model()->with('booking','activityServices')->findAllByAttributes('booking.booking_code'=>$searchForm->booking_code);
-
-			foreach ($services as $service)
-				if ($service->activityServices->id)
-					array_push($resultActivities, self::model()->findByPk($service->activityServices->activity_id)); */
-
-			$criteriaActivity=new CDbCriteria;
-			$criteriaActivity->compare('booking_code',$searchForm->booking_code);
-			$result2Activities=self::model()->with('services.booking')->findAll($criteriaActivity);
-			$dataProvider = new CActiveDataProvider($this);
-			$dataProvider->setData($result2Activities);
-			return $dataProvider;
+			$arrCriteriaWith=array_unique(array_merge($arrCriteriaWith,array('services.booking')));
+			$criteria->compare('booking_code',$searchForm->booking_code);	
 		}
 
-		$returnActivities=array_merge($result1Activities,$result2Activities);
-
+		(!empty($arrCriteriaWith)) ? $returnActivities=self::model()->with($arrCriteriaWith)->findAll($criteria) : $returnActivities=self::model()->findAll($criteria);
 		$dataProvider = new CActiveDataProvider($this);
 		$dataProvider->setData($returnActivities);
 		return $dataProvider;
