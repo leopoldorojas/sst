@@ -110,19 +110,86 @@ class Activity extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.id',$this->id);
+		$criteria->compare('id',$this->id);
 		$criteria->compare('activity_type_id',$this->activity_type_id);
-		$criteria->compare('t.description',$this->description,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('activity_date',$this->activity_date,true);
 		$criteria->compare('activity_time',$this->activity_time,true);
 		if ($filterByCompleted)
 			($filterByCompleted==1) ? $criteria->compare('completed',0) : $criteria->compare('completed',1);
 
-		$criteria->with='activityType';
+		// $criteria->with='activityType';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * This search is used in a complex form for Report Activities 
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function searchForReport($searchForm)
+	{
+		$result1Activities=array();
+		$result2Activities=array();
+		$returnActivities=array();
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('activity_date','>='.$searchForm->startDate);
+		$criteria->compare('activity_date','<='.$searchForm->endDate);
+	
+		if ($searchForm->employee_id) {
+			$criteria->with='assignments';
+			$criteria->compare('assignments.employee_id',$searchForm->employee_id);	
+		}
+
+		if ($this->activity_type_id) {
+			$criteria->with='activityType';
+			$criteria->compare('activity_type_id',$this->activity_type_id);
+		}
+	
+		$criteria->compare('t.description',$this->description,true);
+
+		if ($searchForm->filterByAssignmentToService) {
+			$criteria->with='activityServices';
+			($searchForm->filterByAssignmentToService==1) ? $criteria->condition='activityServices.id IS NULL' : $criteria->condition='activityServices.id IS NOT NULL';
+		}
+
+		if ($searchForm->filterByAssignmentToEmployee) {
+			$criteria->with='assignments';
+			($searchForm->filterByAssignmentToEmployee==1) ? $criteria->condition='assignments.id IS NULL' : $criteria->condition='assignments.id IS NOT NULL';
+		}
+
+		if ($searchForm->filterByCompleted) {
+			($searchForm->filterByCompleted==1) ? $criteria->compare('completed',0) : $criteria->compare('completed',1);
+		}
+
+		$result1Activities=self::model()->findAll($criteria);
+
+		if ($searchForm->booking_code) {
+			/* $services=Service::model()->with('booking','activityServices')->findAllByAttributes('booking.booking_code'=>$searchForm->booking_code);
+
+			foreach ($services as $service)
+				if ($service->activityServices->id)
+					array_push($resultActivities, self::model()->findByPk($service->activityServices->activity_id)); */
+
+			$criteriaActivity=new CDbCriteria;
+			$criteriaActivity->compare('booking_code',$searchForm->booking_code);
+			$result2Activities=self::model()->with('services.booking')->findAll($criteriaActivity);
+			$dataProvider = new CActiveDataProvider($this);
+			$dataProvider->setData($result2Activities);
+			return $dataProvider;
+		}
+
+		$returnActivities=array_merge($result1Activities,$result2Activities);
+
+		$dataProvider = new CActiveDataProvider($this);
+		$dataProvider->setData($returnActivities);
+		return $dataProvider;
 	}
 
 	public function activityTypeExist($attribute)

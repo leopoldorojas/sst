@@ -20,7 +20,7 @@ $('.search-form form').submit(function(){
 <h1>Report Activities</h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
+<div class="search-form" style="display:all">
 <?php $this->renderPartial('_searchForReport',array(
 	'model'=>$model,
 	'searchForm'=>$searchForm,
@@ -34,7 +34,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'activity-grid',
-	'dataProvider'=>$model->search($searchForm->filterByCompleted),
+	'dataProvider'=>$model->searchForReport($searchForm),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',

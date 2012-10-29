@@ -144,9 +144,9 @@ class Service extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('delivery_date','>='.$params['startDate']);
-		$criteria->compare('delivery_date','<='.$params['endDate']);
-		if ($params['filterTol']) $criteria->compare('supplier','TOL',true);
+		$criteria->compare('delivery_date','>='.$params->startDate);
+		$criteria->compare('delivery_date','<='.$params->endDate);
+		if ($params->filterTol) $criteria->compare('supplier','TOL',true);
 
 		$criteria->compare('t.id',$this->id);
 		$criteria->compare('day',$this->day);
@@ -160,10 +160,10 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		if ($params['sortTol']) $criteria->order='FIELD(supplier, "TOL") DESC';
+		if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
 
 		$criteria->with='booking';
-		$criteria->compare('booking.booking_code',$params['bookingCode'],true);
+		$criteria->compare('booking.booking_code',$params->bookingCode,true);
 
  		/* Sort on related Model's columns */
         $sort = new CSort;

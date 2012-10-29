@@ -18,7 +18,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'employee_id'); ?>
 		<?php echo $form->dropDownList($model,'employee_id',
-			CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'Please, select an Employee'));
+			CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'fullName'), array('empty'=>'Please, select an Employee'));
 		?>
 		<?php echo $form->error($model,'employee_id'); ?>
 	</div>

@@ -17,6 +17,8 @@
  */
 class Employee extends CActiveRecord
 {
+	private $_fullName;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -124,6 +126,17 @@ class Employee extends CActiveRecord
 			$criteria->order='name ASC, lastname ASC';
         	return self::model()->findAll($criteria);
         }
+	}
+
+	public function getFullName()
+	{
+    	return $this->_fullName;
+	}
+
+	protected function afterFind()
+	{
+    	parent::afterFind();
+    	$this->_fullName=$this->name . ' ' . $this->lastname;
 	}
 
 }

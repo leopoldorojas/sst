@@ -68,7 +68,6 @@ class ActivityService extends CActiveRecord
 		);
 	}
 
-
 	/**
 	 * Scope that retrieves the Booking of this ActivityService
 	 */
