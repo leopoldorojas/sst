@@ -132,7 +132,7 @@ class Activity extends CActiveRecord
 	 */
 	public function searchForReport($searchForm)
 	{
-		$result1Activities=$result2Activities=$returnActivities=$arrCriteriaWith=array();
+		$returnActivities=$arrCriteriaWith=array();
 
 		$criteria=new CDbCriteria;
 		$criteria->compare('t.id',$this->id);
