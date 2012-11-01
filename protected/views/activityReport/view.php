@@ -34,7 +34,10 @@
 	'id'=>'tourist-grid',
 	'dataProvider'=>$touristDataProvider,
 	'columns'=>array(
-		array('name'=>'Name', 'value'=>'$data->services->booking->paxes->name'),
+		'name',
+		'room',
+		'booking.booking_code',
+		'booking.name',
 	),
 )); 
 ?>

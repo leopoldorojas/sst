@@ -51,16 +51,14 @@ class ActivityReportController extends Controller
 		$assignedEmployeesDataProvider=new CArrayDataProvider(Assignment::model()->with('employee')->findAllByAttributes(array('activity_id'=>$model->id)));
 
 		// Building the Data Provider with all the tourist assigned to this Activity
-		// $touristDataProvider=new CArrayDataProvider(Activity::model()->with('services.booking.paxes')->findAllByAttributes(array('id'=>$model->id)));
 		$tourists=array();
 
-		/* foreach ($model->services as $service)
-			foreach ($service->booking as $booking)
-				foreach ($booking->paxes as $pax)
-					array_push($tourists,$pax); */
+		foreach ($model->services as $service)
+			foreach ($service->booking->paxes as $pax)
+				array_push($tourists,$pax);
 
 		$touristDataProvider = new CActiveDataProvider("Pax");
-		$touristDataProvider->setData($tourists);
+		$touristDataProvider->setData($tourists); 
 
 		$this->render('view',array(
 			'model'=>$model,
