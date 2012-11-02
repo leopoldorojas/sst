@@ -4,6 +4,20 @@
 ?>
 
 <h1>Report of Activity ID: <?php echo $model->id; ?></h1>
+<?php
+	if($message) {
+		$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+    		'id'=>'todoOkConReporteActividad',
+    		'options'=>array(
+        		'title'=>'Reporte de Ejecución',
+        		'autoOpen'=>true,
+    		),
+		));
+
+    	echo $message;
+		$this->endWidget('zii.widgets.jui.CJuiDialog');
+	}
+?>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -25,7 +39,12 @@
 	'id'=>'assignedEmployee-grid',
 	'dataProvider'=>$assignedEmployeesDataProvider,
 	'columns'=>array(
-		array('name'=>'Name', 'value'=>'$data->employee->fullName'),
+		array('header'=>'Employee Name', 'value'=>'$data->employee->fullName',),
+		'employee.cost_per_hour',
+		'estimated_hours',
+		array('header'=>'Estimated cost', 'value'=>'$data->employee->cost_per_hour*$data->estimated_hours',),
+		'actual_hours',
+		array('header'=>'Actual cost', 'value'=>'$data->employee->cost_per_hour*$data->actual_hours',),
 	),
 ));
 ?>

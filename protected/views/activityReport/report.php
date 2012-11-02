@@ -15,6 +15,39 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
+
+Yii::app()->clientScript->registerScript('displayLinkReportAll', "
+function getActivity(id){
+	if ((selected_id = $.fn.yiiGridView.getKey(id,0)) > 0) {
+		$('.linkReportAll-form').show();
+	} else {
+		$('.linkReportAll-form').hide();
+	}
+	return false;
+}
+");
+
+Yii::app()->clientScript->registerScript('ReportAll', "
+$('.reportAll-button').click(function(){
+	data=$('.search-form form').serialize();
+	$.get('/sst/index.php/activityReport/reportAll', data);
+	window.location.replace('/sst/index.php/activityReport/report?m=1');
+	return false;
+});
+");
+
+if($message) {
+	$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+		'id'=>'todoOkConReporteActividades',
+		'options'=>array(
+    		'title'=>'Reporte de Ejecución',
+    		'autoOpen'=>true,
+		),
+	));
+
+	echo $message;
+	$this->endWidget('zii.widgets.jui.CJuiDialog');
+}
 ?>
 
 <h1>Report Activities</h1>
@@ -52,4 +85,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'template'=>'{view}',
 		),
 	),
+	'afterAjaxUpdate' => 'getActivity',
 )); ?>
+
+<div class="linkReportAll-form" style="display:none">
+<?php echo CHtml::link('Print a report of selected Activities?','#', array('class'=>'reportAll-button')); ?>
+</div>

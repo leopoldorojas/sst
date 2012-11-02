@@ -49,11 +49,9 @@ $('.createActivity-button').click(function(){
 $('.createActivity-form form').submit(function(){
 	data=$(this).serialize() + $.fn.yiiGridView.getSelection('service-grid');
 	$.get(window.location, data,
-
 		function resultOnCreateActivity(data) {
 			alert(data);
 		}
-
 	);
 
 	$(this).get(0).reset();

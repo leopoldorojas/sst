@@ -32,7 +32,7 @@ class ActivityReportController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'report' actions
-				'actions'=>array('report'),
+				'actions'=>array('report','reportAll'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -45,10 +45,16 @@ class ActivityReportController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($id,$m=NULL)
 	{
 		$model=$this->loadModel($id);
-		$assignedEmployeesDataProvider=new CArrayDataProvider(Assignment::model()->with('employee')->findAllByAttributes(array('activity_id'=>$model->id)));
+		$criteria=new CDbCriteria;
+		$criteria->with='employee';
+		$criteria->compare('activity_id',$model->id);
+		$assignedEmployeesDataProvider=new CActiveDataProvider('Assignment', array(
+				'criteria'=>$criteria,
+			)
+		);
 
 		// Building the Data Provider with all the tourist assigned to this Activity
 		$tourists=array();
@@ -60,18 +66,36 @@ class ActivityReportController extends Controller
 		$touristDataProvider = new CActiveDataProvider("Pax");
 		$touristDataProvider->setData($tourists); 
 
-		$view=(isset($_GET['p'])) ? 'print' : 'view';
-		$this->render($view,array(
-			'model'=>$model,
-			'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
-			'touristDataProvider'=>$touristDataProvider,
-		));
+		if (isset($_GET['p'])) {
+			$this->layout='//layouts/column1_print';
+			$mPDF1 = Yii::app()->ePdf->mpdf();
+
+			// Here should be Header Data of the Report: Logo, Date, etc.
+			// Still is missing some styles for this grid
+
+			$mPDF1->WriteHTML($this->render('view', array(
+				'model'=>$model,
+				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
+				'touristDataProvider'=>$touristDataProvider,
+			), true));
+
+			$mPDF1->Output('protected/runtime/Activity_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
+			$this->layout='//layouts/column1';
+			$this->redirect(array('view','id'=>$model->id, 'm'=>'1'));	
+		} else {
+			$this->render('view',array(
+				'model'=>$model,
+				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
+				'touristDataProvider'=>$touristDataProvider,
+				'message'=>($m) ? 'El reporte de la Actividad fue ejecutado exitosamente' : '',
+			));
+		}
 	}
 
 	/**
-	 * Report all models.
+	 * Report selected models.
 	 */
-	public function actionReport()
+	public function actionReport($m=NULL)
 	{
 		$model=new Activity('search');
 		$model->unsetAttributes();  // clear any default values
@@ -90,8 +114,69 @@ class ActivityReportController extends Controller
 		$this->render('report',array(
 			'model'=>$model,
 			'searchForm'=>$searchForm,
+			'message'=>($m) ? 'El reporte de Actividades fue ejecutado exitosamente' : '',
 		));
 	}
+
+	/** 
+	 * Print all models selected
+	 */
+	public function actionReportAll()
+	{
+		$model=new Activity('search');
+		$model->unsetAttributes();  // clear any default values
+		$searchForm=new ActivityReportForm;
+
+		if(isset($_GET['Activity']))
+			$model->attributes=$_GET['Activity'];
+
+		if(isset($_GET['ActivityReportForm']))
+			$searchForm->attributes=$_GET['ActivityReportForm'];
+		else {
+			$searchForm->startDate=date("Ymd");
+			$searchForm->endDate=date("Ymd");
+		}
+	
+		$dataProvider=$model->searchForReport($searchForm);
+		$allActivities=$dataProvider->data;
+		$this->layout='//layouts/column1_print';
+		$mPDF1 = Yii::app()->ePdf->mpdf();
+
+		foreach ($allActivities as $activity) {
+			$criteria=new CDbCriteria;
+			$criteria->with='employee';
+			$criteria->compare('activity_id',$activity->id);
+			$assignedEmployeesDataProvider=new CActiveDataProvider('Assignment', array(
+					'criteria'=>$criteria,
+				)
+			);
+
+			// Building the Data Provider with all the tourist assigned to this Activity
+			$tourists=array();
+
+			foreach ($activity->services as $service)
+				foreach ($service->booking->paxes as $pax)
+					array_push($tourists,$pax);
+
+			$touristDataProvider = new CActiveDataProvider("Pax");
+			$touristDataProvider->setData($tourists); 
+
+			// Here should be Header Data of the Report: Logo, Date, etc.
+			// Still is missing some styles for this grid
+
+			$mPDF1->WriteHTML($this->render('view', array(
+				'model'=>$activity,
+				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
+				'touristDataProvider'=>$touristDataProvider,
+			), true));
+			$mPDF1->WriteHTML('<hr /><hr />');
+		}
+
+		$mPDF1->Output('protected/runtime/Activities_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
+		$this->layout='//layouts/column1';
+		$this->redirect(array('report', 'm'=>'1'));
+	}
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
