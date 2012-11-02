@@ -18,6 +18,7 @@
 ));
 ?>
 
+<h2>&nbsp;</h2>
 <h2>Assigned Employees to this Activity</h2>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
@@ -29,6 +30,7 @@
 ));
 ?>
 
+<h2>&nbsp;</h2>
 <h2>Tourists assigned to this Activity</h2>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'tourist-grid',
@@ -41,8 +43,3 @@
 	),
 )); 
 ?>
-
-<? /* php 
-	foreach ($touristDataProvider as $tourist)
-		echo "el turista es " . var_dump($tourist);
-*/ ?>

@@ -60,7 +60,8 @@ class ActivityReportController extends Controller
 		$touristDataProvider = new CActiveDataProvider("Pax");
 		$touristDataProvider->setData($tourists); 
 
-		$this->render('view',array(
+		$view=(isset($_GET['p'])) ? 'print' : 'view';
+		$this->render($view,array(
 			'model'=>$model,
 			'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 			'touristDataProvider'=>$touristDataProvider,
