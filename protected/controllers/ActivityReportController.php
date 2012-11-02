@@ -141,6 +141,7 @@ class ActivityReportController extends Controller
 		$allActivities=$dataProvider->data;
 		$this->layout='//layouts/column1_print';
 		$mPDF1 = Yii::app()->ePdf->mpdf();
+		$break=false;
 
 		foreach ($allActivities as $activity) {
 			$criteria=new CDbCriteria;
@@ -161,6 +162,7 @@ class ActivityReportController extends Controller
 			$touristDataProvider = new CActiveDataProvider("Pax");
 			$touristDataProvider->setData($tourists); 
 
+			($break) ? $mPDF1->WriteHTML('<pagebreak />') : $break=true;
 			// Here should be Header Data of the Report: Logo, Date, etc.
 			// Still is missing some styles for this grid
 
@@ -169,7 +171,7 @@ class ActivityReportController extends Controller
 				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 				'touristDataProvider'=>$touristDataProvider,
 			), true));
-			$mPDF1->WriteHTML('<hr /><hr />');
+			$mPDF1->WriteHTML('<hr />');
 		}
 
 		$mPDF1->Output('protected/runtime/Activities_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
