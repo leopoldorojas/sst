@@ -32,7 +32,7 @@ class ActivityReportController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'report' actions
-				'actions'=>array('report','reportAll'),
+				'actions'=>array('report','reportAll', 'calendar'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -179,6 +179,36 @@ class ActivityReportController extends Controller
 		$this->redirect(array('report', 'm'=>'1'));
 	}
 
+	/**
+	 * Activities seen in Calendar mode.
+	 */
+	public function actionCalendar($m=NULL)
+	{
+		$model=new Activity('search');
+		$model->unsetAttributes();  // clear any default values
+		$searchForm=new ActivityReportForm;
+
+		if(isset($_GET['Activity']))
+			$model->attributes=$_GET['Activity'];
+
+		if(isset($_GET['ActivityReportForm']))
+			$searchForm->attributes=$_GET['ActivityReportForm'];
+		else {
+			$searchForm->startDate=date("Ymd");
+			$searchForm->endDate=date("Ymd");
+		}
+
+		$dataProvider=$model->searchForReport($searchForm);
+		$allActivities=$dataProvider->data;
+		$calendarData=Activity::calendarMode($allActivities);
+
+		$this->render('calendar',array(
+			'model'=>$model,
+			'calendarData'=>$calendarData,
+			'searchForm'=>$searchForm,
+			'message'=>($m) ? 'El reporte de Actividades fue ejecutado exitosamente' : '',
+		));
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

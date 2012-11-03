@@ -199,4 +199,21 @@ class Activity extends CActiveRecord
         }
 	}
 
+	public static function calendarMode($activities)
+	{
+		$calendarData=array();
+
+		foreach ($activities as $activity) {
+			array_push($calendarData,array(
+				'title'=>$activity->description,
+        		'start'=>$activity->activity_date,
+        		'color'=>'#CC0000',
+        		'allDay'=>true,
+        		'url'=>'/sst/index.php/activityreport/'.$activity->id,
+			));
+		}
+
+		return $calendarData;
+	}
+
 }
