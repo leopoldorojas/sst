@@ -1,6 +1,15 @@
 <?php
 /* @var $this ActivityController */
 /* @var $model Activity */
+
+Yii::app()->clientScript->registerScript('printActivity', "
+$('.printActivity-button').click(function(){
+	$.get('/sst/index.php/activityReport/$model->id?p=1');
+	window.location.replace('/sst/index.php/activityReport/$model->id?m=1');
+	return false;
+});
+");
+
 ?>
 
 <h1>Report of Activity ID: <?php echo $model->id; ?></h1>
@@ -63,3 +72,7 @@
 	),
 )); 
 ?>
+
+<div class="printActivity-form" style="display:all">
+<?php echo CHtml::link('Click here to Print this Activity?','#', array('class'=>'printActivity-button')); ?>
+</div>

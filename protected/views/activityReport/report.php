@@ -82,7 +82,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'activity_time',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view}',
+			'template'=>'{view}{print}',
+			'buttons'=>array(
+				'print'=>array(
+					'label'=>'Print Activity',
+					'url'=>'Yii::app()->createUrl("activityreport/$data->id", array("p"=>"1"))',
+					'imageUrl'=>Yii::app()->baseUrl . '/images/print-for-yii.png',
+				),
+			),
 		),
 	),
 	'afterAjaxUpdate' => 'getActivity',

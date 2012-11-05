@@ -77,6 +77,7 @@ class ActivityReportController extends Controller
 				'model'=>$model,
 				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 				'touristDataProvider'=>$touristDataProvider,
+				'printPartial'=>false,
 			), true));
 
 			$mPDF1->Output('protected/runtime/Activity_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
@@ -88,6 +89,7 @@ class ActivityReportController extends Controller
 				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 				'touristDataProvider'=>$touristDataProvider,
 				'message'=>($m) ? 'El reporte de la Actividad fue ejecutado exitosamente' : '',
+				'printPartial'=>true,
 			));
 		}
 	}
@@ -170,6 +172,7 @@ class ActivityReportController extends Controller
 				'model'=>$activity,
 				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 				'touristDataProvider'=>$touristDataProvider,
+				'printPartial'=>false,
 			), true));
 			$mPDF1->WriteHTML('<hr />');
 		}
