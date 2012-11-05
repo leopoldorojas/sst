@@ -13,6 +13,7 @@ class ServiceFilterForm extends CFormModel
 	public $filterTol;
 	public $sortTol;
 	public $bookingCode;
+	public $withActivitiesAssigned;
 
 	/**
 	 * Declares the validation rules.
@@ -21,7 +22,7 @@ class ServiceFilterForm extends CFormModel
 	{
 		return array(
 			array('startDate, endDate', 'date', 'format'=>'yyyy-MM-dd'),
-			array('filterTol, sortTol, bookingCode', 'safe'),
+			array('filterTol, sortTol, bookingCode, withActivitiesAssigned', 'safe'),
 		);
 	}
 
@@ -36,6 +37,7 @@ class ServiceFilterForm extends CFormModel
 			'filterTol' => 'Filter by TOL?',
 			'sortTol' => 'Sort by TOL?',
 			'bookingCode' => 'Booking Code',
+			'withActivitiesAssigned'=>'Filter by Activities',
 		);
 	}
 

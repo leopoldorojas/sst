@@ -165,6 +165,12 @@ class Service extends CActiveRecord
 		$criteria->with='booking';
 		$criteria->compare('booking.booking_code',$params->bookingCode,true);
 
+		if ($params->withActivitiesAssigned>0) {
+			$criteria->with=array('activityServices','booking');
+			$criteria->together=true;
+			($params->withActivitiesAssigned==1) ? $criteria->addCondition('activityServices.id IS NULL') : $criteria->addCondition('activityServices.id IS NOT NULL');
+		}
+
  		/* Sort on related Model's columns */
         $sort = new CSort;
         $sort->attributes = array(

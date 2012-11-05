@@ -36,6 +36,16 @@
 		<?php echo $form->checkBox($searchForm,'sortTol'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->radioButtonList($searchForm, 'withActivitiesAssigned', 
+			array(
+				'0'=>'All',
+				'1'=>'Without activities',
+				'2'=>'With activities',
+			)
+		); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

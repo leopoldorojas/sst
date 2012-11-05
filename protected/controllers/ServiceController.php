@@ -209,6 +209,7 @@ class ServiceController extends Controller
 		} else {
 			$searchForm->filterTol=true;
 			$searchForm->sortTol=true;
+			$searchForm->withActivitiesAssigned=1;
 		}
 
 		if(isset($_GET['Service']))
