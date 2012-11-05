@@ -103,7 +103,7 @@ class Activity extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search($filterByCompleted)
+	public function search($filterByCompleted=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -167,10 +167,16 @@ class Activity extends CActiveRecord
 			$criteria->compare('booking_code',$searchForm->booking_code);	
 		}
 
-		(!empty($arrCriteriaWith)) ? $returnActivities=self::model()->with($arrCriteriaWith)->findAll($criteria) : $returnActivities=self::model()->findAll($criteria);
-		$dataProvider = new CActiveDataProvider($this);
-		$dataProvider->setData($returnActivities);
-		return $dataProvider;
+		// (!empty($arrCriteriaWith)) ? $returnActivities=self::model()->with($arrCriteriaWith)->findAll($criteria) : $returnActivities=self::model()->findAll($criteria);
+		if (!empty($arrCriteriaWith)) {
+			$criteria->with=$arrCriteriaWith;
+			$criteria->together=true;
+		}
+
+		return new CActiveDataProvider($this, array(
+			// 'data'=>self::model()->with($arrCriteriaWith)->findAll($criteria),
+			'criteria'=>$criteria,
+		));
 	}
 
 	public function activityTypeExist($attribute)

@@ -58,6 +58,7 @@
 		'name',
 		'room',
 		'booking.booking_code',
+		'booking.agent',		
 		'booking.name',
 	),
 )); 

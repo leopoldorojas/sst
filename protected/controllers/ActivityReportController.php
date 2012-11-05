@@ -194,8 +194,8 @@ class ActivityReportController extends Controller
 		if(isset($_GET['ActivityReportForm']))
 			$searchForm->attributes=$_GET['ActivityReportForm'];
 		else {
-			$searchForm->startDate=date("Ymd");
-			$searchForm->endDate=date("Ymd");
+			$searchForm->startDate=date("Ymd",mktime(0, 0, 0, date("m")-1, date("d"),   date("Y")));
+			$searchForm->endDate=date("Ymd", mktime(0, 0, 0, date("m")+1, date("d"),   date("Y")));
 		}
 
 		$dataProvider=$model->searchForReport($searchForm);
