@@ -30,7 +30,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'activity_date'); ?>
-		<?php echo $form->dateField($model,'activity_date'); ?>
+		<?php echo $form->textField($model,'activity_date'); ?>
 	</div>
 
 	<div class="row">

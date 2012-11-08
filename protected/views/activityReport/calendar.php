@@ -35,6 +35,29 @@ $('.reportAll-button').click(function(){
 });
 ");
 
+Yii::app()->getClientScript()->registerCoreScript( 'jquery.ui' );
+Yii::app()->clientScript->registerCssFile(
+    Yii::app()->clientScript->getCoreScriptUrl().
+    '/jui/css/base/jquery-ui.css'
+);
+
+Yii::app()->clientScript->registerScript('getDate', "
+    var dates = $('#ActivityReportForm_startDate, #ActivityReportForm_endDate' ).datepicker({
+                dateFormat: 'yy-mm-dd',changeMonth: true,changeYear: true,yearRange: '2008:2020',
+                onSelect: function( selectedDate ) {
+                    var option = this.id == 'ActivityReportForm_startDate' ? 'minDate' : 'maxDate',
+                    // var option = 'minDate',
+                    instance = $( this ).data( 'datepicker' ),
+                    date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                        $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings
+                    );
+                    dates.not( this ).datepicker( 'option', option, date);
+                }
+    });
+");
+
 if($message) {
 	$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 		'id'=>'todoOkConReporteActividades',

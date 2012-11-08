@@ -18,12 +18,12 @@
 
 	<div class="row">
 		<?php echo $form->label($searchForm,'startDate'); ?>
-		<?php echo $form->dateField($searchForm,'startDate'); ?>
+		<?php echo $form->textField($searchForm,'startDate'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($searchForm,'endDate'); ?>
-		<?php echo $form->dateField($searchForm,'endDate'); ?>
+		<?php echo $form->textField($searchForm,'endDate'); ?>
 	</div>
 
 	<div class="row">

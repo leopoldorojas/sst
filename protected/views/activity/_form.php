@@ -31,7 +31,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activity_date'); ?>
-		<?php echo $form->dateField($model,'activity_date'); ?>
+		<?php echo $form->textField($model,'activity_date'); ?>
 		<?php echo $form->error($model,'activity_date'); ?>
 	</div>
 	

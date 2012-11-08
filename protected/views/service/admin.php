@@ -25,6 +25,30 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
+
+Yii::app()->getClientScript()->registerCoreScript( 'jquery.ui' );
+Yii::app()->clientScript->registerCssFile(
+    Yii::app()->clientScript->getCoreScriptUrl().
+    '/jui/css/base/jquery-ui.css'
+);
+
+Yii::app()->clientScript->registerScript('getDate', "
+	var dates = $('#ServiceFilterForm_startDate, #ServiceFilterForm_endDate' ).datepicker({
+                dateFormat: 'yy-mm-dd',changeMonth: true,changeYear: true,yearRange: '2008:2020',
+       			onSelect: function( selectedDate ) {
+            		var option = this.id == 'ServiceFilterForm_startDate' ? 'minDate' : 'maxDate',
+            		// var option = 'minDate',
+                 	instance = $( this ).data( 'datepicker' ),
+                 	date = $.datepicker.parseDate(
+                    	instance.settings.dateFormat ||
+                      	$.datepicker._defaults.dateFormat,
+                      	selectedDate, instance.settings
+                    );
+            		dates.not( this ).datepicker( 'option', option, date);
+       			}
+    });
+");
+
 ?>
 
 <h1>Manage Services</h1>

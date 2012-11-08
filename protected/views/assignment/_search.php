@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->label($searchForm,'activityDate'); ?>
-		<?php echo $form->dateField($searchForm,'activityDate'); ?>
+		<?php echo $form->textField($searchForm,'activityDate'); ?>
 	</div>
 
 	<div class="row">

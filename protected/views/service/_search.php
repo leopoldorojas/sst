@@ -28,7 +28,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'delivery_date'); ?>
-		<?php echo $form->dateField($model,'delivery_date'); ?>
+		<?php echo $form->textField($model,'delivery_date'); ?>
 	</div>
 
 	<div class="row">

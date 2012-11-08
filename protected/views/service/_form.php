@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'delivery_date'); ?>
-		<?php echo $form->dateField($model,'delivery_date'); ?>
+		<?php echo $form->textField($model,'delivery_date'); ?>
 		<?php echo $form->error($model,'delivery_date'); ?>
 	</div>
 
