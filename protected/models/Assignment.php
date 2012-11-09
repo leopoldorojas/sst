@@ -47,7 +47,7 @@ class Assignment extends CActiveRecord
 			array('employee_id, activity_id', 'numerical', 'integerOnly'=>true),
 			array('employee_id','employeeExist'),
 			array('activity_id','activityExist'),
-			array('activity_id','notDuplicateAssignment','on'=>'create'),
+			array('activity_id','notDuplicateAssignment','on'=>'create, update'),
 			array('estimated_hours, actual_hours', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

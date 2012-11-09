@@ -47,6 +47,7 @@ class ActivityService extends CActiveRecord
 			array('activity_id, service_id', 'numerical', 'integerOnly'=>true),
 			array('activity_id','activityExist'),
 			array('service_id','serviceExist'),
+			array('activity_id','notDuplicateActivityService'),
 			array('room', 'length', 'max'=>10),
 			array('notes', 'safe'),
 			// The following rule is used by search().
@@ -128,6 +129,15 @@ class ActivityService extends CActiveRecord
     		$this->addError($attribute,'The service does not exist');
     }
 
+    public function notDuplicateActivityService($attribute=NULL, $params=NULL)
+    {
+    	if (self::model()->findAllByAttributes(array(
+    		'activity_id'=>$this->activity_id,
+    		'service_id'=>$this->service_id,
+    	)))
+    		$this->addError($attribute,'This specific link between Activity and Service already exists'); 
+    }
+
     /**
     * Test if this model is the only with a link to some activity
     * If it is the only, then we must also delete the activity
@@ -141,5 +151,4 @@ class ActivityService extends CActiveRecord
 			echo json_encode($data);
 		}
 	}
-
 }

@@ -78,7 +78,7 @@ class Activity extends CActiveRecord
     public function activitiesOnDate($sinceDate, $strictToday=false)
 	{
     	$this->getDbCriteria()->mergeWith(array(
-        	'condition' => 'activity_date ' . (($strictToday) ? '=' : '>=' ) . $sinceDate,
+        	'condition' => 'activity_date' . (($strictToday) ? '=' : '>=' ) . $sinceDate,
     	));
     	return $this;
 	}
@@ -220,6 +220,17 @@ class Activity extends CActiveRecord
 		}
 
 		return $calendarData;
+	}
+
+	protected function beforeSave()
+	{
+    	if (parent::beforeSave()) {
+    		if ($this->isNewRecord)
+    			$this->completed=0;
+    		return true;
+    	} else {
+    		return false;
+    	}
 	}
 
 }

@@ -101,7 +101,7 @@ Yii::app()->clientScript->registerScript('getDate', "
 ");
 
 Yii::app()->clientScript->registerScript('getAnotherDate', "
-	var dates = $('#Activity_activity_date' ).datepicker({
+	var dates2 = $('#Activity_activity_date' ).datepicker({
                 dateFormat: 'yy-mm-dd',changeMonth: true,changeYear: true,yearRange: '2008:2020',
        			onSelect: function( selectedDate ) {
             		// var option = this.id == 'ServiceFilterForm_startDate' ? 'minDate' : 'maxDate',
@@ -112,7 +112,7 @@ Yii::app()->clientScript->registerScript('getAnotherDate', "
                       	$.datepicker._defaults.dateFormat,
                       	selectedDate, instance.settings
                     );
-            		dates.not( this ).datepicker( 'option', option, date);
+            		dates2.not( this ).datepicker( 'option', option, date);
        			}
     });
 ");
