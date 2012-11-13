@@ -21,12 +21,16 @@
 		<?php echo $form->textField($model,'description',array('size'=>50,'maxlength'=>100)); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-button compactRadioGroup">
+		<?php echo $form->label($model,'filterByEnabled', array('class'=>'labelRadio')); ?>
 		<?php echo CHtml::radioButtonList('filterByEnabled', $filterByEnabled, 
 			array(
-				'0'=>'All',
+				'0'=>'All Activity Types',
 				'1'=>'Only enabled',
 				'2'=>'Only disabled',
+			),
+			array(
+				'separator'=>''
 			)
 		); ?>
 	</div>

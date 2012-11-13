@@ -64,7 +64,7 @@ class ActivityServiceController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ActivityService;
+		$model=new ActivityService('create');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);

@@ -36,12 +36,16 @@
 		<?php echo $form->checkBox($searchForm,'sortTol'); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-button compactRadioGroup">
+		<?php echo $form->label($searchForm,'withActivitiesAssigned', array('class'=>'labelRadio')); ?>
 		<?php echo $form->radioButtonList($searchForm, 'withActivitiesAssigned', 
 			array(
-				'0'=>'All',
+				'0'=>'All services',
 				'1'=>'Without activities',
 				'2'=>'With activities',
+			),
+			array(
+				'separator'=>''
 			)
 		); ?>
 	</div>

@@ -139,7 +139,7 @@ div.form .errorSummary ul
 	padding: 0 0 0 20px;
 }
 
-div.wide.form label
+div.wide.form .row label
 {
 	float: left;
 	margin-right: 10px;
@@ -148,7 +148,28 @@ div.wide.form label
 	width: 110px; /* Leo changed this. Original width is 100 */
 }
 
-div.wide.form .row
+div.wide.form .row-button label
+{
+	margin-right: 20px;
+}
+
+div.wide.form .row-button .labelRadio
+{
+	float: left;
+	margin-right: 10px;
+	position: relative;
+	text-align: right;
+	width: 110px; /* Leo changed this. Original width is 100 */
+}
+
+div.wide.form .compactRadioGroup label,
+div.wide.form .compactRadioGroup input
+{
+    display: inline;
+}
+
+div.wide.form .row,
+div.wide.form .row-button
 {
 	clear: left;
 }
@@ -158,4 +179,3 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	clear: left;
 	padding-left: 120px; /* Leo changed this. Original width is 110 */
 }
-

@@ -49,32 +49,44 @@
 		<?php echo $form->textArea($model,'description',array('rows'=>3, 'cols'=>50)); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-button compactRadioGroup">
+		<?php echo $form->label($searchForm,'filterByAssignmentToService', array('class'=>'labelRadio')); ?>
 		<?php echo $form->radioButtonList($searchForm, 'filterByAssignmentToService', 
 			array(
-				'0'=>'All',
+				'0'=>'All Activities',
 				'1'=>'Without Services',
 				'2'=>'With Services',
+			),
+			array(
+				'separator'=>''
 			)
 		); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-button compactRadioGroup">
+		<?php echo $form->label($searchForm,'filterByAssignmentToEmployee', array('class'=>'labelRadio')); ?>
 		<?php echo $form->radioButtonList($searchForm, 'filterByAssignmentToEmployee', 
 			array(
-				'0'=>'All',
+				'0'=>'All Activities',
 				'1'=>'Without Employees',
 				'2'=>'With Employees',
+			),
+			array(
+				'separator'=>''
 			)
 		); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-button compactRadioGroup">
+		<?php echo $form->label($searchForm,'filterByCompleted', array('class'=>'labelRadio')); ?>
 		<?php echo $form->radioButtonList($searchForm, 'filterByCompleted', 
 			array(
-				'0'=>'All',
+				'0'=>'All Activities',
 				'1'=>'Only uncompleted',
 				'2'=>'Only completed',
+			),
+			array(
+				'separator'=>''
 			)
 		); ?>
 	</div>

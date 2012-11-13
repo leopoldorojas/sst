@@ -38,9 +38,9 @@ class ActivityReportForm extends CFormModel
 			'endDate' => 'End Date',
 			'employee_id' => 'Employee',
 			'booking_code'=> 'Booking Code',
-			'filterByAssignmentToService' => 'Filter by',
-			'filterByAssignmentToEmployee' => 'Filter by',
-			'filterByCompleted' => 'Filter by',
+			'filterByAssignmentToService' => 'Filter by Services',
+			'filterByAssignmentToEmployee' => 'Filter by Employees',
+			'filterByCompleted' => 'Filter by Completed',
 		);
 	}
 

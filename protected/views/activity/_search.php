@@ -38,12 +38,16 @@
 		<?php echo $form->textField($model,'activity_time',array('rows'=>10, 'cols'=>20)); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-button compactRadioGroup">
+		<?php echo $form->label($model,'filterByCompleted', array('class'=>'labelRadio')); ?>
 		<?php echo CHtml::radioButtonList('filterByCompleted', $filterByCompleted, 
 			array(
-				'0'=>'All',
+				'0'=>'All Activities',
 				'1'=>'Only uncompleted',
 				'2'=>'Only completed',
+			),
+			array(
+				'separator'=>''
 			)
 		); ?>
 	</div>
