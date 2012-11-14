@@ -119,5 +119,5 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 
 <div class="linkReportAll-form" style="display:none">
-<?php echo CHtml::link('Print a report of selected Activities?','#', array('class'=>'reportAll-button')); ?>
+<?php echo CHtml::link('Print a report of these Activities?','#', array('class'=>'reportAll-button')); ?>
 </div>
