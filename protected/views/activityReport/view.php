@@ -14,9 +14,10 @@ $('.printActivity-button').click(function(){
 
 <?php if (!$printPartial) { ?>
 		<p style="text-align:right"><?php echo CHtml::image(Yii::app()->theme->basePath . "/img/logo_tol.png"); ?></p>
+		<h3 style="text-align:right">Special Services Tool</h3> 
 		<p style="text-align:right">
-			Fecha del Reporte: <?php echo date("F d, Y"); ?><br />
-			Hora del Reporte: <?php echo date("H:i"); ?><br />
+			Report Date: <?php echo date("F d, Y"); ?><br />
+			Reporte Time: <?php echo date("H:i"); ?><br />
 		</p>
 <?php } ?>
 
@@ -51,17 +52,18 @@ $('.printActivity-button').click(function(){
 
 <h2>&nbsp;</h2>
 <h2>Assigned Employees to this Activity</h2>
+<?php $headerHtmlOptions = ($printPartial) ? array() : array('class'=>'printing'); ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'assignedEmployee-grid',
 	'dataProvider'=>$assignedEmployeesDataProvider,
 	'columns'=>array(
-		array('header'=>CHtml::link('Employee Name','#'), 'value'=>'$data->employee->fullName', 'headerHtmlOptions'=>array('class'=>'bgnone')),
-		array('header'=>CHtml::link('Cost per hour','#'), 'name'=>'employee.cost_per_hour'),
-		array('header'=>CHtml::link('Estimated hours','#'), 'name'=>'estimated_hours', 'sortable'=>false),
-		array('header'=>CHtml::link('Estimated cost','#'), 'value'=>'$data->employee->cost_per_hour*$data->estimated_hours'),
-		array('header'=>CHtml::link('Actual hours','#'), 'name'=>'actual_hours', 'sortable'=>false),
-		array('header'=>CHtml::link('Actual cost','#'), 'value'=>'$data->employee->cost_per_hour*$data->actual_hours'),
+		array('header'=>'Employee Name', 'value'=>'$data->employee->fullName', 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Cost per hour', 'name'=>'employee.cost_per_hour', 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Estimated hours', 'name'=>'estimated_hours', 'sortable'=>false, 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Estimated cost', 'value'=>'$data->employee->cost_per_hour*$data->estimated_hours', 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Actual hours', 'name'=>'actual_hours', 'sortable'=>false, 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Actual cost', 'value'=>'$data->employee->cost_per_hour*$data->actual_hours', 'headerHtmlOptions'=>$headerHtmlOptions),
 	),
 ));
 ?>
@@ -72,11 +74,11 @@ $('.printActivity-button').click(function(){
 	'id'=>'tourist-grid',
 	'dataProvider'=>$touristDataProvider,
 	'columns'=>array(
-		array('header'=>CHtml::link('Tourist Name','#'), 'name'=>'name', 'sortable'=>false),
-		array('header'=>CHtml::link('Room','#'), 'name'=>'room', 'sortable'=>false),
-		array('header'=>CHtml::link('Booking Code','#'), 'name'=>'booking.booking_code', 'sortable'=>false),
-		array('header'=>CHtml::link('Booking Agent','#'), 'name'=>'booking.agent', 'sortable'=>false),
-		array('header'=>CHtml::link('Booking Tourist Name','#'), 'name'=>'booking.name', 'sortable'=>false),
+		array('header'=>'Tourist Name', 'name'=>'name', 'sortable'=>false, 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Room', 'name'=>'room', 'sortable'=>false, 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Booking Code', 'name'=>'booking.booking_code', 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Booking Agent', 'name'=>'booking.agent', 'headerHtmlOptions'=>$headerHtmlOptions),
+		array('header'=>'Booking Tourist Name', 'name'=>'booking.name', 'headerHtmlOptions'=>$headerHtmlOptions),
 	),
 )); 
 ?>

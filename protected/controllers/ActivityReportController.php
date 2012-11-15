@@ -69,6 +69,7 @@ class ActivityReportController extends Controller
 		if (isset($_GET['p'])) {
 			$this->layout='//layouts/column1_print';
 			$mPDF1 = Yii::app()->ePdf->mpdf();
+			// $mPDF1 = Yii::app()->ePdf->HTML2PDF();
 
 			// Here should be Header Data of the Report: Logo, Date, etc.
 			// Still is missing some styles for this grid
@@ -78,6 +79,7 @@ class ActivityReportController extends Controller
 				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 				'touristDataProvider'=>$touristDataProvider,
 				'printPartial'=>false,
+				'message'=>false,
 			), true));
 
 			$mPDF1->Output('protected/runtime/Activity_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
@@ -172,6 +174,7 @@ class ActivityReportController extends Controller
 				'model'=>$activity,
 				'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
 				'touristDataProvider'=>$touristDataProvider,
+				'message'=>false,
 				'printPartial'=>false,
 			), true));
 			$mPDF1->WriteHTML('<hr />');

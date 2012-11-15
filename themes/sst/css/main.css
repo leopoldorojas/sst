@@ -311,7 +311,14 @@ div.search-form
 
 #content .grid-view table.items th
 {
-	background: url(../img/title1_bg.gif) repeat-y;
+  color: white;
+  background: url(../img/title1_bg.gif) repeat-y;
+}
+
+div.grid-view table.items th.printing
+{
+  color: #565756;
+  text-align: left;
 }
 
 /**
@@ -393,8 +400,7 @@ div.search-form
 {
 	background: #388806;
   color: #fff;
-} 
-
+}
 
 /**
  * Twitter Bootstrap Buttons
