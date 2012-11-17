@@ -46,27 +46,25 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		/*
 		'db'=>array(
-			'connectionString' => 'sqlsrv:server=(local)\sqlexpress;database=SST',
+			'connectionString' => 'sqlsrv:server=(local)\sqlexpress;database=sst',
 			'username' => 'leopoldo',
 			'password' => 'facil1234',
 			'charset' => 'utf8',
 		),
-		*/
 		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
 		*/
-		// Comment the following to not to use a MySQL database
-		'db'=>array(
+		// Uncomment the following to not to use a MySQL database
+		/* 'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=SST',
 			'emulatePrepare' => true,
 			'username' => 'leopoldo.rojas',
 			'password' => 'facil1234',
 			'charset' => 'utf8',
-		),
+		), */
 		'authManager'=>array(
 			// default roles definition
 			'class'=>'CDbAuthManager',
