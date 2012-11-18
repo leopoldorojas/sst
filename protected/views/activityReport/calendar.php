@@ -83,7 +83,7 @@ if($message) {
 </div><!-- search-form -->
 
 <?php
-$items[]=array(
+    /* $items[]=array(
         'title'=>'Meeting',
         'start'=>'2012-11-23',
         'color'=>'#CC0000',
@@ -99,7 +99,7 @@ $items[]=array(
         // 'start'=>time()
  
         'color'=>'blue',
-    );
+    ); */
 
     /* if (count($calendarData)>0) {
     	echo var_dump($calendarData);
@@ -141,6 +141,7 @@ $items[]=array(
         // 'eventMouseover'=>new CJavaScriptExpression("js_function_callback"),
     )
 ));
+// echo "Calendar Data es " . var_dump($calendarData);
 ?>
 
 <div class="linkReportAll-form" style="display:all">

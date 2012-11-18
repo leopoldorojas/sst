@@ -91,7 +91,7 @@ class Service extends CActiveRecord
     {
 		return array(
             'tolServices'=>array(
-                'condition' => 'supplier = "TOL"',
+                'condition' => "supplier = 'TOL'",
             ),
         );
     }
@@ -100,7 +100,7 @@ class Service extends CActiveRecord
     public function servicesOnDate($sinceDate, $strictToday=false)
 	{
     	$this->getDbCriteria()->mergeWith(array(
-        	'condition' => 'delivery_date ' . (($strictToday) ? '=' : '>=' ) . $sinceDate,
+        	'condition' => "delivery_date " . (($strictToday) ? "=" : ">=" ) . "'$sinceDate'",
     	));
     	return $this;
 	}
@@ -160,7 +160,11 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
+		// MySQL: if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
+		if ($params->sortTol) $criteria->order="CASE
+           WHEN supplier LIKE 'TOL' THEN 1
+           ELSE 2
+         END";
 
 		$criteria->with='booking';
 		$criteria->compare('booking.booking_code',$params->bookingCode,true);
@@ -197,7 +201,7 @@ class Service extends CActiveRecord
     {
     	$criteria=new CDbCriteria;
     	$criteria->compare('activityServices.id', '');
-    	return self::model()->tolServices()->servicesOnDate(date("Ymd"),true)->with('activityServices','booking')->findAll('activityServices.id IS NULL');
+    	return self::model()->tolServices()->servicesOnDate(date("Ymd"),false)->with('activityServices','booking')->findAll('activityServices.id IS NULL');
     }
 
 }

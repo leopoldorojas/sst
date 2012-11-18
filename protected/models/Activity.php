@@ -78,7 +78,7 @@ class Activity extends CActiveRecord
     public function activitiesOnDate($sinceDate, $strictToday=false)
 	{
     	$this->getDbCriteria()->mergeWith(array(
-        	'condition' => 'activity_date' . (($strictToday) ? '=' : '>=' ) . $sinceDate,
+        	'condition' => "activity_date " . (($strictToday) ? "=" : ">=" ) . "'$sinceDate'",
     	));
     	return $this;
 	}
