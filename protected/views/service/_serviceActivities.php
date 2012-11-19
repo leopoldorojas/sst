@@ -6,7 +6,7 @@ while waiting for the ajax response -->
 <p id="loadingPic"></br></p>
 
 <?php
-    $params=array('service_id'=>$service_id,);
+    $params=array('service_id'=>$serviceModel->id,);
     $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'activityService-grid',
     'dataProvider'=>$childModel->search($params),
@@ -44,6 +44,6 @@ while waiting for the ajax response -->
 <div class="createActivity-form" style="display:none">
 <?php $this->renderPartial('_formActivity',array(
     'model'=>$activityModel,
-    'service_id'=>$service_id,
+    'serviceModel'=>$serviceModel,
 )); ?>
 </div><!-- createActivity-form -->

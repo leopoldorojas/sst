@@ -72,7 +72,23 @@ function hideActivities(){
 
 Yii::app()->clientScript->registerScript('manageCreateActivity', "
 function manageCreateActivity(id, data){
-	($.fn.yiiGridView.getKey(id, 0) > 0) ? $('.linkCreateActivity-form').hide() : $('.linkCreateActivity-form').show();
+
+	if (!($.fn.yiiGridView.getKey(id, 0)>0)) {
+        var keys = $('#service-grid > div.keys > span');
+
+        $('#service-grid > table > tbody > tr').each(function(i)
+        {
+            if($(this).hasClass('selected'))
+            {
+            	$('input[id=Activity_activity_date]').val($(this).children(':nth-child(5)').text()); /* 5 because delivery_date is fifth column */
+            }
+        });
+
+		$('.linkCreateActivity-form').show()
+	} else {
+		$('.linkCreateActivity-form').hide()
+	}
+
 	$('.createActivity-form').hide();
 }
 ");
@@ -175,7 +191,7 @@ each of your search values to specify how the comparison should be done.
 <?php
     $this->renderPartial('_serviceActivities', array(
 	   	'childModel' => $childModel,
-       	'service_id' => $model->id,
+       	'serviceModel' => $model,
        	'activityModel'=>$activityModel,
     ));
 ?>

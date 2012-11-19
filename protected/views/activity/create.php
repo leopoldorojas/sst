@@ -36,6 +36,15 @@ $('.assignEmployees-button').click(function(){
 Yii::app()->clientScript->registerScript('getSelectedService', "
 function getService(id){
 	$('input[name=selectedService]').val($.fn.yiiGridView.getSelection(id));
+
+    var keys = $('#service-grid > div.keys > span');
+    $('#service-grid > table > tbody > tr').each(function(i)
+    {
+        if($(this).hasClass('selected'))
+        {
+        	$('input[id=Activity_activity_date]').val($(this).children(':nth-child(3)').text()); /* 3 because delivery_date is third column */
+        }
+    });
 }
 ");
 

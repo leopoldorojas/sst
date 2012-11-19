@@ -41,7 +41,7 @@
 		<?php echo $form->error($model,'activity_time'); ?>
 	</div>
 
-	<?php echo Chtml::hiddenField('service_id',$service_id); ?>
+	<?php echo Chtml::hiddenField('service_id',$serviceModel->id); ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
