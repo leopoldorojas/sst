@@ -37,7 +37,7 @@
       <?php
         $mainMenuItems = array(
           // array('label'=>'Home', 'url'=>array('/site/index')),
-          array('label'=>'Activity by Service', 'url'=>array('/site/index')),
+          array('label'=>'Activity by Service', 'url'=>array('/service/adminActivities')),
           array('label'=>'Activities', 'url'=>array('/activity/admin')),
           array('label'=>'Assignments', 'url'=>array('/assignment/admin')),
           array('label'=>'Operations Info', 'url'=>array('/site/page', 'view'=>'operationsinfo',)),

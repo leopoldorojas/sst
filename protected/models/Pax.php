@@ -70,6 +70,7 @@ class Pax extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'booking' => array(self::BELONGS_TO, 'Booking', 'booking_id'),
+			'services' => array(self::MANY_MANY, 'Service','pax_service(pax_id, service_id)'),
 		);
 	}
 

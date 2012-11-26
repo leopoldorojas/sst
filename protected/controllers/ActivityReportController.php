@@ -60,7 +60,7 @@ class ActivityReportController extends Controller
 		$tourists=array();
 
 		foreach ($model->services as $service)
-			foreach ($service->booking->paxes as $pax)
+			foreach ($service->paxes as $pax)
 				array_push($tourists,$pax);
 
 		$touristDataProvider = new CActiveDataProvider("Pax");
@@ -82,7 +82,8 @@ class ActivityReportController extends Controller
 				'message'=>false,
 			), true));
 
-			$mPDF1->Output('protected/runtime/Activity_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
+			$file_name='protected/runtime/reports/' . Yii::app()->user->name . '_Activity_Report_' . date("Ymd_His") . '.pdf';
+			$mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_FILE);
 			$this->layout='//layouts/column1';
 			$this->redirect(array('view','id'=>$model->id, 'm'=>'1'));	
 		} else {
@@ -160,7 +161,7 @@ class ActivityReportController extends Controller
 			$tourists=array();
 
 			foreach ($activity->services as $service)
-				foreach ($service->booking->paxes as $pax)
+				foreach ($service->paxes as $pax)
 					array_push($tourists,$pax);
 
 			$touristDataProvider = new CActiveDataProvider("Pax");
@@ -180,7 +181,8 @@ class ActivityReportController extends Controller
 			$mPDF1->WriteHTML('<hr />');
 		}
 
-		$mPDF1->Output('protected/runtime/Activities_Report.pdf',EYiiPdf::OUTPUT_TO_FILE);
+		$file_name='protected/runtime/reports/' . Yii::app()->user->name . '_Activities_Report_' . date("Ymd_His") . '.pdf';
+		$mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_FILE);
 		$this->layout='//layouts/column1';
 		$this->redirect(array('report', 'm'=>'1'));
 	}
