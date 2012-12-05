@@ -161,11 +161,11 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		/* MySQL: if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC'; */
-		if ($params->sortTol) $criteria->order="CASE
+		if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
+		/* if ($params->sortTol) $criteria->order="CASE
            WHEN supplier LIKE 'TOL' THEN 1
            ELSE 2
-         END";
+         END"; */
 
 		$criteria->with='booking';
 		$criteria->compare('booking.booking_code',$params->bookingCode,true);
