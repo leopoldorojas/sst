@@ -74,16 +74,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		array(
 			'header'=>'Employee',
-			'value'=>'$data->employee->name . " " . $data->employee->lastname',
+			'value'=>'$data->employee->fullName',
 			'filter' => CHtml::activeDropDownList($model,'employee_id', 
-				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'--')),
+				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'fullName'), array('empty'=>'--')),
 		),
 		array(
-			'name'=>'activity.description',
-			'header'=>'Activity Description',
-			'value'=>'$data->activity->description',
-            'filter' => CHtml::activeTextField($searchForm, 'activityDescription'),
+			'header'=>'Activity Type',
+			'value'=>'$data->activity->activityType->description',
+            // 'filter' => CHtml::activeTextField($searchForm, 'activityDate'),
 		),
+
+/*
+		array(
+			'header'=>'Activity Type',
+			'value'=>'$data->activityType->description',
+			'filter' => CHtml::activeDropDownList($model,'activity_type_id', 
+				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')),
+		), */
+
+
+
 		array(
 			'name'=>'activity.activity_date',
 			'value'=>'$data->activity->activity_date',
@@ -93,6 +103,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'activity.activity_time',
 			'value'=>'$data->activity->activity_time',
             'filter' => CHtml::activeTextField($searchForm, 'activityTime'),
+		),
+		array(
+			'name'=>'activity.description',
+			'header'=>'Activity Description',
+			'value'=>'$data->activity->description',
+            'filter' => CHtml::activeTextField($searchForm, 'activityDescription'),
 		),
 		'estimated_hours',
 		'actual_hours',

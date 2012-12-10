@@ -100,9 +100,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'filter' => CHtml::activeDropDownList($model,'activity_type_id', 
 				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')),
 		),
-		'description',
 		'activity_date',
 		'activity_time',
+		'description',
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}{print}',

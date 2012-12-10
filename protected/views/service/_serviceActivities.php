@@ -12,10 +12,18 @@ while waiting for the ajax response -->
     'dataProvider'=>$childModel->search($params),
     // 'filter'=>$childModel,
     'columns'=>array(
-        'activity.activity_type_id',
-        'activity.description',
+        // 'activity.activity_type_id',
+        array(
+            'name'=>'activity.activity_type_id',
+            'value'=>'$data->activity->activityType->description',
+        ),
         'activity.activity_date',
         'activity.activity_time',
+        array(
+            'header'=>'Booking Code',
+            'value'=>'$data->booking()->booking_code',
+        ),
+        'activity.description',
         'activity.completed',
         array(
             'class'=>'CButtonColumn',

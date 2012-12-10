@@ -22,10 +22,11 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		array('value'=>$model->employee->name . ' ' . $model->employee->lastname, 'label'=>'Employee'),
-		array('name'=>'activity.description', 'label'=>'Activity Description'),
+		array('value'=>$model->activity->activityType->description, 'label'=>'Activity Type'),
+		array('value'=>$model->employee->fullName, 'label'=>'Employee'),
 		'activity.activity_date',
 		'activity.activity_time',
+		array('name'=>'activity.description', 'label'=>'Activity Description'),
 		'estimated_hours',
 		'actual_hours',
 		'createdon',

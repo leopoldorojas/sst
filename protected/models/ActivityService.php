@@ -102,7 +102,7 @@ class ActivityService extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-		$criteria->with=array('activity');
+		$criteria->with=array('activity','activity.activityType');
 		$service_id= (isset($params)) ? $params['service_id'] : $this->service_id;
 
 		$criteria->compare('id',$this->id);
