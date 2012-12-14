@@ -210,8 +210,9 @@ class Activity extends CActiveRecord
 		$calendarData=array();
 
 		foreach ($activities as $activity) {
+			$title = $activity->activityType->description . ' : ' . substr($activity->description,0,25);
 			array_push($calendarData,array(
-				'title'=>$activity->description,
+				'title'=>$title,
         		'start'=>$activity->activity_date,
         		'color'=>'#CC0000',
         		'allDay'=>true,
@@ -231,6 +232,12 @@ class Activity extends CActiveRecord
     	} else {
     		return false;
     	}
+	}
+
+	protected function afterFind()
+	{
+    	parent::afterFind();
+    	$this->activity_time=substr($this->activity_time,0,5);
 	}
 
 }

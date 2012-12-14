@@ -73,27 +73,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		array(
+			'header'=>'Activity Type',
+			'value'=>'$data->activity->activityType->description',
+			'filter' => CHtml::activeDropDownList($searchForm,'activityTypeId', 
+				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')),
+		), 
+		array(
 			'header'=>'Employee',
 			'value'=>'$data->employee->fullName',
 			'filter' => CHtml::activeDropDownList($model,'employee_id', 
 				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'fullName'), array('empty'=>'--')),
 		),
-		array(
-			'header'=>'Activity Type',
-			'value'=>'$data->activity->activityType->description',
-            // 'filter' => CHtml::activeTextField($searchForm, 'activityDate'),
-		),
-
-/*
-		array(
-			'header'=>'Activity Type',
-			'value'=>'$data->activityType->description',
-			'filter' => CHtml::activeDropDownList($model,'activity_type_id', 
-				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')),
-		), */
-
-
-
 		array(
 			'name'=>'activity.activity_date',
 			'value'=>'$data->activity->activity_date',

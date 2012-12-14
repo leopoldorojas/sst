@@ -16,19 +16,19 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'employee_id'); ?>
-		<?php echo $form->dropDownList($model,'employee_id',
-			CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'fullName'), array('empty'=>'Please, select an Employee'));
-		?>
-		<?php echo $form->error($model,'employee_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'activity_id'); ?>
 		<?php echo $form->dropDownList($model,'activity_id',
 			CHtml::listData(Activity::model()->getEnabledActivities(), 'id', 'description'), array('empty'=>'Please, select an Activity'));
 		?>
 		<?php echo $form->error($model,'activity_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'employee_id'); ?>
+		<?php echo $form->dropDownList($model,'employee_id',
+			CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'fullName'), array('empty'=>'Please, select an Employee'));
+		?>
+		<?php echo $form->error($model,'employee_id'); ?>
 	</div>
 
 	<div class="row">

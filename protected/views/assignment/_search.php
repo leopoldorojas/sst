@@ -17,6 +17,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($searchForm,'activityTypeId'); ?>
+		<?php echo $form->dropDownList($searchForm,'activityTypeId', 
+				CHtml::listData(ActivityType::model()->getEnabledActivityTypes(), 'id', 'description'), array('empty'=>'--')); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->label($model,'employee_id'); ?>
 		<?php echo $form->dropDownList($model,'employee_id', 
 				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'name'), array('empty'=>'--')); ?>

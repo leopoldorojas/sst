@@ -82,31 +82,6 @@ if($message) {
 )); ?>
 </div><!-- search-form -->
 
-<?php
-    /* $items[]=array(
-        'title'=>'Meeting',
-        'start'=>'2012-11-23',
-        'color'=>'#CC0000',
-        'allDay'=>true,
-        'url'=>'http://anyurl.com'
-    );
-    $items[]=array(
-        'title'=>'Meeting reminder',
-        'start'=>'2012-11-19',
-        'end'=>'2012-11-22',
- 
-        // can pass unix timestamp too
-        // 'start'=>time()
- 
-        'color'=>'blue',
-    ); */
-
-    /* if (count($calendarData)>0) {
-    	echo var_dump($calendarData);
-    	Yii::app()->end();
-    } */
-?>
-
 <?php $this->widget('ext.EFullCalendar.EFullCalendar', array(
     // polish version available, uncomment to use it
     // 'lang'=>'pl',

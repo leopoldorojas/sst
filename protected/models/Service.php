@@ -205,4 +205,11 @@ class Service extends CActiveRecord
     	return self::model()->tolServices()->servicesOnDate(date("Ymd"),false)->with('activityServices','booking')->findAll('activityServices.id IS NULL');
     }
 
+   	protected function afterFind()
+	{
+    	parent::afterFind();
+    	$this->pickuptime=substr($this->pickuptime,0,5);
+	   	$this->dropofftime=substr($this->dropofftime,0,5);
+	}
+
 }

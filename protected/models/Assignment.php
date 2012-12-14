@@ -103,6 +103,8 @@ class Assignment extends CActiveRecord
 		$criteria->compare('activity.description',$params['activityDescription'],true);
 		$criteria->compare('activity.activity_date',$params['activityDate'],true);
 		$criteria->compare('activity.activity_time',$params['activityTime'],true);
+		$criteria->compare('activity.activity_type_id',$params['activityTypeId'],true);
+		$criteria->together=true;
 
  		/* Sort on related Model's columns */
         $sort = new CSort;

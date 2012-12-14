@@ -11,6 +11,7 @@ class AssignmentFilterForm extends CFormModel
 	public $activityDescription;
 	public $activityDate;
 	public $activityTime;
+	public $activityTypeId;
 
 	/**
 	 * Declares the validation rules.
@@ -20,7 +21,7 @@ class AssignmentFilterForm extends CFormModel
 		return array(
 			array('activityDate', 'date', 'format'=>'yyyy-MM-dd'),
 			array('activityTime', 'date', 'format'=>'H:mm'),
-			array('activityDescription', 'safe'),
+			array('activityDescription, activityTypeId', 'safe'),
 		);
 	}
 
@@ -33,6 +34,7 @@ class AssignmentFilterForm extends CFormModel
 			'activityDescription' => 'Activity Description',
 			'activityDate' => 'Activity Date',
 			'activityTime' => 'Activity Time',
+			'activityTypeId' => 'Activity Type',
 		);
 	}
 
