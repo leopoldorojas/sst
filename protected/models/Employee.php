@@ -86,19 +86,24 @@ class Employee extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($activity_id=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('lastname',$this->lastname,true);
 		$criteria->compare('identification_number',$this->identification_number,true);
 		$criteria->compare('rol',$this->rol,true);
 		$criteria->compare('cost_per_hour',$this->cost_per_hour,true);
+
+		if ($activity_id) {
+			$criteria->with='assignments';
+			$criteria->compare('assignments.activity_id',$activity_id);
+			$criteria->together=true;
+		}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -137,6 +142,7 @@ class Employee extends CActiveRecord
 	{
     	parent::afterFind();
     	$this->_fullName=$this->name . ' ' . $this->lastname;
+    	$this->cost_per_hour=number_format($this->cost_per_hour, 2);
 	}
 
 }

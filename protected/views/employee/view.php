@@ -30,3 +30,18 @@ $this->menu=array(
 		'createdon',
 	),
 )); ?>
+
+<hr />
+
+<?php 
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>array(
+        'Activities assigned from Today'=>array('ajax'=>$this->createUrl("activity/ByEmployee/$model->id/?lastMonth=false")),
+        'Activities assigned last Month'=>array('ajax'=>$this->createUrl("activity/ByEmployee/$model->id/?lastMonth=true")),
+    ),
+    // additional javascript options for the tabs plugin
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>

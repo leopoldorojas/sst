@@ -30,3 +30,18 @@ $this->menu=array(
 		'createdon',
 	),
 )); ?>
+
+<hr />
+
+<?php 
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>array(
+    	'Services'=>array('ajax'=>$this->createUrl("service/ByActivity/$model->id")),
+        'Employees'=>array('ajax'=>$this->createUrl("employee/ByActivity/$model->id")),
+    ),
+    // additional javascript options for the tabs plugin
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>

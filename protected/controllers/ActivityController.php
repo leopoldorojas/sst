@@ -28,7 +28,7 @@ class ActivityController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','byEmployee'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -220,6 +220,29 @@ class ActivityController extends Controller
 			'model'=>$model,
 			'filterByCompleted'=>$filterByCompleted,
 		));
+	}
+
+	public function actionByEmployee($id)
+	{
+		$model=new Activity('search');
+		$searchForm=new ActivityReportForm;
+		$model->unsetAttributes();  // clear any default values
+		$searchForm->unsetAttributes();  // clear any default values
+		$searchForm->employee_id=$id;
+
+		if ($_GET['lastMonth']=='true') {
+			$searchForm->startDate=date("Ymd",mktime(0, 0, 0, date("m")-1, date("d"),   date("Y")));
+			$searchForm->endDate=date("Ymd", mktime(0, 0, 0, date("m"), date("d")-1,   date("Y")));
+		} else {
+			$searchForm->startDate=date("Ymd",mktime(0, 0, 0, date("m"), date("d"),   date("Y")));
+		}
+
+		$dataProvider=$model->searchForReport($searchForm);
+
+		$this->renderPartial('_activitiesByEmployee',
+			array(
+				'dataProvider'=>$dataProvider,
+			),false,true);
 	}
 
 	/**

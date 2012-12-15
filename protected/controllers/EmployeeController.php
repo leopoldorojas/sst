@@ -28,7 +28,7 @@ class EmployeeController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','byActivity'),
 				'users'=>array('*'),
 			),
 			array('deny', 
@@ -145,6 +145,18 @@ class EmployeeController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionByActivity($id)
+	{
+		$model=new Employee('search');
+		$model->unsetAttributes();  // clear any default values
+		$dataProvider=$model->search($id);
+
+		$this->renderPartial('_employeesByActivity',
+			array(
+				'dataProvider'=>$dataProvider,
+			),false,true);
 	}
 
 	/**

@@ -22,8 +22,21 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'booking_id',
-		'booking.booking_code',
+		// 'booking_id',
+		// 'booking.booking_code',
+
+		array(
+			'value'=>CHtml::link($model->booking_id,Yii::app()->controller->createUrl("booking/".$model->booking_id)),
+			'label'=>'Booking Id',
+			'type'=>'raw',
+		),
+
+		array(
+			'value'=>CHtml::link($model->booking->booking_code,Yii::app()->controller->createUrl("booking/".$model->booking_id)),
+			'label'=>'Booking Code',
+			'type'=>'raw',
+		),
+
 		'day',
 		'seq',
 		'delivery_date',

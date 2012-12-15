@@ -19,6 +19,8 @@
  */
 class Activity extends CActiveRecord
 {
+	private $_fullDescription;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -223,6 +225,11 @@ class Activity extends CActiveRecord
 		return $calendarData;
 	}
 
+	public function getFullDescription()
+	{
+    	return $this->_fullDescription;
+	}
+
 	protected function beforeSave()
 	{
     	if (parent::beforeSave()) {
@@ -237,6 +244,7 @@ class Activity extends CActiveRecord
 	protected function afterFind()
 	{
     	parent::afterFind();
+    	$this->_fullDescription=$this->activityType->description . ': ' . $this->activity_date . ': ' . substr($this->description,0,20);
     	$this->activity_time=substr($this->activity_time,0,5);
 	}
 

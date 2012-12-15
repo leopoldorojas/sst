@@ -7,7 +7,13 @@ while waiting for the ajax response -->
 	'id'=>'assignedEmployee-grid',
 	'dataProvider'=>$assignedEmployeesDataProvider,
 	'columns'=>array(
-		array('name'=>'Name', 'value'=>'$data->employee->name . " " . $data->employee->lastname'),
+		array('name'=>'Name', 'value'=>'$data->employee->fullName'),
+		/* array(
+	        'class'=>'CLinkColumn',
+	        'urlExpression'=>'Yii::app()->controller->createUrl("employee/".$data->employee->id)',
+	        'header'=>'Name',
+	        'labelExpression'=>'$data->employee->fullName',
+      	), */
 		array(
             'class'=>'CButtonColumn',
             'template'=>'{delete}',

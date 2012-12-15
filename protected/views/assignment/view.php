@@ -23,9 +23,32 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		array('value'=>$model->activity->activityType->description, 'label'=>'Activity Type'),
-		array('value'=>$model->employee->fullName, 'label'=>'Employee'),
-		'activity.activity_date',
-		'activity.activity_time',
+		array(
+			'value'=>CHtml::link($model->employee->fullName,Yii::app()->controller->createUrl("employee/".$model->employee->id)),
+			'label'=>'Employee',
+			'type'=>'raw',
+		),
+
+		array(
+			'value'=>CHtml::link($model->activity->activity_date,Yii::app()->controller->createUrl("activity/".$model->activity->id)),
+			'label'=>'Activity Date',
+			'type'=>'raw',
+		),
+
+		array(
+			'value'=>CHtml::link($model->activity->activity_time,Yii::app()->controller->createUrl("activity/".$model->activity->id)),
+			'label'=>'Activity Time',
+			'type'=>'raw',
+		),
+
+		/* array(
+			'value'=>CHtml::link($model->activity->description,Yii::app()->controller->createUrl("activity/".$model->activity->id)),
+			'label'=>'Activity Description',
+			'type'=>'raw',
+		), */
+
+		// 'activity.activity_date',
+		// 'activity.activity_time',
 		array('name'=>'activity.description', 'label'=>'Activity Description'),
 		'estimated_hours',
 		'actual_hours',

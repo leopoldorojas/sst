@@ -192,6 +192,31 @@ class Service extends CActiveRecord
 		));
 	}
 
+	public function searchByBooking($id=NULL)
+	{
+		if ($id) {
+			$criteria=new CDbCriteria;
+			$criteria->with='booking';
+			$criteria->compare('booking.id',$id,true);
+
+			return new CActiveDataProvider($this, array(
+				'criteria'=>$criteria,
+			));
+		} else {
+			return new CActiveDataProvider('Service');
+		}
+	}
+
+	public function searchByActivity($id=NULL)
+	{
+		if ($id) {
+			$activity = Activity::model()->findByPK($id);
+			return new CActiveDataProvider("Service", array('data'=>$activity->services));
+		} else {
+			return new CActiveDataProvider('Service');
+		}
+	}
+
     public function bookingExist($attribute)
     {
     	if (!Booking::model()->findByPk($this->$attribute))

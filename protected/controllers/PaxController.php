@@ -28,7 +28,7 @@ class PaxController extends Controller
 	{
 		return array(
 			array('allow', 
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','byBooking'),
 				'users'=>array('*'),
 			),
 			array('deny', 
@@ -151,6 +151,18 @@ class PaxController extends Controller
 			'model'=>$model,
 			'bookingCode'=>$bookingCode,
 		));
+	}
+
+	public function actionByBooking($id)
+	{
+		$model=new Pax('search');
+		$model->unsetAttributes();  // clear any default values
+		$dataProvider=$model->search($id);
+
+		$this->renderPartial('_paxesByBooking',
+			array(
+				'dataProvider'=>$dataProvider,
+			),false,true);
 	}
 
 	/**

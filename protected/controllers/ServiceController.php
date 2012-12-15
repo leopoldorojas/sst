@@ -28,7 +28,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','byBooking','byActivity'),
 				'users'=>array('*'),
 			),
 			array('deny', 
@@ -157,6 +157,30 @@ class ServiceController extends Controller
 			'model'=>$model,
 			'searchForm'=>$searchForm,
 		));
+	}
+
+	public function actionByBooking($id)
+	{
+		$model=new Service('search');
+		$model->unsetAttributes();  // clear any default values
+		$dataProvider=$model->searchByBooking($id);
+
+		$this->renderPartial('_servicesByParent',
+			array(
+				'dataProvider'=>$dataProvider,
+			),false,true);
+	}
+
+	public function actionByActivity($id)
+	{
+		$model=new Service('search');
+		$model->unsetAttributes();  // clear any default values
+		$dataProvider=$model->searchByActivity($id);
+
+		$this->renderPartial('_servicesByParent',
+			array(
+				'dataProvider'=>$dataProvider,
+			),false,true);
 	}
 
 	/**

@@ -6,7 +6,13 @@
 	'selectableRows'=>10,
 	'columns'=>array(
 		'id',
-		array('name'=>'Name', 'value'=>'$data->name . " " . $data->lastname'),
+		array('name'=>'Name', 'value'=>'$data->fullName'),
+		/* array(
+	        'class'=>'CLinkColumn',
+	        'urlExpression'=>'Yii::app()->controller->createUrl("employee/".$data->id)',
+	        'header'=>'Name',
+	        'labelExpression'=>'$data->fullName',
+      	), */
 	),
 	'selectionChanged' => 'getEmployee',
 )); ?>

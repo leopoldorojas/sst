@@ -18,7 +18,8 @@ $this->menu=array(
 
 <h1>View Booking ID: <?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php
+$this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -35,3 +36,18 @@ $this->menu=array(
 		'createdon',
 	),
 )); ?>
+
+<hr />
+
+<?php 
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>array(
+        'Services'=>array('ajax'=>$this->createUrl("service/ByBooking/$model->id")),
+        'Pax Info'=>array('ajax'=>$this->createUrl("pax/ByBooking/$model->id")),
+    ),
+    // additional javascript options for the tabs plugin
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>
