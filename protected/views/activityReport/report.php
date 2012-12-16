@@ -30,8 +30,8 @@ function getActivity(id){
 Yii::app()->clientScript->registerScript('ReportAll', "
 $('.reportAll-button').click(function(){
 	data=$('.search-form form').serialize();
-	$.get('/sst/index.php/activityReport/reportAll', data);
-	window.location.replace('/sst/index.php/activityReport/report?m=1');
+	$.get('" . $this->createUrl('/activityReport/reportAll') . "', data);
+	window.location.replace('" . $this->createUrl('/activityReport/'. $model->id . 'report?m=1') . "');
 	return false;
 });
 ");

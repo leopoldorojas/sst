@@ -10,8 +10,8 @@ $('.search-button').click(function(){
 });
 $('.search-form form').submit(function(){
 	data=$('.search-form form').serialize();
-	$.get('/sst/index.php/activityReport/calendar', data);
-	//return false;
+    $('body').load('" . $this->createUrl('/activityReport/calendar') . "', data);
+	return false;
 });
 ");
 
@@ -29,8 +29,8 @@ function getActivity(id){
 Yii::app()->clientScript->registerScript('ReportAll', "
 $('.reportAll-button').click(function(){
 	data=$('.search-form form').serialize();
-	$.get('/sst/index.php/activityReport/reportAll', data);
-	window.location.replace('/sst/index.php/activityReport/calendar?m=1');
+    $.get('" . $this->createUrl('/activityReport/reportAll') . "', data);
+    window.location.replace('" . $this->createUrl('/activityReport/'. $model->id . 'calendar?m=1') . "');
 	return false;
 });
 ");

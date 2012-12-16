@@ -105,12 +105,12 @@ class ActivityService extends CActiveRecord
 		$criteria->with=array('activity','activity.activityType');
 		$service_id= (isset($params)) ? $params['service_id'] : $this->service_id;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('activity_id',$this->activity_id);
 		$criteria->compare('service_id',$service_id);
 		$criteria->compare('room',$this->room,true);
 		$criteria->compare('notes',$this->notes,true);
-		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->compare('t.createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

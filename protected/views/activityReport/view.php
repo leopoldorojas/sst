@@ -1,11 +1,11 @@
 <?php
-/* @var $this ActivityController */
+/* @var $this ActivityReportController */
 /* @var $model Activity */
 
 Yii::app()->clientScript->registerScript('printActivity', "
 $('.printActivity-button').click(function(){
-	$.get('/sst/index.php/activityReport/$model->id?p=1');
-	window.location.replace('/sst/index.php/activityReport/$model->id?m=1');
+	$.get('" . $this->createUrl('/activityReport/'. $model->id . '?p=1') . "');
+	window.location.replace('" . $this->createUrl('/activityReport/'. $model->id . '?m=1') . "');
 	return false;
 });
 ");

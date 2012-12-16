@@ -218,7 +218,7 @@ class Activity extends CActiveRecord
         		'start'=>$activity->activity_date,
         		'color'=>'#CC0000',
         		'allDay'=>true,
-        		'url'=>'/sst/index.php/activityreport/'.$activity->id,
+        		'url'=>Yii::app()->controller->createUrl("activityreport/$activity->id"),
 			));
 		}
 
