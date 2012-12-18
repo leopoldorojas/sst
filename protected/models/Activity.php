@@ -248,4 +248,12 @@ class Activity extends CActiveRecord
     	$this->activity_time=substr($this->activity_time,0,5);
 	}
 
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+
 }

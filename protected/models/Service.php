@@ -237,4 +237,12 @@ class Service extends CActiveRecord
 	   	$this->dropofftime=substr($this->dropofftime,0,5);
 	}
 
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+
 }

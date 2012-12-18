@@ -17,6 +17,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'ext.auditTrail.models.AuditTrail',
+
 	),
 
 	'modules'=>array(

@@ -152,4 +152,13 @@ class Assignment extends CActiveRecord
     		$this->addError($attribute,'This assignment Employee-Activity already exists');
     	}
     }
+
+    public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+
 }

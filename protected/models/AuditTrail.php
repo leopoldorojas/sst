@@ -1,25 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "pax_service".
+ * This is the model class for table "tbl_audit_trail".
  *
- * The followings are the available columns in table 'pax_service':
+ * The followings are the available columns in table 'tbl_audit_trail':
  * @property integer $id
- * @property integer $pax_id
- * @property integer $service_id
- * @property string $notes
- * @property string $createdon
- *
- * The followings are the available model relations:
- * @property Service $service
- * @property Pax $pax
+ * @property string $old_value
+ * @property string $new_value
+ * @property string $action
+ * @property string $model
+ * @property string $field
+ * @property string $stamp
+ * @property string $user_id
+ * @property string $model_id
  */
-class PaxService extends CActiveRecord
+class AuditTrail extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return PaxService the static model class
+	 * @return AuditTrail the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -31,7 +31,7 @@ class PaxService extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'pax_service';
+		return 'tbl_audit_trail';
 	}
 
 	/**
@@ -42,12 +42,12 @@ class PaxService extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pax_id, service_id', 'required'),
-			array('pax_id, service_id', 'numerical', 'integerOnly'=>true),
-			array('notes', 'safe'),
+			array('action, model, field, stamp, model_id', 'required'),
+			array('action, model, field, user_id, model_id', 'length', 'max'=>255),
+			array('old_value, new_value', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, pax_id, service_id, notes, createdon', 'safe', 'on'=>'search'),
+			array('id, old_value, new_value, action, model, field, stamp, user_id, model_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +59,7 @@ class PaxService extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'service' => array(self::BELONGS_TO, 'Service', 'service_id'),
-			'pax' => array(self::BELONGS_TO, 'Pax', 'pax_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -71,10 +70,14 @@ class PaxService extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'pax_id' => 'Pax',
-			'service_id' => 'Service',
-			'notes' => 'Notes',
-			'createdon' => 'Createdon',
+			'old_value' => 'Old Value',
+			'new_value' => 'New Value',
+			'action' => 'Action',
+			'model' => 'Model',
+			'field' => 'Field',
+			'stamp' => 'Stamp',
+			'user_id' => 'User',
+			'model_id' => 'Model',
 		);
 	}
 
@@ -90,22 +93,17 @@ class PaxService extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('pax_id',$this->pax_id);
-		$criteria->compare('service_id',$this->service_id);
-		$criteria->compare('notes',$this->notes,true);
-		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->compare('old_value',$this->old_value,true);
+		$criteria->compare('new_value',$this->new_value,true);
+		$criteria->compare('action',$this->action,true);
+		$criteria->compare('model',$this->model,true);
+		$criteria->compare('field',$this->field,true);
+		$criteria->compare('stamp',$this->stamp,true);
+		$criteria->compare('user_id',$this->user_id,true);
+		$criteria->compare('model_id',$this->model_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-	public function behaviors()
-	{
-	    return array(
-	        'LoggableBehavior'=>
-	            'ext.auditTrail.behaviors.LoggableBehavior',
-	    );
-	}
-
 }

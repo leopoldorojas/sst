@@ -139,4 +139,13 @@ class Pax extends CActiveRecord
     	if (!Booking::model()->findByPk($this->$attribute))
     		$this->addError($attribute,'The booking does not exist');
     }
+
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+    
 }

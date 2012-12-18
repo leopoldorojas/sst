@@ -126,4 +126,13 @@ class User extends CActiveRecord
 	{
 		return md5($salt.$password);
 	}
+
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+	
 }

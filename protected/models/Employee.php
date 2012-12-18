@@ -145,4 +145,12 @@ class Employee extends CActiveRecord
     	$this->cost_per_hour=number_format($this->cost_per_hour, 2);
 	}
 
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+
 }

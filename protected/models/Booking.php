@@ -123,4 +123,13 @@ class Booking extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+
 }

@@ -151,4 +151,13 @@ class ActivityService extends CActiveRecord
 			echo json_encode($data);
 		}
 	}
+
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
+	
 }

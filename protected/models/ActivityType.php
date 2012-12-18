@@ -104,5 +104,13 @@ class ActivityType extends CActiveRecord
 	{
         return self::model()->findAllByAttributes(array('enabled'=>1));
 	}
+	
+	public function behaviors()
+	{
+	    return array(
+	        'LoggableBehavior'=>
+	            'ext.auditTrail.behaviors.LoggableBehavior',
+	    );
+	}
 
 }
