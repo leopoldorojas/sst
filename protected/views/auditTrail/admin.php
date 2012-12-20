@@ -46,17 +46,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		array(
+			'name'=>'user.name',
+			'filter' => CHtml::activeDropDownList($model,'user_id', 
+				CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
+		), 
 		'old_value',
 		'new_value',
 		'action',
 		'model',
 		'field',
 		'stamp',
-		array(
-			'name'=>'user.name',
-			'filter' => CHtml::activeDropDownList($model,'user_id', 
-				CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
-		), 
 		// 'model_id',
 		array(
 			'class'=>'CButtonColumn',

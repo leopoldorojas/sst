@@ -10,7 +10,6 @@
  * @property string $activity_date
  * @property string $activity_time
  * @property boolean $completed
- * @property string $createdon
  *
  * The followings are the available model relations:
  * @property ActivityType $activityType
@@ -97,7 +96,6 @@ class Activity extends CActiveRecord
 			'activity_date' => 'Activity Date',
 			'activity_time' => 'Activity Time',
 			'completed' => 'Completed?',
-			'createdon' => 'Created on',
 		);
 	}
 
@@ -132,7 +130,7 @@ class Activity extends CActiveRecord
 	 * This search is used in a complex form for Report Activities 
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function searchForReport($searchForm)
+	public function searchForReport($searchForm, $pageSize=10)
 	{
 		$returnActivities=$arrCriteriaWith=array();
 
@@ -178,6 +176,9 @@ class Activity extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			// 'data'=>self::model()->with($arrCriteriaWith)->findAll($criteria),
 			'criteria'=>$criteria,
+			'pagination'=>array(
+        		'pageSize'=>$pageSize,
+    		),
 		));
 	}
 

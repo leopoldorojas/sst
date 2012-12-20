@@ -82,10 +82,12 @@ class ActivityReportController extends Controller
 				'message'=>false,
 			), true));
 
-			$file_name='protected/runtime/reports/' . Yii::app()->user->name . '_Activity_Report_' . date("Ymd_His") . '.pdf';
-			$mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_FILE);
+			// $file_name='protected/runtime/reports/' . Yii::app()->user->name . '_Activity_Report_' . date("Ymd_His") . '.pdf';
+			// $mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_FILE);
+			$file_name=Yii::app()->user->name . '_Activity_Report_' . date("Ymd_His") . '.pdf';
+			$mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_BROWSER);
 			$this->layout='//layouts/column1';
-			$this->redirect(array('view','id'=>$model->id, 'm'=>'1'));	
+			// $this->redirect(array('view','id'=>$model->id, 'm'=>'1'));	
 		} else {
 			$this->render('view',array(
 				'model'=>$model,
@@ -142,7 +144,7 @@ class ActivityReportController extends Controller
 			$searchForm->endDate=date("Ymd");
 		}
 	
-		$dataProvider=$model->searchForReport($searchForm);
+		$dataProvider=$model->searchForReport($searchForm, $pageSize=10000);
 		$allActivities=$dataProvider->data;
 		$this->layout='//layouts/column1_print';
 		$mPDF1 = Yii::app()->ePdf->mpdf();
@@ -181,10 +183,10 @@ class ActivityReportController extends Controller
 			$mPDF1->WriteHTML('<hr />');
 		}
 
-		$file_name='protected/runtime/reports/' . Yii::app()->user->name . '_Activities_Report_' . date("Ymd_His") . '.pdf';
-		$mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_FILE);
+		$file_name=Yii::app()->user->name . '_Activities_Report_' . date("Ymd_His") . '.pdf';
+		$mPDF1->Output($file_name,EYiiPdf::OUTPUT_TO_BROWSER);
 		$this->layout='//layouts/column1';
-		$this->redirect(array('report', 'm'=>'1'));
+		// $this->redirect(array('report', 'm'=>'1'));
 	}
 
 	/**

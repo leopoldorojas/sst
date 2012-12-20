@@ -21,9 +21,4 @@
 	<?php echo CHtml::encode($data->enabled); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
-	<?php echo CHtml::encode($data->createdon); ?>
-	<br />
-
-
 </div>

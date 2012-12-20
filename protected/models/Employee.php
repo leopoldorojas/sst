@@ -10,7 +10,6 @@
  * @property string $identification_number
  * @property string $rol
  * @property string $cost_per_hour
- * @property string $createdon
  *
  * The followings are the available model relations:
  * @property Assignment[] $assignments
@@ -78,7 +77,6 @@ class Employee extends CActiveRecord
 			'identification_number' => 'Identification Number',
 			'rol' => 'Job position',
 			'cost_per_hour' => 'Cost per Hour',
-			'createdon' => 'Created on',
 		);
 	}
 

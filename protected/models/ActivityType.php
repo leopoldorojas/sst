@@ -8,7 +8,6 @@
  * @property string $description
  * @property boolean $enabled
  * @property string $service_types
- * @property string $createdon
  *
  * The followings are the available model relations:
  * @property Activity[] $activities
@@ -73,7 +72,6 @@ class ActivityType extends CActiveRecord
 			'description' => 'Description',
 			'enabled' => 'Enabled?',
 			'service_types' => 'Allowed Service Types',
-			'createdon' => 'Created on',
 		);
 	}
 

@@ -27,11 +27,20 @@ function getActivity(id){
 }
 ");
 
-Yii::app()->clientScript->registerScript('ReportAll', "
+/* Yii::app()->clientScript->registerScript('ReportAll', "
 $('.reportAll-button').click(function(){
 	data=$('.search-form form').serialize();
 	$.get('" . $this->createUrl('/activityReport/reportAll') . "', data);
-	window.location.replace('" . $this->createUrl('/activityReport/'. $model->id . 'report?m=1') . "');
+	window.location.replace('" . $this->createUrl('/activityReport/report?m=1') . "');
+	return false;
+});
+"); */
+
+Yii::app()->clientScript->registerScript('ReportAll', "
+$('.reportAll-button').click(function(){
+	data=$('.search-form form').serialize();
+	pathToBuildPDF = '" . $this->createUrl('/activityReport/reportAll') . "' + '?' + data;
+	window.location.replace(pathToBuildPDF);
 	return false;
 });
 ");
@@ -59,7 +68,7 @@ Yii::app()->clientScript->registerScript('getDate', "
     });
 ");
 
-if($message) {
+/* if($message) {
 	$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 		'id'=>'todoOkConReporteActividades',
 		'options'=>array(
@@ -70,7 +79,7 @@ if($message) {
 
 	echo $message;
 	$this->endWidget('zii.widgets.jui.CJuiDialog');
-}
+} */
 ?>
 
 <h1>Report Activities</h1>

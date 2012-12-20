@@ -44,12 +44,6 @@
 		<?php echo $form->textField($model,'cost_per_hour',array('size'=>8,'maxlength'=>19)); ?>
 		<?php echo $form->error($model,'cost_per_hour'); ?>
 	</div>
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-		<?php echo $form->error($model,'createdon'); ?>
-	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

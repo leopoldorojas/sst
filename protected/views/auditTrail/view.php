@@ -22,13 +22,13 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+		'user.name',
 		'old_value',
 		'new_value',
 		'action',
 		'model',
 		'field',
 		'stamp',
-		'user.name',
 		'model_id',
 	),
 )); ?>

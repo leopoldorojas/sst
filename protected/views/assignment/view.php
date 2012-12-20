@@ -52,6 +52,5 @@ $this->menu=array(
 		array('name'=>'activity.description', 'label'=>'Activity Description'),
 		'estimated_hours',
 		'actual_hours',
-		'createdon',
 	),
 )); ?>

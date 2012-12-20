@@ -11,7 +11,6 @@
  * @property string $email
  * @property string $salt
  * @property string $profile
- * @property string $createdon
  * @property string $rol
  * @property string $password_onscreen // This is a property that it is not necessary to save in db
  */
@@ -85,7 +84,6 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'salt' => 'Salt',
 			'profile' => 'Profile',
-			'createdon' => 'Created on',
 			'rol'=>'Rol',
 		);
 	}

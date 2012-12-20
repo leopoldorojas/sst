@@ -29,6 +29,5 @@ $this->menu=array(
 		// 'salt',
 		'profile',
 		'rol',
-		'createdon',
 	),
 )); ?>

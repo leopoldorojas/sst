@@ -27,7 +27,6 @@ $this->menu=array(
 		'activity_date',
 		'activity_time',
 		array('label'=>'Completed?','value'=>($model->completed) ? 'Yes' : 'No' ),
-		'createdon',
 	),
 )); ?>
 

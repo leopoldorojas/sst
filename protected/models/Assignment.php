@@ -9,7 +9,6 @@
  * @property integer $activity_id
  * @property string $estimated_hours
  * @property string $actual_hours
- * @property string $createdon
  *
  * The followings are the available model relations:
  * @property Activity $activity
@@ -79,7 +78,6 @@ class Assignment extends CActiveRecord
 			'activity_id' => 'Activity',
 			'estimated_hours' => 'Estimated Hours',
 			'actual_hours' => 'Actual Hours',
-			'createdon' => 'Created on',
 		);
 	}
 

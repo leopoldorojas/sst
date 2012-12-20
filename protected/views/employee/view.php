@@ -27,7 +27,6 @@ $this->menu=array(
 		'identification_number',
 		'rol',
 		'cost_per_hour',
-		'createdon',
 	),
 )); ?>
 

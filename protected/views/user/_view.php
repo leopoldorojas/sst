@@ -28,9 +28,5 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('rol')); ?>:</b>
 	<?php echo CHtml::encode($data->rol); ?>
 	<br />
-	
-	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
-	<?php echo CHtml::encode($data->createdon); ?>
-	<br />
 
 </div>

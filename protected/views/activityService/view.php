@@ -26,6 +26,5 @@ $this->menu=array(
 		'service_id',
 		'room',
 		'notes',
-		'createdon',
 	),
 )); ?>

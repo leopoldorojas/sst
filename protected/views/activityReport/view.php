@@ -22,7 +22,7 @@ $('.printActivity-button').click(function(){
 <?php } ?>
 
 <h1>Report of Activity ID: <?php echo $model->id; ?></h1>
-<?php
+<?php /*
 	if($message) {
 		$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     		'id'=>'todoOkConReporteActividad',
@@ -34,7 +34,7 @@ $('.printActivity-button').click(function(){
 
     	echo $message;
 		$this->endWidget('zii.widgets.jui.CJuiDialog');
-	}
+	} */
 ?>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -85,6 +85,9 @@ $('.printActivity-button').click(function(){
 
 <?php if ($printPartial) { ?>
 <div class="printActivity-form" style="display:all">
-<?php echo CHtml::link('Click here to Print this Activity?','#', array('class'=>'printActivity-button')); ?>
+<?php 
+	// echo CHtml::link('Click here to Print this Activity?',Yii::app()->createUrl("activityreport/$model->id", array("p"=>"1")), array('class'=>'printActivity-button'));
+	echo CHtml::link('Click here to Print this Activity?',Yii::app()->createUrl("activityreport/$model->id", array("p"=>"1")));
+?>
 </div>
 <?php } ?>

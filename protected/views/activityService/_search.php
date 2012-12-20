@@ -36,11 +36,6 @@
 		<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon', array('size'=>10,'maxlength'=>20)); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

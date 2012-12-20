@@ -29,9 +29,4 @@
 	<?php echo CHtml::encode($data->cost_per_hour); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
-	<?php echo CHtml::encode($data->createdon); ?>
-	<br />
-
-
 </div>

@@ -25,9 +25,4 @@
 	<?php echo CHtml::encode($data->actual_hours); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
-	<?php echo CHtml::encode($data->createdon); ?>
-	<br />
-
-
 </div>

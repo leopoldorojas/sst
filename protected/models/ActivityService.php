@@ -9,7 +9,6 @@
  * @property integer $service_id
  * @property string $room
  * @property string $notes
- * @property string $createdon
  *
  * The followings are the available model relations:
  * @property Activity $activity
@@ -52,7 +51,7 @@ class ActivityService extends CActiveRecord
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, activity_id, service_id, room, notes, createdon', 'safe', 'on'=>'search'),
+			array('id, activity_id, service_id, room, notes', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,7 +87,6 @@ class ActivityService extends CActiveRecord
 			'service_id' => 'Service',
 			'room' => 'Room',
 			'notes' => 'Notes',
-			'createdon' => 'Created on',
 		);
 	}
 
@@ -110,7 +108,6 @@ class ActivityService extends CActiveRecord
 		$criteria->compare('service_id',$service_id);
 		$criteria->compare('room',$this->room,true);
 		$criteria->compare('notes',$this->notes,true);
-		$criteria->compare('t.createdon',$this->createdon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

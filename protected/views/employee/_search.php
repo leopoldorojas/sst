@@ -40,11 +40,6 @@
 		<?php echo $form->label($model,'cost_per_hour'); ?>
 		<?php echo $form->textField($model,'cost_per_hour',array('size'=>8,'maxlength'=>19)); ?>
 	</div>
-	<?php /*
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

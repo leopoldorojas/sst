@@ -16,6 +16,13 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo CHtml::label('User Name', false); ?>
+		<?php echo $form->dropDownList($model,'user_id', 
+				CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'--')); ?>
+		<?php echo $form->error($model,'user_id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'old_value'); ?>
 		<?php echo $form->textArea($model,'old_value',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'old_value'); ?>
@@ -49,13 +56,6 @@
 		<?php echo $form->labelEx($model,'stamp'); ?>
 		<?php echo $form->textField($model,'stamp'); ?>
 		<?php echo $form->error($model,'stamp'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::label('User Name', false); ?>
-		<?php echo $form->dropDownList($model,'user_id', 
-				CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'--')); ?>
-		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">

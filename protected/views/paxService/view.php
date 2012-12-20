@@ -25,6 +25,5 @@ $this->menu=array(
 		'pax_id',
 		'service_id',
 		'notes',
-		'createdon',
 	),
 )); ?>

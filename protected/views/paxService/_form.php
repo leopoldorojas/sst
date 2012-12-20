@@ -33,12 +33,6 @@
 		<?php echo $form->error($model,'notes'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-		<?php echo $form->error($model,'createdon'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
