@@ -39,7 +39,8 @@ Yii::app()->clientScript->registerScript('ReportAll', "
 $('.reportAll-button').click(function(){
     data=$('.search-form form').serialize();
     pathToBuildPDF = '" . $this->createUrl('/activityReport/reportAll') . "' + '?' + data;
-    window.location.replace(pathToBuildPDF);
+    window.open(pathToBuildPDF, '_blank');
+    window.focus();
     return false;
 });
 ");

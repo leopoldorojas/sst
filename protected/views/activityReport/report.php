@@ -40,7 +40,8 @@ Yii::app()->clientScript->registerScript('ReportAll', "
 $('.reportAll-button').click(function(){
 	data=$('.search-form form').serialize();
 	pathToBuildPDF = '" . $this->createUrl('/activityReport/reportAll') . "' + '?' + data;
-	window.location.replace(pathToBuildPDF);
+    window.open(pathToBuildPDF, '_blank');
+    window.focus();
 	return false;
 });
 ");
@@ -120,6 +121,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 					'label'=>'Print Activity',
 					'url'=>'Yii::app()->createUrl("activityreport/$data->id", array("p"=>"1"))',
 					'imageUrl'=>Yii::app()->baseUrl . '/images/print-for-yii.png',
+					'options'=>array('target'=>'_blank'),
 				),
 			),
 		),

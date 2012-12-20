@@ -87,7 +87,7 @@ $('.printActivity-button').click(function(){
 <div class="printActivity-form" style="display:all">
 <?php 
 	// echo CHtml::link('Click here to Print this Activity?',Yii::app()->createUrl("activityreport/$model->id", array("p"=>"1")), array('class'=>'printActivity-button'));
-	echo CHtml::link('Click here to Print this Activity?',Yii::app()->createUrl("activityreport/$model->id", array("p"=>"1")));
+	echo CHtml::link('Click here to Print this Activity?',Yii::app()->createUrl("activityreport/$model->id", array("p"=>"1")), array('target'=>'_blank'));
 ?>
 </div>
 <?php } ?>
