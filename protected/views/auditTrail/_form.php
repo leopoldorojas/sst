@@ -52,8 +52,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo CHtml::label('User Name', false); ?>
+		<?php echo $form->dropDownList($model,'user_id', 
+				CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'--')); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 

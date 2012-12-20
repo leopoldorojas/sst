@@ -52,7 +52,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'model',
 		'field',
 		'stamp',
-		'user.name',
+		array(
+			'name'=>'user.name',
+			'filter' => CHtml::activeDropDownList($model,'user_id', 
+				CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
+		), 
 		// 'model_id',
 		array(
 			'class'=>'CButtonColumn',

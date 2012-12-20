@@ -131,6 +131,7 @@ class AuditTrailController extends Controller
 	{
 		$model=new AuditTrail('search');
 		$model->unsetAttributes();  // clear any default values
+
 		if(isset($_GET['AuditTrail']))
 			$model->attributes=$_GET['AuditTrail'];
 

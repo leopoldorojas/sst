@@ -28,7 +28,7 @@ $this->menu=array(
 		'model',
 		'field',
 		'stamp',
-		'user_id',
+		'user.name',
 		'model_id',
 	),
 )); ?>

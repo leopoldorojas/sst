@@ -33,11 +33,11 @@
 	<?php echo CHtml::encode($data->stamp); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
+	<?php echo CHtml::encode(User::model()->findByPk($data->user_id)->name); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('model_id')); ?>:</b>
 	<?php echo CHtml::encode($data->model_id); ?>
 	<br />
