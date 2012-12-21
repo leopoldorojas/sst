@@ -208,7 +208,7 @@ class ActivityController extends Controller
 	{
 		$model=new Activity('search');
 		$model->unsetAttributes();  // clear any default values
-		$filterByCompleted=0;
+		$filterByCompleted=1; // Defauly is 'only uncompleted'
 
 		if(isset($_GET['Activity']))
 			$model->attributes=$_GET['Activity'];

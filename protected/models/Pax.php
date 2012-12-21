@@ -127,6 +127,7 @@ class Pax extends CActiveRecord
             ), '*', /* Treat all other columns normally */
         );
         /* End: Sort on related Model's columns */
+        $sort->defaultOrder='t.id DESC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

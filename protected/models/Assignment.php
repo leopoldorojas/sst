@@ -122,6 +122,7 @@ class Assignment extends CActiveRecord
             '*', /* Treat all other columns normally */
         );
         /* End: Sort on related Model's columns */
+        $sort->defaultOrder='activity.activity_date';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -122,6 +122,9 @@ class Activity extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+    			'defaultOrder'=>'activity_date',
+  			),
 		));
 	}
 
@@ -176,6 +179,9 @@ class Activity extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			// 'data'=>self::model()->with($arrCriteriaWith)->findAll($criteria),
 			'criteria'=>$criteria,
+			'sort'=>array(
+    			'defaultOrder'=>'activity_date',
+    		),
 			'pagination'=>array(
         		'pageSize'=>$pageSize,
     		),

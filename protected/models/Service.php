@@ -161,8 +161,7 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		if ($params->sortTol)
-			$criteria->order='FIELD(supplier, "TOL") DESC';
+		if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
 
 		/* if ($params->sortTol)
 			$criteria->order="CASE

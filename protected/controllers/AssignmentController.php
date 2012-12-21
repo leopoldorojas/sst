@@ -141,6 +141,7 @@ class AssignmentController extends Controller
 		$searchForm=new AssignmentFilterForm();
 		$model->unsetAttributes();  // clear any default values
 		$searchForm->unsetAttributes();
+		$searchForm->activityDate=date("Y-m-d"); // Por default muestra las asignaciones de hoy
 
 		if(isset($_GET['AssignmentFilterForm']))
 			$searchForm->attributes=$_GET['AssignmentFilterForm'];
