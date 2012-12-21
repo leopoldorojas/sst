@@ -161,11 +161,16 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
-		/* if ($params->sortTol) $criteria->order="CASE
-           WHEN supplier LIKE 'TOL' THEN 1
-           ELSE 2
-         END"; */
+		if ($params->sortTol)
+			$criteria->order='FIELD(supplier, "TOL") DESC';
+
+		/* if ($params->sortTol)
+			$criteria->order="CASE
+           		WHEN supplier LIKE 'TOL' THEN 1
+           		ELSE 2
+         	END"
+        else
+        	$criteria->order=''; */
 
 		$criteria->with='booking';
 		$criteria->compare('booking.booking_code',$params->bookingCode,true);
@@ -184,6 +189,7 @@ class Service extends CActiveRecord
             'desc' => 'booking_code DESC',
             ), '*', /* Treat all other columns normally */
         );
+        $sort->defaultOrder='booking.booking_code';
         /* End: Sort on related Model's columns */
 
 		return new CActiveDataProvider($this, array(

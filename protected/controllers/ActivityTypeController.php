@@ -76,6 +76,8 @@ class ActivityTypeController extends Controller
 			$model->attributes=$_POST['ActivityType'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
+		} else {
+			$model->enabled=true;
 		}
 
 		$this->render('create',array(
