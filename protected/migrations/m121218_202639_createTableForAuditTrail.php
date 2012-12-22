@@ -21,12 +21,12 @@ class m121218_202639_createTableForAuditTrail extends CDbMigration
 				'new_value' => 'text',
 				'action' => 'string NOT NULL',
 				'model' => 'string NOT NULL',
-				'field' => 'string NOT NULL',
+				'field' => 'string',
 				'stamp' => 'datetime NOT NULL',
 				'user_id' => 'string',
 				'model_id' => 'string NOT NULL',
 			)
-			// , 'ENGINE=InnoDB' // Just for MySQL
+			// 'ENGINE=InnoDB' // Just for MySQL
 		);
 
 		//Index these bad boys for speedy lookups
