@@ -4,13 +4,13 @@ class m121220_142248_changeTableServiceForLoadStoreProcedure extends CDbMigratio
 {
 	public function up()
 	{
-		$this->alterColumn('service', 'createdon', 'datetime');
+		$this->alterColumn('service', 'createdon', 'datetime'); // Ver si puedo con SQL-Manager
 		$this->addColumn('service','optlwdate','datetime');
 	}
 
 	public function down()
 	{
-		$this->alterColumn('service', 'createdon', 'timestamp');
+		// $this->alterColumn('service', 'createdon', 'timestamp'); // Ver si puedo con SQL-Manager
 		$this->dropColumn('service','optlwdate','datetime');
 	}
 

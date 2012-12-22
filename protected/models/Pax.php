@@ -148,5 +148,17 @@ class Pax extends CActiveRecord
 	            'ext.auditTrail.behaviors.LoggableBehavior',
 	    );
 	}
+
+	protected function beforeSave()
+	{
+    	if(parent::beforeSave())
+    	{
+        	if($this->isNewRecord)
+            	$this->createdon=date("Y-m-d H:i:s");
+        	return true;
+    	}
+    	else
+        	return false;
+	}
     
 }

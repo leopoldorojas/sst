@@ -161,13 +161,19 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		// if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';
+		// if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';  // Sintaxis MySQL
 
-		if ($params->sortTol)
+		/* if ($params->sortTol) // Sintaxis SQL-SERVER 2012
 			$criteria->order="CASE
            		WHEN supplier LIKE 'TOL' THEN 1
            		ELSE 2
-         	END";
+         	END"; */
+
+        /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
+        	$criteria->order="CASE supplier
+        		WHEN 'TOL' THEN 1
+        		ELSE 2
+        	END"; */
 
 		$criteria->with='booking';
 		$criteria->compare('booking.booking_code',$params->bookingCode,true);
@@ -186,9 +192,10 @@ class Service extends CActiveRecord
             'desc' => 'booking_code DESC',
             ), '*', /* Treat all other columns normally */
         );
-        $sort->defaultOrder='booking.booking_code';
+        // $sort->defaultOrder='booking.booking_code';
         /* End: Sort on related Model's columns */
 
+        // $criteria->together=true;
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>$sort, /* Needed for sort */
@@ -246,6 +253,18 @@ class Service extends CActiveRecord
 	        'LoggableBehavior'=>
 	            'ext.auditTrail.behaviors.LoggableBehavior',
 	    );
+	}
+
+	protected function beforeSave()
+	{
+    	if(parent::beforeSave())
+    	{
+        	if($this->isNewRecord)
+            	$this->createdon=date("Y-m-d H:i:s");
+        	return true;
+    	}
+    	else
+        	return false;
 	}
 
 }
