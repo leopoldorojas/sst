@@ -157,7 +157,7 @@ class PaxController extends Controller
 	{
 		$model=new Pax('search');
 		$model->unsetAttributes();  // clear any default values
-		$dataProvider=$model->search($id);
+		$dataProvider=$model->searchByBooking($id);
 
 		$this->renderPartial('_paxesByBooking',
 			array(

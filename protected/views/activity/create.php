@@ -20,7 +20,7 @@ $('.displayForms-check').change(function(){
 ");
 
 Yii::app()->clientScript->registerScript('toggleAssignmentsForms', "
-$('.assignServices-button').click(function(){
+$('#assignServices-button').click(function(){
 	$('.assignService-form').show();
 	$('.assignEmployee-form').hide();
 	return false;

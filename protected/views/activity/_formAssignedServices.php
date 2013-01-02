@@ -1,7 +1,7 @@
 <!-- Use this paragraph to display the loading.gif icon above the AssignedService Gridview,
 while waiting for the ajax response -->
 <p id="loadingPic"></br></p>
-<p><b>Assigned Services for this Activity:</b></p>
+<p><b>Services already assigned to this Activity:</b></p>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'assignedService-grid',

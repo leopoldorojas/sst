@@ -33,8 +33,8 @@ class m121218_202639_createTableForAuditTrail extends CDbMigration
 		$this->createIndex( 'idx_audit_trail_user_id', 'tbl_audit_trail', 'user_id');
 		$this->createIndex( 'idx_audit_trail_model_id', 'tbl_audit_trail', 'model_id');
 		$this->createIndex( 'idx_audit_trail_model', 'tbl_audit_trail', 'model');
-		$this->createIndex( 'idx_audit_trail_field', 'tbl_audit_trail', 'field');
 		$this->createIndex( 'idx_audit_trail_action', 'tbl_audit_trail', 'action');
+		$this->createIndex( 'idx_audit_trail_field', 'tbl_audit_trail', 'field');
 	}
 
 	/**

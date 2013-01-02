@@ -135,6 +135,29 @@ class Pax extends CActiveRecord
 		));
 	}
 
+	public function searchByBooking($booking_id=NULL)
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('booking_id',$booking_id);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('age',$this->age);
+		$criteria->compare('passport',$this->passport,true);
+		$criteria->compare('arrival_detail',$this->arrival_detail,true);
+		$criteria->compare('departure_detail',$this->departure_detail,true);
+		$criteria->compare('room',$this->room,true);
+		$criteria->compare('t.notes',$this->notes,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+
 	public function bookingExist($attribute)
     {
     	if (!Booking::model()->findByPk($this->$attribute))
