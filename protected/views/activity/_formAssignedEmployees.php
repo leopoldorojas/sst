@@ -22,4 +22,5 @@ while waiting for the ajax response -->
         ),
 	),
 	'ajaxUpdate' => 'employee-grid',
+	'summaryText' => 'Click X to unassign an employee. Employee will not be deleted, only unassigned',
 )); ?>

@@ -206,8 +206,9 @@ class Service extends CActiveRecord
 	{
 		if ($id) {
 			$criteria=new CDbCriteria;
-			$criteria->with='booking';
-			$criteria->compare('booking.id',$id,true);
+			// $criteria->with='booking';
+			// $criteria->compare('booking.id',$id,true);
+			$criteria->compare('booking_id',$id);
 
 			return new CActiveDataProvider($this, array(
 				'criteria'=>$criteria,

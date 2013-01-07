@@ -3,7 +3,7 @@
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'service-grid',
 	'dataProvider'=>$dataProvider,
-	'selectableRows'=>5,
+	'selectableRows'=>10,
 	'columns'=>array(
 		'id',
 		array('name'=>'Booking Code', 'value'=>'$data->booking->booking_code'),
@@ -13,6 +13,7 @@
 		'day',
 	),
 	'selectionChanged' => 'getService',
+	'summaryText' => 'Choose service(s) to be assigned',
 )); ?>
 
 <div class="row">

@@ -3,7 +3,7 @@
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'employee-grid',
 	'dataProvider'=>$employeeDataProvider,
-	'selectableRows'=>10,
+	'selectableRows'=>20,
 	'columns'=>array(
 		'id',
 		array('name'=>'Name', 'value'=>'$data->fullName'),
@@ -15,6 +15,7 @@
       	), */
 	),
 	'selectionChanged' => 'getEmployee',
+	'summaryText' => 'Choose employee(s) to be assigned',
 )); ?>
 
 <div class="row">

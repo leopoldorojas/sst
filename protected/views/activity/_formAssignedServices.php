@@ -20,4 +20,5 @@ while waiting for the ajax response -->
         ),
 	),
 	'ajaxUpdate' => 'service-grid',
+	'summaryText' => 'Click X to unassign a service. Service will not be deleted, only unassigned',
 )); ?>

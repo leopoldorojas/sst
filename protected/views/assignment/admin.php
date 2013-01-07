@@ -85,17 +85,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				CHtml::listData(Employee::model()->getEnabledEmployees(), 'id', 'fullName'), array('empty'=>'--')),
 		),
 		array(
-			'name'=>'activity.activity_date',
+			'header'=>'Activity Date',
 			'value'=>'$data->activity->activity_date',
             'filter' => CHtml::activeTextField($searchForm, 'activityDate'),
 		),
 		array(
-			'name'=>'activity.activity_time',
+			'header'=>'Activity Time',
 			'value'=>'$data->activity->activity_time',
             'filter' => CHtml::activeTextField($searchForm, 'activityTime'),
 		),
 		array(
-			'name'=>'activity.description',
+			// 'name'=>'activity.description',
 			'header'=>'Activity Description',
 			'value'=>'$data->activity->description',
             'filter' => CHtml::activeTextField($searchForm, 'activityDescription'),
