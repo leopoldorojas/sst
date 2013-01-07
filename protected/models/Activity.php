@@ -176,12 +176,14 @@ class Activity extends CActiveRecord
 			$criteria->together=true;
 		}
 
+        $sort = new CSort;
+        $sort->defaultOrder='t.id';
+        $criteria->order="t.activity_date asc";
+
 		return new CActiveDataProvider($this, array(
 			// 'data'=>self::model()->with($arrCriteriaWith)->findAll($criteria),
 			'criteria'=>$criteria,
-			'sort'=>array(
-    			'defaultOrder'=>'activity_date',
-    		),
+			'sort'=>$sort, 
 			'pagination'=>array(
         		'pageSize'=>$pageSize,
     		),

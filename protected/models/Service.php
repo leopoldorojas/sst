@@ -161,16 +161,21 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';  // Sintaxis MySQL
+		if ($params->sortTol)
+			$criteria->order='booking.booking_code ASC, FIELD(supplier, "TOL") DESC';  // Sintaxis MySQL
+		// else
+			// $criteria->order='booking.booking_code ASC';
 
 		/* if ($params->sortTol) // Sintaxis SQL-SERVER 2012
-			$criteria->order="CASE
+			$criteria->order="booking.booking_code ASC, 
+			CASE
            		WHEN supplier LIKE 'TOL' THEN 1
            		ELSE 2
          	END"; */
 
         /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
-        	$criteria->order="CASE supplier
+        	$criteria->order="booking.booking_code ASC,
+        	CASE supplier
         		WHEN 'TOL' THEN 1
         		ELSE 2
         	END"; */
@@ -192,7 +197,7 @@ class Service extends CActiveRecord
             'desc' => 'booking_code DESC',
             ), '*', /* Treat all other columns normally */
         );
-        $sort->defaultOrder='booking.booking_code';
+        $sort->defaultOrder='t.id';
         /* End: Sort on related Model's columns */
 
         // $criteria->together=true;
