@@ -177,8 +177,8 @@ class Activity extends CActiveRecord
 		}
 
         $sort = new CSort;
-        $sort->defaultOrder='t.id';
-        $criteria->order="t.activity_date asc";
+        $sort->defaultOrder='t.activity_date asc, t.id asc';
+        // $criteria->order="t.activity_date asc";
 
 		return new CActiveDataProvider($this, array(
 			// 'data'=>self::model()->with($arrCriteriaWith)->findAll($criteria),

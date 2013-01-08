@@ -106,7 +106,7 @@ class Assignment extends CActiveRecord
 
  		/* Sort on related Model's columns */
         $sort = new CSort;
-        $sort->attributes = array(
+        /* $sort->attributes = array(
             'activity.description' => array(
             	'asc' => 'description',
             	'desc' => 'description DESC',
@@ -119,10 +119,10 @@ class Assignment extends CActiveRecord
             	'asc' => 'activity_time',
             	'desc' => 'activity_time DESC',
             ),                        
-            '*', /* Treat all other columns normally */
-        );
+            '*', // Treat all other columns normally
+        ); */
         /* End: Sort on related Model's columns */
-        $sort->defaultOrder='activity.activity_date';
+        $sort->defaultOrder='activity.activity_date asc, t.id asc';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

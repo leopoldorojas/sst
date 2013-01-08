@@ -161,24 +161,6 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		if ($params->sortTol)
-			$criteria->order='booking.booking_code ASC, FIELD(supplier, "TOL") DESC';  // Sintaxis MySQL
-		// else
-			// $criteria->order='booking.booking_code ASC';
-
-		/* if ($params->sortTol) // Sintaxis SQL-SERVER 2012
-			$criteria->order="booking.booking_code ASC, 
-			CASE
-           		WHEN supplier LIKE 'TOL' THEN 1
-           		ELSE 2
-         	END"; */
-
-        /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
-        	$criteria->order="booking.booking_code ASC,
-        	CASE supplier
-        		WHEN 'TOL' THEN 1
-        		ELSE 2
-        	END"; */
 
 		$criteria->with='booking';
 		$criteria->compare('booking.booking_code',$params->bookingCode,true);
@@ -193,12 +175,38 @@ class Service extends CActiveRecord
         $sort = new CSort;
         $sort->attributes = array(
             'booking.booking_code' => array(
-            'asc' => 'booking_code',
+            'asc' => 'booking_code ASC',
             'desc' => 'booking_code DESC',
             ), '*', /* Treat all other columns normally */
         );
-        $sort->defaultOrder='t.id';
+        // $sort->defaultOrder='booking.booking_code asc';
+        
         /* End: Sort on related Model's columns */
+
+        /* if ($params->sortTol)
+			$criteria->order='booking.booking_code ASC, FIELD(supplier, "TOL") DESC, t.id asc';  // Sintaxis MySQL
+		// else
+			// $sort->defaultOrder='booking.booking_code asc, t.id asc'; */
+
+		if ($params->sortTol) // Sintaxis SQL-SERVER 2012
+			$criteria->order="booking.booking_code ASC, 
+			CASE
+           		WHEN supplier LIKE 'TOL' THEN 1
+           		ELSE 2
+         	END ASC,
+         	t.id asc";
+        else
+        	$sort->defaultOrder='booking.booking_code asc, t.id asc';
+
+        /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
+        	$criteria->order="booking.booking_code ASC,
+        	CASE supplier
+        		WHEN 'TOL' THEN 1
+        		ELSE 2
+        	END ASC,
+        	t.id asc";
+        else
+        	$sort->defaultOrder='booking.booking_code asc, t.id asc';*/
 
         // $criteria->together=true;
 		return new CActiveDataProvider($this, array(
