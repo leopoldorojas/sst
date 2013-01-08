@@ -48,13 +48,13 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
+		/*
 		'db'=>array(
 			'connectionString' => 'sqlsrv:server=(local)\sqlexpress;database=SST',
 			'username' => 'leopoldo',
 			'password' => 'facil1234',
 			'charset' => 'utf8',
-		), 
+		), */
 		
 		/*
 		'db'=>array(
@@ -62,14 +62,14 @@ return array(
 		),
 		*/
 		// Comment the following to not to use a MySQL database
-		/*
+		
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=SST',
 			'emulatePrepare' => true,
 			'username' => 'leopoldo.rojas',
 			'password' => 'facil1234',
 			'charset' => 'utf8',
-		), */
+		),
 		'authManager'=>array(
 			// default roles definition
 			'class'=>'CDbAuthManager',
