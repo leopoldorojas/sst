@@ -104,8 +104,9 @@ class Employee extends CActiveRecord
 		}
 
         $sort = new CSort;
-        $sort->defaultOrder='t.id';
-        $criteria->order="t.lastname asc";
+        // $sort->defaultOrder='t.id';
+        // $criteria->order="t.lastname asc";
+        $sort->defaultOrder='t.lastname asc';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
