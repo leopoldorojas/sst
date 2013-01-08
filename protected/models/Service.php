@@ -183,12 +183,12 @@ class Service extends CActiveRecord
         
         /* End: Sort on related Model's columns */
 
-        /* if ($params->sortTol)
+        if ($params->sortTol)
 			$criteria->order='booking.booking_code ASC, FIELD(supplier, "TOL") DESC, t.id asc';  // Sintaxis MySQL
-		// else
-			// $sort->defaultOrder='booking.booking_code asc, t.id asc'; */
+		else
+			$sort->defaultOrder='booking.booking_code asc, t.id asc';
 
-		if ($params->sortTol) // Sintaxis SQL-SERVER 2012
+		/* if ($params->sortTol) // Sintaxis SQL-SERVER 2012
 			$criteria->order="booking.booking_code ASC, 
 			CASE
            		WHEN supplier LIKE 'TOL' THEN 1
@@ -196,7 +196,7 @@ class Service extends CActiveRecord
          	END ASC,
          	t.id asc";
         else
-        	$sort->defaultOrder='booking.booking_code asc, t.id asc';
+        	$sort->defaultOrder='booking.booking_code asc, t.id asc'; */
 
         /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
         	$criteria->order="booking.booking_code ASC,
