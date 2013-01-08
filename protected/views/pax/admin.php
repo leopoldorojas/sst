@@ -58,7 +58,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'arrival_detail',
 		'departure_detail',
 		'room',
-		'notes',
+		array('name'=>'notes','sortable'=>false),
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -50,7 +50,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'name',
 		'username',
 		'email',
-		'profile',
+		array('name'=>'profile','sortable'=>false),
 		'rol',
 		array(
 			'class'=>'CButtonColumn',

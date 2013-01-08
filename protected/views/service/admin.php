@@ -75,14 +75,15 @@ each of your search values to specify how the comparison should be done.
 	'columns'=>array(
 		'id',
         array(
-            'name'=>'booking.booking_code',
-            'value'=>'$data->booking->booking_code',
+            'name'=>'booking_code',
+            'value'=>'$data->booking_code',
             'filter' => CHtml::activeTextField($searchForm, 'bookingCode'),
+            'sortable' => false,
         ),
         'seq',
         'day',
 		'delivery_date',
-		'description',
+		array('name'=>'description','sortable'=>false),
 		'supplier',
 		'voucher',
 		'pickup',

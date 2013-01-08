@@ -8,7 +8,7 @@
 		),
 		'activity_date',
 		'activity_time',
-		'description',
+		array('name'=>'description','sortable'=>false),
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -112,7 +112,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 		'activity_date',
 		'activity_time',
-		'description',
+		array('name'=>'description','sortable'=>false),
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}{print}',

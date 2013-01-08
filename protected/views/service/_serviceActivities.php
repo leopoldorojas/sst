@@ -23,8 +23,8 @@ while waiting for the ajax response -->
             'header'=>'Booking Code',
             'value'=>'$data->booking()->booking_code',
         ),
-        'activity.description',
-        'activity.completed',
+        array('name'=>'activity.description','sortable'=>false),
+        // 'activity.completed',
         array(
             'class'=>'CButtonColumn',
             'template'=>'{update}{delete}',

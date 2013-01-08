@@ -161,43 +161,55 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
-		/*if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';  // Sintaxis MySQL
 
-		 if ($params->sortTol) // Sintaxis SQL-SERVER 2012
-			$criteria->order="CASE
-           		WHEN supplier LIKE 'TOL' THEN 1
-           		ELSE 2
-         	END"; */
-
-		//$criteria->with='booking';
-		$criteria->compare('booking_code',$params->bookingCode,true);
+		$criteria->with='booking';
+		$criteria->compare('booking.booking_code',$params->bookingCode,true);
 
 		if ($params->withActivitiesAssigned>0) {
-			//$criteria->with=array('activityServices','booking');
+			$criteria->with=array('activityServices','booking');
 			$criteria->together=true;
-			($params->withActivitiesAssigned==1) ? $criteria->addCondition('activityserviceid IS NULL') : $criteria->addCondition('activityserviceid IS NOT NULL');
+			($params->withActivitiesAssigned==1) ? $criteria->addCondition('activityServices.id IS NULL') : $criteria->addCondition('activityServices.id IS NOT NULL');
 		}
 
  		/* Sort on related Model's columns */
         $sort = new CSort;
-        /* $sort->attributes = array(
-            'booking_code' => array(
-            'asc' => 'booking_code',
+        $sort->attributes = array(
+            'booking.booking_code' => array(
+            'asc' => 'booking_code ASC',
             'desc' => 'booking_code DESC',
-            ), '*', // Treat all other columns normally
-        ); */
-        // $sort->defaultOrder='id';
-
-		if ($params->sortTol) // Sintaxis SQL-SERVER 2012
-			$criteria->order="booking_code asc,sort asc,id asc";
-        else
-        	$sort->defaultOrder='booking_code asc, id asc';
-
-        //$criteria->order='booking_code';
+            ), '*', /* Treat all other columns normally */
+        );
+        // $sort->defaultOrder='booking.booking_code asc';
+        
         /* End: Sort on related Model's columns */
 
+        /* if ($params->sortTol)
+			$criteria->order='booking.booking_code ASC, FIELD(supplier, "TOL") DESC, t.id asc';  // Sintaxis MySQL
+		else
+			$sort->defaultOrder='booking.booking_code asc, t.id asc'; */
+
+		if ($params->sortTol) // Sintaxis SQL-SERVER 2012
+			$criteria->order="booking.booking_code ASC, 
+			CASE
+           		WHEN supplier LIKE 'TOL' THEN 1
+           		ELSE 2
+         	END ASC,
+         	t.id asc";
+        else
+        	$sort->defaultOrder='booking.booking_code asc, t.id asc';
+
+        /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
+        	$criteria->order="booking.booking_code ASC,
+        	CASE supplier
+        		WHEN 'TOL' THEN 1
+        		ELSE 2
+        	END ASC,
+        	t.id asc";
+        else
+        	$sort->defaultOrder='booking.booking_code asc, t.id asc';*/
+
         // $criteria->together=true;
-		return new CActiveDataProvider('Vservice', array(
+		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>$sort, /* Needed for sort */
 		));

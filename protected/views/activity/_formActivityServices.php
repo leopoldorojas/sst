@@ -8,7 +8,7 @@
 		'id',
 		array('name'=>'Booking Code', 'value'=>'$data->booking->booking_code'),
 		'delivery_date',
-		'description',
+		array('name'=>'description','sortable'=>false),
 		'seq',
 		'day',
 	),

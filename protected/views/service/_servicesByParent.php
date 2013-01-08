@@ -7,7 +7,7 @@
         'seq',
         'day',
 		'delivery_date',
-		'description',
+		array('name'=>'description','sortable'=>false),
 		'voucher',
 		'pickuptime',
 		array(
