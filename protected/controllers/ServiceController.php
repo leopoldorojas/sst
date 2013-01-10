@@ -148,6 +148,7 @@ class ServiceController extends Controller
 		} else {
 			$searchForm->filterTol=false;
 			$searchForm->sortTol=true;
+			$searchForm->startDate=date("Ymd");
 		}
 
 		if(isset($_GET['Service']))
@@ -234,6 +235,7 @@ class ServiceController extends Controller
 			$searchForm->filterTol=true;
 			$searchForm->sortTol=true;
 			$searchForm->withActivitiesAssigned=1;
+			$searchForm->startDate=date("Ymd");
 		}
 
 		if(isset($_GET['Service']))

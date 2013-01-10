@@ -64,9 +64,32 @@ class ActivityController extends Controller
 	{
 		$model=new Activity;
 
-		$selectableServices=Service::model()->selectableByActivities();
-		$dataProvider = new CActiveDataProvider('Service');
-		$dataProvider->setData($selectableServices);
+		// $selectableServices=Service::model()->selectableByActivities();
+		// $sort = new CSort('Service', array('attributes'=>array('*')));
+		// $dataProvider = new CActiveDataProvider('Service');
+		// $dataProvider->setData($selectableServices);
+		$service=new Service('search');
+		$service->unsetAttributes();  // clear any default values
+		$params=new ServiceFilterForm();
+		$params->unsetAttributes();
+		$params->sortTol=true;
+		$params->startDate=date("Ymd");
+		$params->withActivitiesAssigned=1;
+
+		if(isset($_GET['Service']) || isset($_GET['ServiceFilterForm'])) {
+
+			if(isset($_GET['ServiceFilterForm']))
+				$params->attributes=$_GET['ServiceFilterForm'];
+
+			if(isset($_GET['Service']))
+				$service->attributes=$_GET['Service'];
+
+			$this->render('_formActivityServices',array(
+				'service'=>$service,
+				'params'=>$params,
+			));
+			Yii::app()->end();
+		}
 
 		$selectableEmployees=Employee::model()->getEnabledEmployees();
 		$employeeDataProvider = new CActiveDataProvider('Employee');
@@ -108,8 +131,10 @@ class ActivityController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'dataProvider'=>$dataProvider,
+			// 'dataProvider'=>$dataProvider,
 			'employeeDataProvider'=>$employeeDataProvider,
+			'service'=>$service,
+			'params'=>$params,
 		));
 	}
 
@@ -122,9 +147,32 @@ class ActivityController extends Controller
 	{
 		$model=$this->loadModel($id);
 
-		$selectableServices=Service::model()->selectableByActivities();
+		/* $selectableServices=Service::model()->selectableByActivities();
 		$dataProvider = new CActiveDataProvider('Service');
-		$dataProvider->setData($selectableServices);
+		$dataProvider->setData($selectableServices); */
+
+		$service=new Service('search');
+		$service->unsetAttributes();  // clear any default values
+		$params=new ServiceFilterForm();
+		$params->unsetAttributes();
+		$params->sortTol=true;
+		$params->startDate=date("Ymd");
+		$params->withActivitiesAssigned=1;
+
+		if(isset($_GET['Service']) || isset($_GET['ServiceFilterForm'])) {
+
+			if(isset($_GET['ServiceFilterForm']))
+				$params->attributes=$_GET['ServiceFilterForm'];
+
+			if(isset($_GET['Service']))
+				$service->attributes=$_GET['Service'];
+
+			$this->render('_formActivityServices',array(
+				'service'=>$service,
+				'params'=>$params,
+			));
+			Yii::app()->end();
+		}
 
 		$selectableEmployees=Employee::model()->getEnabledEmployees($model->id, false);
 		$employeeDataProvider = new CActiveDataProvider('Employee');
@@ -169,10 +217,12 @@ class ActivityController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
-			'dataProvider'=>$dataProvider,
+			// 'dataProvider'=>$dataProvider,
 			'employeeDataProvider'=>$employeeDataProvider,
 			'assignedServicesDataProvider'=>$assignedServicesDataProvider,
 			'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
+			'service'=>$service,
+			'params'=>$params,			
 		));
 	}
 

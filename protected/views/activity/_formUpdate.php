@@ -99,7 +99,9 @@
 			<p><b>Possible Services to be assigned to this activity:</b></p>
 			
 			<?php echo $this->renderPartial('_formActivityServices', array(
-				'dataProvider'=>$dataProvider,
+				// 'dataProvider'=>$dataProvider,
+				'service'=>$service,
+				'params'=>$params,
 			));
 			?>
 		</div>

@@ -1,12 +1,25 @@
 <!-- <p><b>Services that you can assign for this Activity:</b></p> -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php
+	$pageSize=1000; // Very Large to No Break Js for select rows
+	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'service-grid',
-	'dataProvider'=>$dataProvider,
+	'dataProvider'=>$service->searchForActivityCreation($params),
+		//$selectableServices=Service::model()->selectableByActivities();
+		// $sort = new CSort('Service', array('attributes'=>array('*')));
+		//$dataProvider = new CActiveDataProvider('Service');
+		//$dataProvider->setData($selectableServices);
+
 	'selectableRows'=>10,
+	'filter'=>$service,
 	'columns'=>array(
 		'id',
-		array('name'=>'Booking Code', 'value'=>'$data->booking->booking_code'),
+        array(
+            'name'=>'booking.booking_code',
+            'value'=>'$data->booking->booking_code',
+            'filter' => CHtml::activeTextField($params, 'bookingCode'),
+            'sortable' => true,
+        ),
 		'delivery_date',
 		array('name'=>'description','sortable'=>false),
 		'seq',

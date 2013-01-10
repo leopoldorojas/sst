@@ -86,9 +86,11 @@ Yii::app()->clientScript->registerScript('getDate', "
 
 <?php echo $this->renderPartial('_formUpdate', array(
 		'model'=>$model,
-		'dataProvider'=>$dataProvider,
+		// 'dataProvider'=>$dataProvider,
 		'employeeDataProvider'=>$employeeDataProvider,
 		'assignedServicesDataProvider'=>$assignedServicesDataProvider,
 		'assignedEmployeesDataProvider'=>$assignedEmployeesDataProvider,
+		'service'=>$service,
+		'params'=>$params,
 	));
 ?>

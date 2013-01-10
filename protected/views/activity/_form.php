@@ -86,7 +86,9 @@
 
 		<div class="assignService-form" style="display:all">
 			<?php echo $this->renderPartial('_formActivityServices', array(
-				'dataProvider'=>$dataProvider,
+				//'dataProvider'=>$dataProvider,
+				'service'=>$service,
+				'params'=>$params,
 			));
 			?>
 		</div>

@@ -23,7 +23,6 @@
  * @property string $cost
  * @property string $service_type
  * @property string $createdon
- * @property integer sortForTol
  *
  * The followings are the available model relations:
  * @property Booking $booking
@@ -71,7 +70,7 @@ class Service extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, booking_id, day, delivery_date, description, pickup, pickuptime, dropoff, dropofftime,
-				voucher, supplier, pax_number, service_type, sortForTol', 'safe', 'on'=>'search'),
+				voucher, supplier, pax_number, service_type,', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -132,7 +131,6 @@ class Service extends CActiveRecord
 			'cost' => 'Operation Cost',
 			'service_type' => 'Service Type',
 			'createdon' => 'Created on',
-			'sortForTol' => 'Used for sort by TOL'
 		);
 	}
 
@@ -140,7 +138,7 @@ class Service extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search($params=NULL, $pageSize=20)
+	public function search($params=NULL)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -163,104 +161,45 @@ class Service extends CActiveRecord
 		$criteria->compare('supplier',$this->supplier,true);
 		$criteria->compare('pax_number',$this->pax_number);
 		$criteria->compare('service_type',$this->service_type,true);
+		/*if ($params->sortTol) $criteria->order='FIELD(supplier, "TOL") DESC';  // Sintaxis MySQL
 
-		$criteria->with='booking';
-		$criteria->compare('booking.booking_code',$params->bookingCode,true);
+		 if ($params->sortTol) // Sintaxis SQL-SERVER 2012
+			$criteria->order="CASE
+           		WHEN supplier LIKE 'TOL' THEN 1
+           		ELSE 2
+         	END"; */
+
+		//$criteria->with='booking';
+		$criteria->compare('booking_code',$params->bookingCode,true);
 
 		if ($params->withActivitiesAssigned>0) {
-			$criteria->with=array('activityServices','booking');
+			//$criteria->with=array('activityServices','booking');
 			$criteria->together=true;
-			($params->withActivitiesAssigned==1) ? $criteria->addCondition('activityServices.id IS NULL') : $criteria->addCondition('activityServices.id IS NOT NULL');
+			($params->withActivitiesAssigned==1) ? $criteria->addCondition('activityserviceid IS NULL') : $criteria->addCondition('activityserviceid IS NOT NULL');
 		}
 
  		/* Sort on related Model's columns */
         $sort = new CSort;
-        $sort->attributes = array(
-            'booking.booking_code' => array(
-            'asc' => 'booking_code ASC',
+        /* $sort->attributes = array(
+            'booking_code' => array(
+            'asc' => 'booking_code',
             'desc' => 'booking_code DESC',
-            ), '*', /* Treat all other columns normally */
-        );
-        // $sort->defaultOrder='booking.booking_code asc';
-        
+            ), '*', // Treat all other columns normally
+        ); */
+        // $sort->defaultOrder='id';
+
+		if ($params->sortTol) // Sintaxis SQL-SERVER 2012
+			$criteria->order="booking_code asc,sort asc,id asc";
+        else
+        	$sort->defaultOrder='booking_code asc, id asc';
+
+        //$criteria->order='booking_code';
         /* End: Sort on related Model's columns */
 
-        if ($params->sortTol)
-			// $criteria->order='booking.booking_code ASC, FIELD(supplier, "TOL") DESC, t.id asc';  // Sintaxis MySQL
-			$criteria->order='booking.booking_code asc, t.sortForTol asc, t.id asc';  // Sintaxis MySQL
-		else
-			$sort->defaultOrder='booking.booking_code asc, t.id asc'; 
-
-		/* if ($params->sortTol) // Sintaxis SQL-SERVER 2012
-			$criteria->order="booking.booking_code ASC, 
-			CASE
-           		WHEN supplier LIKE 'TOL' THEN 1
-           		ELSE 2
-         	END ASC,
-         	t.id asc";
-        else
-        	$sort->defaultOrder='booking.booking_code asc, t.id asc'; */
-
-        /* if ($params->sortTol)   // Sintaxis SQL-SERVER 2008
-        	$criteria->order="booking.booking_code ASC,
-        	CASE supplier
-        		WHEN 'TOL' THEN 1
-        		ELSE 2
-        	END ASC,
-        	t.id asc";
-        else
-        	$sort->defaultOrder='booking.booking_code asc, t.id asc';*/
-
         // $criteria->together=true;
-		return new CActiveDataProvider($this, array(
+		return new CActiveDataProvider('Vservice', array(
 			'criteria'=>$criteria,
 			'sort'=>$sort, /* Needed for sort */
-			'pagination'=>array(
-        			'pageSize'=>$pageSize,
-    			),
-		));
-	}
-
-	public function searchForActivityCreation($params)
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-		$criteria->compare('t.id',$this->id);
-		$criteria->compare('day',$this->day);
-		$criteria->compare('delivery_date','>='.date("Ymd"));
-		$criteria->compare('delivery_date',$this->delivery_date,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('pickup',$this->pickup,true);
-		$criteria->compare('pickuptime',$this->pickuptime,true);
-		$criteria->compare('dropoff',$this->dropoff,true);
-		$criteria->compare('dropofftime',$this->dropofftime,true);
-		$criteria->compare('voucher',$this->voucher,true);
-		$criteria->compare('supplier','TOL',true);
-		$criteria->compare('pax_number',$this->pax_number);
-		$criteria->compare('service_type',$this->service_type,true);
-		$criteria->with=array('booking', 'activityServices');
-		$criteria->compare('booking.booking_code',$params->bookingCode,true);
-		$criteria->addCondition('activityServices.id IS NULL');
-
- 		/* Sort on related Model's columns */
-        $sort = new CSort;
-        $sort->attributes = array(
-            'booking.booking_code' => array(
-            'asc' => 'booking_code ASC',
-            'desc' => 'booking_code DESC',
-            'default' => 'ASC',
-            ), '*', /* Treat all other columns normally */
-        );
-        $sort->defaultOrder='t.delivery_date asc, booking.booking_code, t.id asc';
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-			'sort'=>$sort,
-			'pagination'=>array(
-        		'pageSize'=>1000,  // Very Large to No Break Js for select rows
-    		),
 		));
 	}
 
@@ -298,8 +237,8 @@ class Service extends CActiveRecord
 
     public function selectableByActivities()
     {
-    	// $criteria=new CDbCriteria;
-    	// $criteria->compare('activityServices.id', '');
+    	$criteria=new CDbCriteria;
+    	$criteria->compare('activityServices.id', '');
     	return self::model()->tolServices()->servicesOnDate(date("Ymd"),false)->with('activityServices','booking')->findAll('activityServices.id IS NULL');
     }
 
@@ -322,7 +261,6 @@ class Service extends CActiveRecord
 	{
     	if(parent::beforeSave())
     	{
-    		$this->sortForTol=($this->supplier == 'TOL') ? 1 : 2;
         	if($this->isNewRecord)
             	$this->createdon=date("Y-m-d H:i:s");
         	return true;
